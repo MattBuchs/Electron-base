@@ -1,52 +1,19 @@
-// Modules de controle du cycle de vie de l'application et de création
-// de fenêtre native de navigateur
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
 
-const createWindow = () => {
-    // Création de la fenêtre de navigateur.
-    const mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
-        },
-    });
+let mainWindow;
+let secondWindow;
 
-    const mainWindow2 = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
-        },
-    });
+app.on('ready', () => {
+  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow.loadFile('mainWindow.html');
 
-    // et chargement de l'index.html de l'application.
-    mainWindow.loadFile("index.html");
-    mainWindow2.loadFile("index.html");
+  secondWindow = new BrowserWindow({ width: 800, height: 600 });
+  secondWindow.loadFile('secondWindow.html');
 
-    // Ouvrir les outils de développement.
-    // mainWindow.webContents.openDevTools()
-};
-
-// Cette méthode sera appelée quand Electron aura fini
-// de s'initialiser et sera prêt à créer des fenêtres de navigation.
-// Certaines APIs peuvent être utilisées uniquement quant cet événement est émit.
-app.whenReady().then(() => {
-    createWindow();
-
-    app.on("activate", () => {
-        // Sur macOS il est commun de re-créer une fenêtre  lors
-        // du click sur l'icone du dock et qu'il n'y a pas d'autre fenêtre ouverte.
-        if (BrowserWindow.getAllWindows().length === 0) createWindow();
-    });
+  // Code pour la communication IPC
+  ipcMain.on('button-clicked', (event, message) => {
+    // Émettre l'événement vers la deuxième fenêtre
+    secondWindow.webContents.send('button-clicked', message);
+  });
 });
-
-// Quitter quand toutes les fenêtres sont fermées, sauf sur macOS. Dans ce cas il est courant
-// que les applications et barre de menu restents actives jusqu'à ce que l'utilisateur quitte
-// de manière explicite par Cmd + Q.
-app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") app.quit();
-});
-
-// Dans ce fichier vous pouvez inclure le reste du code spécifique au processus principal. Vous pouvez également le mettre dans des fichiers séparés et les inclure ici.
