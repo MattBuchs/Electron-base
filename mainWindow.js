@@ -1,5 +1,8 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer } = require("electron");
 
-document.getElementById('buttonInMainWindow').addEventListener('click', () => {
-  ipcRenderer.send('button-clicked', 'Bouton cliqué dans la première fenêtre');
+document.getElementById("buttonInMainWindow").addEventListener("click", () => {
+    ipcRenderer.send(
+        "button-clicked",
+        "Bouton cliqué dans la première fenêtre"
+    );
 });
