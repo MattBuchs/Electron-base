@@ -3,10 +3,21 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
         <title>Main Window</title>
     </head>
     <body>
-        <button id="buttonInMainWindow">Click !</button>
+        <div class="container">
+            <p>1h : 0mn : 0s</p>
+            <div class="container-buttons">
+                <button id="play">Commencer</button>
+                <button id="stop">Arrêter</button>
+                <button id="reset">Rénitialiser</button>
+                <button id="stop-alert">Stopper l'alerte</button>
+            </div>
+        </div>
+        <audio src="song/Alarm.mp3" class="song"></audio>
+
         <script src="mainWindow.js"></script>
     </body>
 </html>
