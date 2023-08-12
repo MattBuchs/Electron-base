@@ -13,8 +13,17 @@ const createWindow = () => {
         },
     });
 
+    const mainWindow2 = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, "preload.js"),
+        },
+    });
+
     // et chargement de l'index.html de l'application.
     mainWindow.loadFile("index.html");
+    mainWindow2.loadFile("index.html");
 
     // Ouvrir les outils de développement.
     // mainWindow.webContents.openDevTools()
