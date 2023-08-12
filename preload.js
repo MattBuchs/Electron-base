@@ -1,7 +1,79 @@
 // Toutes les API Node.js sont disponibles dans le processus de préchargement.
 // Il a la même sandbox qu'une extension Chrome.
 window.addEventListener("DOMContentLoaded", () => {
-    const h1 = document.querySelector("h1");
+    const timer = document.querySelector('.container p');
 
-    h1.textContent = "wow";
+    const playTimer = document.querySelector('#play');
+    const stopTimer = document.querySelector('#stop');
+    const resetTimer = document.querySelector('#reset');
+    const stopAlert = document.querySelector('#stop-alert');
+
+    const song = document.querySelector('.song');
+
+    let minutes = 59;
+    let seconds = 60;
+    let loop = null;
+
+    playTimer.addEventListener('click', () => {
+        stopTimer.style.display = "initial";
+        playTimer.style.display = "none";
+
+        loop = setInterval(() => {
+            seconds--;
+        
+            if(minutes === 0 && seconds === 0) {
+                clearInterval(loop);
+                stopTimer.style.display = "none";
+                playTimer.style.display = "none";
+                stopAlert.style.display = "initial";
+
+                song.volume = 0.05;
+                song.play();
+            }
+            else {
+                if(seconds === 0) {
+                    minutes--;
+                    seconds = 59;
+                }
+            }
+
+            timer.textContent = `${minutes < 10 ? '0' : ''}${minutes}mn : ${seconds < 10 ? '0' : ''}${seconds}s`;
+        
+        }, 1000);
+    });
+
+    stopTimer.addEventListener('click', () => {
+        playTimer.textContent = "Reprendre";
+        playTimer.style.display = "initial";
+        stopTimer.style.display = "none";
+
+        clearInterval(loop);
+    });
+
+    resetTimer.addEventListener('click', () => {
+        const confirmReset = confirm("Êtes-vous sur de vouloir rénitialiser ?");
+
+        if(confirmReset) {
+            playTimer.textContent = "Commencer";
+            playTimer.style.display = "initial";
+            stopTimer.style.display = "none";
+
+            clearInterval(loop);
+        
+            minutes = 59;
+            seconds = 60;
+        
+            timer.textContent = `1h : 0mn : 0s`;
+
+            song.pause();
+            song.currentTime = 0;
+        }
+    });
+
+    stopAlert.addEventListener('click', () => {
+        song.pause();
+        song.currentTime = 0;
+
+        stopAlert.style.display = "none";
+    });
 });
