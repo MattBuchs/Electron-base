@@ -4,14 +4,18 @@ let mainWindow;
 let secondWindow;
 
 const createWindow = () => {
+    const displays = screen.getAllDisplays();
+    const mainScreen = displays[0];
+
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        x: mainScreen.bounds.x,
+        y: mainScreen.bounds.y,
+        center: true,
         webPreferences: { nodeIntegration: true, contextIsolation: false },
     });
     mainWindow.loadFile("mainWindow.html");
-
-    const displays = screen.getAllDisplays();
 
     if (displays.length >= 2) {
         const secondScreen = displays[1];
@@ -19,7 +23,6 @@ const createWindow = () => {
         secondWindow = new BrowserWindow({
             width: 800,
             height: 600,
-            frame: false,
             fullscreen: true,
             x: secondScreen.bounds.x,
             y: secondScreen.bounds.y,
