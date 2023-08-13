@@ -8,8 +8,8 @@ const createWindow = () => {
     const mainScreen = displays[0];
 
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 800,
         x: mainScreen.bounds.x,
         y: mainScreen.bounds.y,
         center: true,
@@ -55,6 +55,10 @@ const createWindow = () => {
 
     ipcMain.on("reset-timer", () => {
         secondWindow.webContents.send("reset-timer");
+    });
+
+    ipcMain.on("send-message", (_, message) => {
+        secondWindow.webContents.send("send-message", message);
     });
 
     mainWindow.on("closed", () => {

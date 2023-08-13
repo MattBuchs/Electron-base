@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 const timer = document.querySelector(".container p");
 
 let minutes = 59;
-let seconds = 10;
+let seconds = 59;
 let loop = null;
 
 ipcRenderer.on("play-timer", () => {
@@ -36,4 +36,9 @@ ipcRenderer.on("reset-timer", () => {
     seconds = 60;
 
     timer.textContent = `1h : 0mn : 0s`;
+});
+
+const messageReceived = document.querySelector("#message-received");
+ipcRenderer.on("send-message", (_, message) => {
+    messageReceived.textContent = message;
 });
