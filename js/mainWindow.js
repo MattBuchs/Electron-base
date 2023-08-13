@@ -8,7 +8,7 @@ const stopAlert = document.querySelector("#stop-alert");
 const song = document.querySelector(".song");
 
 let minutes = 59;
-let seconds = 59;
+let seconds = 60;
 let loop = null;
 
 playTimer.addEventListener("click", () => {
@@ -86,6 +86,7 @@ formMessage.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const messageWrited = message.value;
+    message.value = "";
 
     ipcRenderer.send("send-message", messageWrited);
 });

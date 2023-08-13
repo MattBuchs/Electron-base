@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 const timer = document.querySelector(".container p");
 
 let minutes = 59;
-let seconds = 59;
+let seconds = 60;
 let loop = null;
 
 ipcRenderer.on("play-timer", () => {
