@@ -43,15 +43,18 @@ const createWindow = () => {
 
         secondWindow.webContents.openDevTools();
     }
-
     mainWindow.webContents.openDevTools();
-
-    ipcMain.on("button-clicked", (event, message) => {
-        secondWindow.webContents.send("button-clicked", message);
-    });
 
     ipcMain.on("play-timer", () => {
         secondWindow.webContents.send("play-timer");
+    });
+
+    ipcMain.on("stop-timer", () => {
+        secondWindow.webContents.send("stop-timer");
+    });
+
+    ipcMain.on("reset-timer", () => {
+        secondWindow.webContents.send("reset-timer");
     });
 
     mainWindow.on("closed", () => {

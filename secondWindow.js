@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 const timer = document.querySelector(".container p");
 
 let minutes = 59;
-let seconds = 60;
+let seconds = 10;
 let loop = null;
 
 ipcRenderer.on("play-timer", () => {
@@ -12,11 +12,8 @@ ipcRenderer.on("play-timer", () => {
 
         if (minutes === 0 && seconds === 0) {
             clearInterval(loop);
-
-            song.volume = 0.05;
-            song.play();
         } else {
-            if (seconds === 0) {
+            if (seconds === -1) {
                 minutes--;
                 seconds = 59;
             }
@@ -26,4 +23,17 @@ ipcRenderer.on("play-timer", () => {
             seconds < 10 ? "0" : ""
         }${seconds}s`;
     }, 1000);
+});
+
+ipcRenderer.on("stop-timer", () => {
+    clearInterval(loop);
+});
+
+ipcRenderer.on("reset-timer", () => {
+    clearInterval(loop);
+
+    minutes = 59;
+    seconds = 60;
+
+    timer.textContent = `1h : 0mn : 0s`;
 });

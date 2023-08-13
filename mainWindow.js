@@ -8,7 +8,7 @@ const stopAlert = document.querySelector("#stop-alert");
 const song = document.querySelector(".song");
 
 let minutes = 59;
-let seconds = 60;
+let seconds = 10;
 let loop = null;
 
 playTimer.addEventListener("click", () => {
@@ -24,17 +24,13 @@ playTimer.addEventListener("click", () => {
             playTimer.style.display = "none";
             stopAlert.style.display = "initial";
 
-            song.volume = 0.05;
             song.play();
         } else {
-            if (seconds === 0) {
+            if (seconds === -1) {
                 minutes--;
                 seconds = 59;
             }
         }
-
-        // store.set("minutes", minutes);
-        // store.set("seconds", seconds);
 
         timer.textContent = `${minutes < 10 ? "0" : ""}${minutes}mn : ${
             seconds < 10 ? "0" : ""
@@ -50,6 +46,8 @@ stopTimer.addEventListener("click", () => {
     stopTimer.style.display = "none";
 
     clearInterval(loop);
+
+    ipcRenderer.send("stop-timer");
 });
 
 resetTimer.addEventListener("click", () => {
@@ -70,6 +68,8 @@ resetTimer.addEventListener("click", () => {
         song.pause();
         song.currentTime = 0;
     }
+
+    ipcRenderer.send("reset-timer");
 });
 
 stopAlert.addEventListener("click", () => {
