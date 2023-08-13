@@ -33,38 +33,15 @@ playTimer.addEventListener("click", () => {
             }
         }
 
+        // store.set("minutes", minutes);
+        // store.set("seconds", seconds);
+
         timer.textContent = `${minutes < 10 ? "0" : ""}${minutes}mn : ${
             seconds < 10 ? "0" : ""
         }${seconds}s`;
     }, 1000);
 
-    ipcRenderer.send("play-timer", () => {
-        stopTimer.style.display = "initial";
-        playTimer.style.display = "none";
-
-        loop = setInterval(() => {
-            seconds--;
-
-            if (minutes === 0 && seconds === 0) {
-                clearInterval(loop);
-                stopTimer.style.display = "none";
-                playTimer.style.display = "none";
-                stopAlert.style.display = "initial";
-
-                song.volume = 0.05;
-                song.play();
-            } else {
-                if (seconds === 0) {
-                    minutes--;
-                    seconds = 59;
-                }
-            }
-
-            timer.textContent = `${minutes < 10 ? "0" : ""}${minutes}mn : ${
-                seconds < 10 ? "0" : ""
-            }${seconds}s`;
-        }, 1000);
-    });
+    ipcRenderer.send("play-timer");
 });
 
 stopTimer.addEventListener("click", () => {

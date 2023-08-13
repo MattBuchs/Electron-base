@@ -50,6 +50,10 @@ const createWindow = () => {
         secondWindow.webContents.send("button-clicked", message);
     });
 
+    ipcMain.on("play-timer", () => {
+        secondWindow.webContents.send("play-timer");
+    });
+
     mainWindow.on("closed", () => {
         if (secondWindow) {
             secondWindow.close();
