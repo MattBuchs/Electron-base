@@ -3,14 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../src/css/reset.css" />
         <link rel="stylesheet" href="../src/css/style.css" />
+        <link rel="stylesheet" href="../src/css/secondWindow.css" />
         <title>Second Window</title>
     </head>
     <body>
         <div class="container">
-            <p>1h : 0mn : 0s</p>
+            <section class="container__timer">
+                <p>1h : 0mn : 0s</p>
+            </section>
+            <section>
+                <p id="message-received" class="message-received not-indice">
+                    indice à venir...
+                </p>
+            </section>
         </div>
-        <p id="message-received"></p>
         <script src="../js/secondWindow.js"></script>
     </body>
 </html>

@@ -90,3 +90,13 @@ formMessage.addEventListener("submit", (e) => {
 
     ipcRenderer.send("send-message", messageWrited);
 });
+
+const btnSong = document.querySelector("#btn-song");
+btnSong.addEventListener("click", () => {
+    song.play();
+});
+
+const btnClear = document.querySelector("#btn-clear");
+btnClear.addEventListener("click", () => {
+    ipcRenderer.send("clear-message");
+});

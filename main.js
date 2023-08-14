@@ -1,4 +1,6 @@
+const electron = require("electron");
 const { app, BrowserWindow, ipcMain, screen } = require("electron");
+require("electron-reload")(__dirname);
 
 let mainWindow;
 let secondWindow;
@@ -59,6 +61,10 @@ const createWindow = () => {
 
     ipcMain.on("send-message", (_, message) => {
         secondWindow.webContents.send("send-message", message);
+    });
+
+    ipcMain.on("clear-message", () => {
+        secondWindow.webContents.send("clear-message");
     });
 
     mainWindow.on("closed", () => {

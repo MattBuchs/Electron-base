@@ -3,24 +3,31 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../src/css/reset.css" />
         <link rel="stylesheet" href="../src/css/style.css" />
+        <link rel="stylesheet" href="../src/css/mainWindow.css" />
         <title>Main Window</title>
     </head>
     <body>
         <div class="container">
-            <p>1h : 0mn : 0s</p>
-            <div class="container-buttons">
-                <button id="play">Commencer</button>
-                <button id="stop">Arrêter</button>
-                <button id="reset">Rénitialiser</button>
-                <button id="stop-alert">Stopper l'alerte</button>
-            </div>
+            <section class="container__timer">
+                <p>1h : 0mn : 0s</p>
+                <div class="container-buttons">
+                    <button id="play">Commencer</button>
+                    <button id="stop">Arrêter</button>
+                    <button id="reset">Rénitialiser</button>
+                    <button id="stop-alert">Stopper l'alerte</button>
+                </div>
+            </section>
 
             <form id="form-message">
                 <!-- <label for="message">indice à envoyer</label> -->
                 <input type="text" id="message" />
                 <button type="submit">Envoyer</button>
             </form>
+
+            <button type="submit" id="btn-song">Driiiing</button>
+            <button type="submit" id="btn-clear">Suppr</button>
         </div>
         <audio src="../src/song/Alarm.mp3" class="song"></audio>
 
