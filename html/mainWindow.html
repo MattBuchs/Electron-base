@@ -10,11 +10,8 @@
     </head>
     <body>
         <div class="container-home">
-            <form>
-                <!-- <button type="submit" id="btn-1">Salle 1</button>
-                <button type="submit" id="btn-2">Salle 2</button>
-                <button type="submit" id="btn-3">Salle 3</button> -->
-            </form>
+            <button type="submit" id="btn-add_room">+</button>
+            <form></form>
         </div>
 
         <div class="container">
@@ -29,7 +26,6 @@
             </section>
 
             <form id="form-message">
-                <!-- <label for="message">indice à envoyer</label> -->
                 <input type="text" id="message" />
                 <button type="submit">Envoyer</button>
             </form>
@@ -38,6 +34,40 @@
             <button type="submit" id="btn-clear">Suppr</button>
             <button type="submit" id="btn-home">home</button>
             <audio src="../src/song/Alarm.mp3" class="song"></audio>
+        </div>
+
+        <div class="modal-add_room">
+            <div class="modal-add_room__content">
+                <form id="form-add_room">
+                    <div>
+                        <label for="room_name">Nom du bouton du timer :</label>
+                        <input
+                            type="text"
+                            id="room_name"
+                            placeholder="ex: Salle 1"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="room_minutes"
+                            >Nombre de minutes souhaité</label
+                        >
+                        <input
+                            type="number"
+                            id="room_minutes"
+                            placeholder="ex: 60"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for=""></label>
+                        <select name="song" id="room_song" required>
+                            <option value="">Choisir une alarme</option>
+                        </select>
+                    </div>
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
         </div>
 
         <script type="module" src="../js/mainWindow.js"></script>

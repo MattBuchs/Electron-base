@@ -132,7 +132,7 @@ fs.readFile(filePath, "utf8", (err, data) => {
     rooms.forEach((el) => {
         const btn = document.createElement("button");
         btn.textContent = el.name;
-        btn.id = `room-${el.id}`;
+        btn.id = el.id;
         btn.classList.add("btn-room");
 
         btn.addEventListener("click", () => {
@@ -159,4 +159,74 @@ home.addEventListener("click", () => {
     containerHome.style.display = "flex";
 
     resetimer();
+});
+
+const btnAddRoom = document.querySelector("#btn-add_room");
+const modalAddRoom = document.querySelector(".modal-add_room");
+
+btnAddRoom.addEventListener("click", () => {
+    modalAddRoom.style.display = "flex";
+    containerHome.style.display = "none";
+
+    listSongs();
+});
+
+function listSongs() {
+    const songFolder = path.join(__dirname, "../src/song");
+    const songList = document.querySelector("#room_song");
+
+    fs.readdir(songFolder, (err, files) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        files.forEach((el, i) => {
+            const option = document.createElement("option");
+            option.textContent = el;
+            option.value = el;
+
+            songList.appendChild(option);
+        });
+    });
+}
+
+const formAddRoom = document.querySelector("#form-add_room");
+
+formAddRoom.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Charger les données JSON existantes (si le fichier existe)
+    let existingData;
+    if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, "utf8");
+        try {
+            existingData = JSON.parse(fileContent);
+        } catch (err) {
+            console.error(
+                "Erreur lors de la lecture des données JSON existantes :",
+                err
+            );
+        }
+    }
+
+    const name = document.querySelector("#room_name").value;
+    const minutes = document.querySelector("#room_minutes").value;
+    const song = document.querySelector("#room_song").value;
+
+    const newData = {
+        id: `btn-room_${existingData.length + 1}`,
+        name,
+        song,
+        minutes: Number(minutes - 1),
+    };
+
+    const updatedData = [...existingData, newData];
+
+    // Écrire dans le fichier JSON
+    fs.writeFile(filePath, JSON.stringify(updatedData), "utf8", (err) => {
+        if (err) {
+            console.error(err);
+        }
+    });
 });
