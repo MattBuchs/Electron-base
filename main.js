@@ -1,6 +1,5 @@
-const electron = require("electron");
 const { app, BrowserWindow, ipcMain, screen } = require("electron");
-require("electron-reload")(__dirname);
+require("electron-reload")(__dirname, { ignored: [/\.json$/] });
 
 let mainWindow;
 let secondWindow;
@@ -55,8 +54,8 @@ const createWindow = () => {
         secondWindow.webContents.send("stop-timer");
     });
 
-    ipcMain.on("reset-timer", () => {
-        secondWindow.webContents.send("reset-timer");
+    ipcMain.on("reset-timer", (event, resetMinutes) => {
+        secondWindow.webContents.send("reset-timer", resetMinutes);
     });
 
     ipcMain.on("send-message", (_, message) => {
@@ -65,6 +64,10 @@ const createWindow = () => {
 
     ipcMain.on("clear-message", () => {
         secondWindow.webContents.send("clear-message");
+    });
+
+    ipcMain.on("minutes", (event, resetMinutes) => {
+        secondWindow.webContents.send("minutes", resetMinutes);
     });
 
     mainWindow.on("closed", () => {

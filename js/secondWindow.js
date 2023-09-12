@@ -29,13 +29,17 @@ ipcRenderer.on("stop-timer", () => {
     clearInterval(loop);
 });
 
-ipcRenderer.on("reset-timer", () => {
+ipcRenderer.on("reset-timer", (event, resetMinutes) => {
     clearInterval(loop);
 
-    minutes = 59;
+    minutes = resetMinutes;
     seconds = 60;
 
-    timer.textContent = `1h : 0mn : 0s`;
+    if (minutes === 59) {
+        timer.textContent = `1h : 0mn : 0s`;
+    } else {
+        timer.textContent = `${minutes + 1}mn : 0s`;
+    }
 });
 
 const messageReceived = document.querySelector("#message-received");
@@ -47,4 +51,15 @@ ipcRenderer.on("send-message", (_, message) => {
 ipcRenderer.on("clear-message", () => {
     messageReceived.textContent = "indice à venir...";
     messageReceived.classList.add("not-indice");
+});
+
+ipcRenderer.on("minutes", (event, resetMinutes) => {
+    minutes = resetMinutes;
+    seconds = 60;
+
+    if (minutes === 59) {
+        timer.textContent = `1h : 0mn : 0s`;
+    } else {
+        timer.textContent = `${minutes + 1}mn : 0s`;
+    }
 });

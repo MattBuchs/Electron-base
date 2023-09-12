@@ -1,4 +1,9 @@
 const { ipcRenderer } = require("electron");
+const fs = require("fs");
+const path = require("path");
+
+const dataFolderPath = path.join(__dirname, "../data"); // Chemin du dossier de données
+const filePath = path.join(dataFolderPath, "rooms.json"); // Chemin du fichier de données
 
 const timer = document.querySelector(".container p");
 const playTimer = document.querySelector("#play");
@@ -10,6 +15,7 @@ const song = document.querySelector(".song");
 let minutes = 59;
 let seconds = 60;
 let loop = null;
+let resetMinutes;
 
 function resetimer() {
     playTimer.textContent = "Commencer";
@@ -18,10 +24,14 @@ function resetimer() {
 
     clearInterval(loop);
 
-    minutes = 59;
+    minutes = resetMinutes;
     seconds = 60;
 
-    timer.textContent = `1h : 0mn : 0s`;
+    if (minutes === 59) {
+        timer.textContent = `1h : 0mn : 0s`;
+    } else {
+        timer.textContent = `${minutes + 1}mn : 0s`;
+    }
 
     song.pause();
     song.currentTime = 0;
@@ -71,9 +81,8 @@ btnResetTimer.addEventListener("click", () => {
 
     if (confirmReset) {
         resetimer();
+        ipcRenderer.send("reset-timer", resetMinutes);
     }
-
-    ipcRenderer.send("reset-timer");
 });
 
 stopAlert.addEventListener("click", () => {
@@ -109,35 +118,45 @@ btnClear.addEventListener("click", () => {
 
 const formContainerHome = document.querySelector(".container-home form");
 const containerHome = document.querySelector(".container-home");
+const container = document.querySelector(".container");
 
 formContainerHome.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
-const salle1 = document.querySelector("#btn-1");
-const salle2 = document.querySelector("#btn-2");
-const salle3 = document.querySelector("#btn-3");
-const container = document.querySelector(".container");
+fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
 
-salle1.addEventListener("click", () => {
-    minutes = 59;
+    const rooms = JSON.parse(data);
 
-    container.style.display = "flex";
-    containerHome.style.display = "none";
-});
+    rooms.forEach((el) => {
+        const btn = document.createElement("button");
+        btn.textContent = el.name;
+        btn.id = `room-${el.id}`;
+        btn.classList.add("btn-room");
 
-salle2.addEventListener("click", () => {
-    minutes = 44;
+        btn.addEventListener("click", () => {
+            minutes = el.minutes;
+            resetMinutes = el.minutes;
+            seconds = 60;
 
-    container.style.display = "flex";
-    containerHome.style.display = "none";
-});
+            if (minutes === 59) {
+                timer.textContent = `1h : 0mn : 0s`;
+            } else {
+                timer.textContent = `${minutes + 1}mn : 0s`;
+            }
 
-salle3.addEventListener("click", () => {
-    minutes = 59;
+            container.style.display = "flex";
+            containerHome.style.display = "none";
 
-    container.style.display = "flex";
-    containerHome.style.display = "none";
+            ipcRenderer.send("minutes", resetMinutes);
+        });
+
+        containerHome.appendChild(btn);
+    });
 });
 
 const home = document.querySelector("#btn-home");
