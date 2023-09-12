@@ -9,6 +9,14 @@
         <title>Main Window</title>
     </head>
     <body>
+        <div class="container-home">
+            <form>
+                <button type="submit" id="btn-1">Salle 1</button>
+                <button type="submit" id="btn-2">Salle 2</button>
+                <button type="submit" id="btn-3">Salle 3</button>
+            </form>
+        </div>
+
         <div class="container">
             <section class="container__timer">
                 <p>1h : 0mn : 0s</p>
@@ -28,8 +36,9 @@
 
             <button type="submit" id="btn-song">Driiiing</button>
             <button type="submit" id="btn-clear">Suppr</button>
+            <button type="submit" id="btn-home">home</button>
+            <audio src="../src/song/Alarm.mp3" class="song"></audio>
         </div>
-        <audio src="../src/song/Alarm.mp3" class="song"></audio>
 
         <script src="../js/mainWindow.js"></script>
     </body>

@@ -3,13 +3,29 @@ const { ipcRenderer } = require("electron");
 const timer = document.querySelector(".container p");
 const playTimer = document.querySelector("#play");
 const stopTimer = document.querySelector("#stop");
-const resetTimer = document.querySelector("#reset");
+const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
 const song = document.querySelector(".song");
 
 let minutes = 59;
 let seconds = 60;
 let loop = null;
+
+function resetimer() {
+    playTimer.textContent = "Commencer";
+    playTimer.style.display = "initial";
+    stopTimer.style.display = "none";
+
+    clearInterval(loop);
+
+    minutes = 59;
+    seconds = 60;
+
+    timer.textContent = `1h : 0mn : 0s`;
+
+    song.pause();
+    song.currentTime = 0;
+}
 
 playTimer.addEventListener("click", () => {
     stopTimer.style.display = "initial";
@@ -50,23 +66,11 @@ stopTimer.addEventListener("click", () => {
     ipcRenderer.send("stop-timer");
 });
 
-resetTimer.addEventListener("click", () => {
+btnResetTimer.addEventListener("click", () => {
     const confirmReset = confirm("Êtes-vous sur de vouloir rénitialiser ?");
 
     if (confirmReset) {
-        playTimer.textContent = "Commencer";
-        playTimer.style.display = "initial";
-        stopTimer.style.display = "none";
-
-        clearInterval(loop);
-
-        minutes = 59;
-        seconds = 60;
-
-        timer.textContent = `1h : 0mn : 0s`;
-
-        song.pause();
-        song.currentTime = 0;
+        resetimer();
     }
 
     ipcRenderer.send("reset-timer");
@@ -85,10 +89,12 @@ const message = document.querySelector("#message");
 formMessage.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const messageWrited = message.value;
-    message.value = "";
+    if (message.value !== "") {
+        const messageWrited = message.value;
+        message.value = "";
 
-    ipcRenderer.send("send-message", messageWrited);
+        ipcRenderer.send("send-message", messageWrited);
+    }
 });
 
 const btnSong = document.querySelector("#btn-song");
@@ -99,4 +105,46 @@ btnSong.addEventListener("click", () => {
 const btnClear = document.querySelector("#btn-clear");
 btnClear.addEventListener("click", () => {
     ipcRenderer.send("clear-message");
+});
+
+const formContainerHome = document.querySelector(".container-home form");
+const containerHome = document.querySelector(".container-home");
+
+formContainerHome.addEventListener("submit", (e) => {
+    e.preventDefault();
+});
+
+const salle1 = document.querySelector("#btn-1");
+const salle2 = document.querySelector("#btn-2");
+const salle3 = document.querySelector("#btn-3");
+const container = document.querySelector(".container");
+
+salle1.addEventListener("click", () => {
+    minutes = 59;
+
+    container.style.display = "flex";
+    containerHome.style.display = "none";
+});
+
+salle2.addEventListener("click", () => {
+    minutes = 44;
+
+    container.style.display = "flex";
+    containerHome.style.display = "none";
+});
+
+salle3.addEventListener("click", () => {
+    minutes = 59;
+
+    container.style.display = "flex";
+    containerHome.style.display = "none";
+});
+
+const home = document.querySelector("#btn-home");
+
+home.addEventListener("click", () => {
+    container.style.display = "none";
+    containerHome.style.display = "flex";
+
+    resetimer();
 });
