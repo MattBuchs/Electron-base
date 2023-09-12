@@ -1,4 +1,5 @@
 const { ipcRenderer } = require("electron");
+import utils from "./utils.js";
 const fs = require("fs");
 const path = require("path");
 
@@ -27,11 +28,7 @@ function resetimer() {
     minutes = resetMinutes;
     seconds = 60;
 
-    if (minutes === 59) {
-        timer.textContent = `1h : 0mn : 0s`;
-    } else {
-        timer.textContent = `${minutes + 1}mn : 0s`;
-    }
+    utils.displayTimer(timer, minutes);
 
     song.pause();
     song.currentTime = 0;
@@ -143,11 +140,7 @@ fs.readFile(filePath, "utf8", (err, data) => {
             resetMinutes = el.minutes;
             seconds = 60;
 
-            if (minutes === 59) {
-                timer.textContent = `1h : 0mn : 0s`;
-            } else {
-                timer.textContent = `${minutes + 1}mn : 0s`;
-            }
+            utils.displayTimer(timer, minutes);
 
             container.style.display = "flex";
             containerHome.style.display = "none";

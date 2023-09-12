@@ -1,6 +1,4 @@
 [
     { "id": 1, "name": "Salle 1", "song": "Alarm.mp3", "minutes": 59 },
-    { "id": 2, "name": "Salle 2", "song": "Alarm.mp3", "minutes": 44 },
-    { "id": 3, "name": "Salle 3", "song": "Alarm.mp3", "minutes": 59 },
-    { "id": 4, "name": "Test", "song": "Alarm.mp3", "minutes": 14 }
+    { "id": 2, "name": "Salle 2", "song": "Alarm.mp3", "minutes": 44 }
 ]

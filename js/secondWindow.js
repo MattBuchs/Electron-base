@@ -1,4 +1,5 @@
 const { ipcRenderer } = require("electron");
+import utils from "./utils.js";
 
 const timer = document.querySelector(".container p");
 
@@ -35,11 +36,7 @@ ipcRenderer.on("reset-timer", (event, resetMinutes) => {
     minutes = resetMinutes;
     seconds = 60;
 
-    if (minutes === 59) {
-        timer.textContent = `1h : 0mn : 0s`;
-    } else {
-        timer.textContent = `${minutes + 1}mn : 0s`;
-    }
+    utils.displayTimer(timer, minutes);
 });
 
 const messageReceived = document.querySelector("#message-received");
@@ -57,9 +54,5 @@ ipcRenderer.on("minutes", (event, resetMinutes) => {
     minutes = resetMinutes;
     seconds = 60;
 
-    if (minutes === 59) {
-        timer.textContent = `1h : 0mn : 0s`;
-    } else {
-        timer.textContent = `${minutes + 1}mn : 0s`;
-    }
+    utils.displayTimer(timer, minutes);
 });
