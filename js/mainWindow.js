@@ -121,6 +121,7 @@ formContainerHome.addEventListener("submit", (e) => {
     e.preventDefault();
 });
 
+const endTimerSong = document.querySelector("#end-timer_song");
 fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
         console.error(err);
@@ -139,6 +140,7 @@ fs.readFile(filePath, "utf8", (err, data) => {
             minutes = el.minutes;
             resetMinutes = el.minutes;
             seconds = 60;
+            endTimerSong.src = `../src/song/${el.song}`;
 
             utils.displayTimer(timer, minutes);
 
