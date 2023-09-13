@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-import utils from "./utils.js";
+import utils from "../utils.js";
 
 const timer = document.querySelector(".container p");
 

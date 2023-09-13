@@ -11,9 +11,3 @@ messagesObj.init();
 roomsObj.init();
 // Initialisation des fonctionnalités liées à l'ajout de timer
 addRoomObj.init();
-
-// const formContainerHome = document.querySelector(".container-home form");
-
-// formContainerHome.addEventListener("submit", (e) => {
-//     e.preventDefault();
-// });
