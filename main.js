@@ -16,7 +16,7 @@ const createWindow = () => {
         center: true,
         webPreferences: { nodeIntegration: true, contextIsolation: false },
     });
-    mainWindow.loadFile("html/mainWindow.html");
+    mainWindow.loadFile("app/src/html/mainWindow.html");
 
     if (displays.length >= 2) {
         const secondScreen = displays[1];
@@ -29,7 +29,7 @@ const createWindow = () => {
             y: secondScreen.bounds.y,
             webPreferences: { nodeIntegration: true, contextIsolation: false },
         });
-        secondWindow.loadFile("html/secondWindow.html");
+        secondWindow.loadFile("app/src/html/secondWindow.html");
 
         secondWindow.webContents.openDevTools();
     } else {
@@ -40,7 +40,7 @@ const createWindow = () => {
             fullscreen: true,
             webPreferences: { nodeIntegration: true, contextIsolation: false },
         });
-        secondWindow.loadFile("html/secondWindow.html");
+        secondWindow.loadFile("app/src/html/secondWindow.html");
 
         secondWindow.webContents.openDevTools();
     }

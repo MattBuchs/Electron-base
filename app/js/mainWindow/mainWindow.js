@@ -1,9 +1,9 @@
 const { ipcRenderer } = require("electron");
-import utils from "./utils.js";
+import utils from "../utils.js";
 const fs = require("fs");
 const path = require("path");
 
-const dataFolderPath = path.join(__dirname, "../data"); // Chemin du dossier de données
+const dataFolderPath = path.join(__dirname, "../../data"); // Chemin du dossier de données
 const filePath = path.join(dataFolderPath, "rooms.json"); // Chemin du fichier de données
 
 const timer = document.querySelector(".container p");
@@ -140,7 +140,7 @@ fs.readFile(filePath, "utf8", (err, data) => {
             minutes = el.minutes;
             resetMinutes = el.minutes;
             seconds = 60;
-            endTimerSong.src = `../src/song/${el.song}`;
+            endTimerSong.src = `../song/${el.song}`;
 
             utils.displayTimer(timer, minutes);
 
@@ -174,7 +174,7 @@ btnAddRoom.addEventListener("click", () => {
 });
 
 function listSongs() {
-    const songFolder = path.join(__dirname, "../src/song");
+    const songFolder = path.join(__dirname, "../song");
     const songList = document.querySelector("#room_song");
 
     fs.readdir(songFolder, (err, files) => {
@@ -183,7 +183,7 @@ function listSongs() {
             return;
         }
 
-        files.forEach((el, i) => {
+        files.forEach((el) => {
             const option = document.createElement("option");
             option.textContent = el;
             option.value = el;
