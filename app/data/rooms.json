@@ -1,1 +1,32 @@
-[{"id":"btn-room_1","name":"Salle 1","song":"Alarm.mp3","minutes":59},{"id":"btn-room_2","name":"Salle 2","song":"Alarm.mp3","minutes":44},{"id":"btn-room_3","name":"Test","song":"Alarm.mp3","minutes":4},{"id":"btn-room_4","name":"Test2","song":"Sherlock Holmes.mp3","minutes":0}]
+[
+  {
+    "id": "btn-room_1",
+    "name": "Salle 1",
+    "song": "Alarm.mp3",
+    "minutes": 59
+  },
+  {
+    "id": "btn-room_2",
+    "name": "Salle 2",
+    "song": "Alarm.mp3",
+    "minutes": 44
+  },
+  {
+    "id": "btn-room_3",
+    "name": "Test",
+    "song": "Alarm.mp3",
+    "minutes": 4
+  },
+  {
+    "id": "btn-room_4",
+    "name": "Test2",
+    "song": "Sherlock Holmes.mp3",
+    "minutes": 0
+  },
+  {
+    "id": "btn-room_5",
+    "name": "Essai",
+    "minutes": 14,
+    "song": "Sherlock Holmes.mp3"
+  }
+]
