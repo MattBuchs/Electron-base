@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'"
+        />
         <link rel="stylesheet" href="../css/reset.css" />
         <link rel="stylesheet" href="../css/style.css" />
         <link rel="stylesheet" href="../css/mainWindow.css" />
@@ -70,6 +74,9 @@
             </div>
         </div>
 
-        <script type="module" src="../../js/mainWindow/index.js"></script>
+        <script
+            type="module"
+            src="../../core/mainWindow/index.mainWindow.js"
+        ></script>
     </body>
 </html>
