@@ -2,9 +2,13 @@ const fs = require("fs");
 const path = require("path");
 
 const containerHome = document.querySelector(".container-home");
+const btnAddRoom = document.querySelector("#btn-add_room");
+const modalAddRoom = document.querySelector(".modal-add_room");
+const closeAddRoom = document.querySelector("#close-add_room");
 
 const addRoomObj = {
     init() {
+        closeAddRoom.addEventListener("click", this.closeModal.bind(this));
         this.setupForm();
         this.setupModal();
     },
@@ -24,9 +28,6 @@ const addRoomObj = {
     },
 
     setupModal() {
-        const btnAddRoom = document.querySelector("#btn-add_room");
-        const modalAddRoom = document.querySelector(".modal-add_room");
-
         btnAddRoom.addEventListener("click", () => {
             modalAddRoom.style.display = "flex";
             containerHome.style.display = "none";
@@ -95,9 +96,16 @@ const addRoomObj = {
                         "Erreur lors de l'écriture des données dans le fichier :",
                         err
                     );
+                } else {
+                    window.location.reload();
                 }
             }
         );
+    },
+
+    closeModal() {
+        modalAddRoom.style.display = "none";
+        containerHome.style.display = "flex";
     },
 };
 
