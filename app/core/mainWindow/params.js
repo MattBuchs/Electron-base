@@ -6,6 +6,7 @@ const btnParams = document.querySelector("#btn-params");
 const btnClose = document.querySelector("#close_params");
 const modal = document.querySelector(".modal-params");
 const btnAddFile = document.querySelector("#btn-add_file");
+const notification = document.querySelector(".modal-notification");
 
 const paramsObj = {
     init() {
@@ -34,14 +35,16 @@ const paramsObj = {
                     "../song",
                     fileName
                 );
-                console.log(destinationPath);
 
                 // Écrie le contenu du fichier dans le fichier destination
                 fs.writeFileSync(destinationPath, file, "binary");
 
-                console.log(
-                    'Fichier copié avec succès dans le dossier "song".'
-                );
+                // Affiche une notification
+                notification.style.transform = "translateY(0)";
+
+                setTimeout(() => {
+                    notification.style.transform = "translateY(-100%)";
+                }, 3000);
             }
         } catch (error) {
             console.error("Erreur lors de la sélection du fichier :", error);

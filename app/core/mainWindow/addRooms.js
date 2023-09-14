@@ -43,6 +43,14 @@ const addRoomObj = {
     },
 
     listSongs() {
+        const soundOption = document.querySelectorAll(".recover-song");
+
+        if (soundOption) {
+            soundOption.forEach((el) => {
+                el.remove();
+            });
+        }
+
         const songFolder = path.join(__dirname, "../song");
         const songList = document.querySelector("#room_song");
 
@@ -56,6 +64,7 @@ const addRoomObj = {
                 const option = document.createElement("option");
                 option.textContent = el;
                 option.value = el;
+                option.classList.add("recover-song");
 
                 songList.appendChild(option);
             });
@@ -67,7 +76,7 @@ const addRoomObj = {
         const filePath = path.join(dataFolderPath, "rooms.json");
 
         // Charger les données JSON existantes (si le fichier existe)
-        let existingData;
+        let existingData = [];
         if (fs.existsSync(filePath)) {
             const fileContent = fs.readFileSync(filePath, "utf8");
             try {
@@ -79,8 +88,6 @@ const addRoomObj = {
                 );
                 return;
             }
-        } else {
-            existingData = [];
         }
 
         const newData = {
