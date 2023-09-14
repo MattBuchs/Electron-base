@@ -7,9 +7,10 @@ const playTimer = document.querySelector("#play");
 const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
-const song = document.querySelector(".song");
+const song = document.querySelector("#end-timer_song");
 const container = document.querySelector(".container");
 const containerHome = document.querySelector(".container-home");
+const confirmResetModal = document.querySelector("#request-reset");
 
 const timerObj = {
     seconds: 60,
@@ -23,6 +24,7 @@ const timerObj = {
             this.confirmResetTimer.bind(this)
         );
         stopAlert.addEventListener("click", this.resetAlert.bind(this));
+        song.addEventListener("ended", this.resetAlert.bind(this));
         this.setupAudioButtons();
         this.setupHomeButton();
     },
@@ -82,13 +84,26 @@ const timerObj = {
         song.currentTime = 0;
     },
 
-    confirmResetTimer() {
-        const confirmReset = confirm("Êtes-vous sur de vouloir rénitialiser ?");
+    async confirmResetTimer() {
+        confirmResetModal.style.display = "flex";
+        container.style.filter = "blur(10px)";
 
-        if (confirmReset) {
+        const confirmReset = document.querySelector("#confirm_reset");
+        const cancelReset = document.querySelector("#cancel_reset");
+
+        confirmReset.addEventListener("click", () => {
             this.resetTimer();
+
+            confirmResetModal.style.display = "none";
+            container.style.filter = "none";
+
             ipcRenderer.send("reset-timer", roomsObj.resetMinutes);
-        }
+        });
+
+        cancelReset.addEventListener("click", () => {
+            confirmResetModal.style.display = "none";
+            container.style.filter = "none";
+        });
     },
 
     resetAlert() {
