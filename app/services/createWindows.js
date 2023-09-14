@@ -10,7 +10,11 @@ function createWindows(windows) {
         x: mainScreen.bounds.x,
         y: mainScreen.bounds.y,
         center: true,
-        webPreferences: { nodeIntegration: true, contextIsolation: false },
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        },
     });
     windows.mainWindow.loadFile("app/src/html/mainWindow.html");
 

@@ -1,7 +1,7 @@
 {
-    "name": "apptimer",
+    "name": "Escape-Time",
     "version": "1.0.0",
-    "description": "",
+    "description": "Un Timer conçue pour les escape game, ils peuvent gérer le temps de jeu la musique... Il y a 2 fenêtres une pour le maitre du jeu et une pour les joueurs.",
     "main": "main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",

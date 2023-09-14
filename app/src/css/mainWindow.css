@@ -15,6 +15,7 @@
     top: 1rem;
     right: 1rem;
     width: 50px;
+    height: 50px;
 }
 
 .modal-add_room {
@@ -43,4 +44,54 @@
     justify-content: center;
     align-items: center;
     line-height: 30px;
+}
+
+#btn-params {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 50px;
+    height: 50px;
+}
+
+#btn-params img {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-params {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-params__content {
+    background-color: #111;
+    color: #f1f1f1;
+    display: flex;
+}
+
+#close_params {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#close_params img {
+    width: 100%;
+    height: 100%;
+}
+
+.open {
+    display: flex;
 }

@@ -2,6 +2,7 @@ import timerObj from "./timer.js";
 import messagesObj from "./messages.js";
 import roomsObj from "./rooms.js";
 import addRoomObj from "./addRooms.js";
+import paramsObj from "./params.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -11,3 +12,5 @@ messagesObj.init();
 roomsObj.init();
 // Initialisation des fonctionnalités liées à l'ajout de timer
 addRoomObj.init();
+// Initialisation des fonctionnalités liées aux paramètres
+paramsObj.init();

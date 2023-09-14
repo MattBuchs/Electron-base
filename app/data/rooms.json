@@ -28,5 +28,11 @@
     "name": "Essai",
     "minutes": 14,
     "song": "Sherlock Holmes.mp3"
+  },
+  {
+    "id": "btn-room_6",
+    "name": "1min",
+    "minutes": 0,
+    "song": "Dark Time.mp3"
   }
 ]

@@ -15,6 +15,9 @@
     <body>
         <div class="container-home">
             <button type="submit" id="btn-add_room">+</button>
+            <button type="submit" id="btn-params">
+                <img src="../img/params.svg" alt="paramètre" />
+            </button>
             <form></form>
         </div>
 
@@ -64,7 +67,7 @@
                         />
                     </div>
                     <div>
-                        <label for=""></label>
+                        <label for="room_song">Alarme :</label>
                         <select name="song" id="room_song" required>
                             <option value="">Choisir une alarme</option>
                         </select>
@@ -79,6 +82,20 @@
                 <p>Êtes-vous sûr de vouloir rénitialiser le timer ?</p>
                 <button id="confirm_reset">Oui</button>
                 <button id="cancel_reset">Non</button>
+            </div>
+        </div>
+
+        <div class="modal-params">
+            <div class="modal-params__content">
+                <button id="close_params">
+                    <img src="../img/close.svg" alt="fermer" />
+                </button>
+
+                <div>
+                    <button type="submit" id="btn-add_file">
+                        Ajouter un son
+                    </button>
+                </div>
             </div>
         </div>
 

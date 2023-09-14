@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain, screen } = require("electron");
+const { app, BrowserWindow } = require("electron");
 require("electron-reload")(__dirname, { ignored: [/\.json$/] });
+
 const createWindows = require("./app/services/createWindows");
 const setupIPCFunctions = require("./app/services/ipcFunctions");
 
