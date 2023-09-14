@@ -69,11 +69,23 @@
                             required
                         />
                     </div>
-                    <div>
+                    <div class="container-choice_song">
                         <label for="room_song">Alarme :</label>
                         <select name="song" id="room_song" required>
                             <option value="">Choisir une alarme</option>
                         </select>
+                        <button type="button" id="listen-to-music">
+                            <img
+                                src="../img/volume.svg"
+                                alt="Ecouter la musique"
+                            />
+                        </button>
+                        <button type="button" id="stop-music">
+                            <img
+                                src="../img/stop.svg"
+                                alt="Stopper la musique"
+                            />
+                        </button>
                     </div>
                     <button type="submit">Ajouter</button>
                 </form>

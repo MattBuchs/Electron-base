@@ -5,10 +5,16 @@ const containerHome = document.querySelector(".container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
 const modalAddRoom = document.querySelector(".modal-add_room");
 const closeAddRoom = document.querySelector("#close-add_room");
+const btnListenMusic = document.querySelector("#listen-to-music");
+const stopMusic = document.querySelector("#stop-music");
+const songSelected = document.querySelector("#room_song");
+let audio;
 
 const addRoomObj = {
     init() {
         closeAddRoom.addEventListener("click", this.closeModal.bind(this));
+        btnListenMusic.addEventListener("click", this.startSong.bind(this));
+        songSelected.addEventListener("change", this.resetBtn.bind(this));
         this.setupForm();
         this.setupModal();
     },
@@ -106,6 +112,45 @@ const addRoomObj = {
     closeModal() {
         modalAddRoom.style.display = "none";
         containerHome.style.display = "flex";
+    },
+
+    startSong() {
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+        const song = document.querySelector("#room_song").value;
+
+        if (!song) {
+            alert("Pas de musique selectionnée");
+            return;
+        }
+
+        const songPath = path.join(__dirname, `../song/${song}`);
+
+        audio = new Audio(songPath);
+        audio.play();
+
+        stopMusic.style.display = "block";
+        btnListenMusic.style.display = "none";
+
+        stopMusic.addEventListener("click", () => {
+            audio.pause();
+            audio.currentTime = 0;
+
+            stopMusic.style.display = "none";
+            btnListenMusic.style.display = "flex";
+        });
+    },
+
+    resetBtn() {
+        stopMusic.style.display = "none";
+        btnListenMusic.style.display = "flex";
+
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
     },
 };
 
