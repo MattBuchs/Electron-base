@@ -32,7 +32,7 @@ const paramsObj = {
                 // Créez le chemin du fichier destination dans le dossier "sound"
                 const destinationPath = path.join(
                     __dirname,
-                    "../sound/end_timer",
+                    "../sounds/end_timer",
                     fileName
                 );
 

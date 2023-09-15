@@ -1,3 +1,5 @@
 node_modules/
 package-lock.json
 a-faire.md
+app/src/sounds/ambient
+app/src/sounds/end_timer

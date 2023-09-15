@@ -51,7 +51,7 @@ const addRoomObj = {
             });
         }
 
-        const soundFolder = path.join(__dirname, "../sound/end_timer");
+        const soundFolder = path.join(__dirname, "../sounds/end_timer");
         const soundList = document.querySelector("#room_sound");
 
         fs.readdir(soundFolder, (err, files) => {
@@ -134,7 +134,7 @@ const addRoomObj = {
             return;
         }
 
-        const soundPath = path.join(__dirname, `../sound/end_timer/${sound}`);
+        const soundPath = path.join(__dirname, `../sounds/end_timer/${sound}`);
 
         audio = new Audio(soundPath);
         audio.play();

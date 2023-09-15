@@ -46,7 +46,7 @@ const roomsObj = {
     startRoom(room) {
         this.minutes = room.minutes;
         this.resetMinutes = room.minutes;
-        endTimerSound.src = `../sound/end_timer/${room.end_timer_sound}`;
+        endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
 
         utils.displayTimer(timer, this.minutes);
 
