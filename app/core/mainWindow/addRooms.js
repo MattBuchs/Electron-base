@@ -1,23 +1,24 @@
 const fs = require("fs");
 const path = require("path");
+import manageSoundObj from "./manageSound.js";
 
 const containerHome = document.querySelector(".container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
 const modalAddRoom = document.querySelector(".modal-add_room");
 const closeAddRoom = document.querySelector("#close-add_room");
 const btnEndTimerMusic = document.querySelector("#listen-end_timer_sound");
-const stopMusic = document.querySelector("#stop-music");
+const stopMusic1 = document.querySelector("#stop-music-1");
+const stopMusic2 = document.querySelector("#stop-music-2");
+const stopMusic3 = document.querySelector("#stop-music-3");
 const endTimerSoundList = document.querySelector("#end-timer_sound-list");
 const notificationSoundList = document.querySelector(
     "#notification_sound-list"
 );
 const ambientSoundList = document.querySelector("#ambient_sound-list");
-let audio;
 
 const addRoomObj = {
     init() {
         closeAddRoom.addEventListener("click", this.closeModal.bind(this));
-        btnEndTimerMusic.addEventListener("click", this.startSound.bind(this));
         endTimerSoundList.addEventListener("change", this.resetBtn.bind(this));
         this.setupForm();
         this.setupModal();
@@ -148,56 +149,22 @@ const addRoomObj = {
         modalAddRoom.style.display = "none";
         containerHome.style.display = "flex";
 
-        if (audio) {
-            audio.pause();
-            audio.currentTime = 0;
+        if (manageSoundObj.audioEndTimer) {
+            manageSoundObj.audioEndTimer.pause();
+            manageSoundObj.audioEndTimer.currentTime = 0;
         }
 
-        stopMusic.style.display = "none";
+        stopMusic1.style.display = "none";
         btnEndTimerMusic.style.display = "flex";
-    },
-
-    startSound() {
-        if (audio) {
-            audio.pause();
-            audio.currentTime = 0;
-        }
-        const sound = endTimerSoundList.value;
-
-        if (!sound) {
-            alert("Pas de musique selectionnée");
-            return;
-        }
-
-        const soundPath = path.join(__dirname, `../sounds/end_timer/${sound}`);
-
-        audio = new Audio(soundPath);
-        audio.play();
-
-        stopMusic.style.display = "block";
-        btnEndTimerMusic.style.display = "none";
-
-        stopMusic.addEventListener("click", () => {
-            audio.pause();
-            audio.currentTime = 0;
-
-            stopMusic.style.display = "none";
-            btnEndTimerMusic.style.display = "flex";
-        });
-
-        audio.addEventListener("ended", () => {
-            stopMusic.style.display = "none";
-            btnEndTimerMusic.style.display = "flex";
-        });
     },
 
     resetBtn() {
-        stopMusic.style.display = "none";
+        stopMusic1.style.display = "none";
         btnEndTimerMusic.style.display = "flex";
 
-        if (audio) {
-            audio.pause();
-            audio.currentTime = 0;
+        if (manageSoundObj.audioEndTimer) {
+            manageSoundObj.audioEndTimer.pause();
+            manageSoundObj.audioEndTimer.currentTime = 0;
         }
     },
 };

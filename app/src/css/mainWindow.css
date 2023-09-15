@@ -115,7 +115,9 @@
     height: 140%;
 }
 
-#stop-music {
+#stop-music-1,
+#stop-music-2,
+#stop-music-3 {
     width: 30px;
     height: 30px;
     background-color: #535353;
@@ -124,7 +126,9 @@
     display: none;
 }
 
-#stop-music img {
+#stop-music-1 img,
+#stop-music-2 img,
+#stop-music-3 img {
     width: 35px;
     height: 35px;
     position: absolute;
