@@ -37,10 +37,34 @@
                 <button type="submit">Envoyer</button>
             </form>
 
-            <button type="submit" id="btn-sound">Driiiing</button>
+            <div>
+                <button type="submit" id="btn-notification_sound">
+                    Notification
+                </button>
+                <button type="submit" id="btn-ambient_sound">
+                    Son d'ambiance
+                </button>
+                <button
+                    type="submit"
+                    class="hidden"
+                    id="btn-stop--ambient_sound"
+                >
+                    Stopper son d'ambiance
+                </button>
+            </div>
             <button type="submit" id="btn-clear">Suppr</button>
             <button type="submit" id="btn-home">home</button>
             <audio src="" id="end-timer_sound" class="sound"></audio>
+            <audio
+                src="../sound/end_timer/Alarm.mp3"
+                id="notification_sound"
+                class="sound"
+            ></audio>
+            <audio
+                src="../sound/end_timer/Countdown Timer.mp3"
+                id="ambient_sound"
+                class="sound"
+            ></audio>
         </div>
 
         <div class="modal-add_room">

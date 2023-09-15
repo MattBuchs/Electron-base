@@ -12,6 +12,9 @@ const container = document.querySelector(".container");
 const containerHome = document.querySelector(".container-home");
 const confirmResetModal = document.querySelector("#request-reset");
 const home = document.querySelector("#btn-home");
+const ambientSound = document.querySelector("#ambient_sound");
+const btnAmbientSound = document.querySelector("#btn-ambient_sound");
+const btnStopAmbientSound = document.querySelector("#btn-stop--ambient_sound");
 
 const timerObj = {
     seconds: 60,
@@ -27,7 +30,6 @@ const timerObj = {
         stopAlert.addEventListener("click", this.resetAlert.bind(this));
         sound.addEventListener("ended", this.resetAlert.bind(this));
         home.addEventListener("click", this.setupHomeButton.bind(this));
-        this.setupAudioButtons();
     },
 
     startTimer() {
@@ -42,6 +44,11 @@ const timerObj = {
                 stopTimer.style.display = "none";
                 playTimer.style.display = "none";
                 stopAlert.style.display = "initial";
+
+                ambientSound.pause();
+                ambientSound.currentTime = 0;
+                btnStopAmbientSound.classList.add("hidden");
+                btnAmbientSound.classList.remove("hidden");
 
                 sound.play();
             } else {
@@ -85,7 +92,7 @@ const timerObj = {
         sound.currentTime = 0;
     },
 
-    async confirmResetTimer() {
+    confirmResetTimer() {
         confirmResetModal.style.display = "flex";
         container.style.filter = "blur(10px)";
 
@@ -112,18 +119,6 @@ const timerObj = {
         sound.currentTime = 0;
 
         stopAlert.style.display = "none";
-    },
-
-    setupAudioButtons() {
-        const btnSound = document.querySelector("#btn-sound");
-        btnSound.addEventListener("click", () => {
-            sound.play();
-        });
-
-        const btnClear = document.querySelector("#btn-clear");
-        btnClear.addEventListener("click", () => {
-            ipcRenderer.send("clear-message");
-        });
     },
 
     setupHomeButton() {
