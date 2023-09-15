@@ -5,16 +5,20 @@ const containerHome = document.querySelector(".container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
 const modalAddRoom = document.querySelector(".modal-add_room");
 const closeAddRoom = document.querySelector("#close-add_room");
-const btnListenMusic = document.querySelector("#listen-to-music");
+const btnEndTimerMusic = document.querySelector("#listen-end_timer_sound");
 const stopMusic = document.querySelector("#stop-music");
-const soundSelected = document.querySelector("#room_sound");
+const endTimerSoundList = document.querySelector("#end-timer_sound-list");
+const notificationSoundList = document.querySelector(
+    "#notification_sound-list"
+);
+const ambientSoundList = document.querySelector("#ambient_sound-list");
 let audio;
 
 const addRoomObj = {
     init() {
         closeAddRoom.addEventListener("click", this.closeModal.bind(this));
-        btnListenMusic.addEventListener("click", this.startSound.bind(this));
-        soundSelected.addEventListener("change", this.resetBtn.bind(this));
+        btnEndTimerMusic.addEventListener("click", this.startSound.bind(this));
+        endTimerSoundList.addEventListener("change", this.resetBtn.bind(this));
         this.setupForm();
         this.setupModal();
     },
@@ -27,9 +31,17 @@ const addRoomObj = {
 
             const name = document.querySelector("#room_name").value;
             const minutes = document.querySelector("#room_minutes").value;
-            const end_timer_sound = document.querySelector("#room_sound").value;
+            const endTimerSound = endTimerSoundList.value;
+            const notificationSound = notificationSoundList.value;
+            const ambientSound = ambientSoundList.value;
 
-            this.addRoomToData({ name, minutes, end_timer_sound });
+            this.addRoomToData({
+                name,
+                minutes,
+                endTimerSound,
+                notificationSound,
+                ambientSound,
+            });
         });
     },
 
@@ -42,32 +54,43 @@ const addRoomObj = {
         });
     },
 
-    listSounds() {
-        const soundOption = document.querySelectorAll(".recover-sound");
+    addOptionsFromDirectory(directoryPath, listElement) {
+        const soundFiles = fs.readdirSync(directoryPath);
+        soundFiles.forEach((fileName) => {
+            const option = document.createElement("option");
+            option.textContent = fileName;
+            option.value = fileName;
+            option.classList.add("recover-sound");
+            listElement.appendChild(option);
+        });
+    },
 
-        if (soundOption) {
+    listSounds() {
+        const directories = [
+            {
+                path: path.join(__dirname, "../sounds/end_timer"),
+                listId: "#end-timer_sound-list",
+            },
+            {
+                path: path.join(__dirname, "../sounds/ambient"),
+                listId: "#ambient_sound-list",
+            },
+            {
+                path: path.join(__dirname, "../sounds/notification"),
+                listId: "#notification_sound-list",
+            },
+        ];
+
+        directories.forEach((directory) => {
+            const soundOption = document.querySelectorAll(
+                `${directory.listId} .recover-sound`
+            );
             soundOption.forEach((el) => {
                 el.remove();
             });
-        }
 
-        const soundFolder = path.join(__dirname, "../sounds/end_timer");
-        const soundList = document.querySelector("#room_sound");
-
-        fs.readdir(soundFolder, (err, files) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-
-            files.forEach((el) => {
-                const option = document.createElement("option");
-                option.textContent = el;
-                option.value = el;
-                option.classList.add("recover-sound");
-
-                soundList.appendChild(option);
-            });
+            const listElement = document.querySelector(directory.listId);
+            addRoomObj.addOptionsFromDirectory(directory.path, listElement);
         });
     },
 
@@ -93,7 +116,9 @@ const addRoomObj = {
         const newData = {
             id: `btn-room_${existingData.length + 1}`,
             name: newRoom.name,
-            end_timer_sound: newRoom.end_timer_sound,
+            end_timer_sound: newRoom.endTimerSound,
+            notification_sound: newRoom.notificationSound,
+            ambient_sound: newRoom.ambientSound,
             minutes: Number(newRoom.minutes - 1),
         };
 
@@ -121,11 +146,13 @@ const addRoomObj = {
         modalAddRoom.style.display = "none";
         containerHome.style.display = "flex";
 
-        audio.pause();
-        audio.currentTime = 0;
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
 
         stopMusic.style.display = "none";
-        btnListenMusic.style.display = "flex";
+        btnEndTimerMusic.style.display = "flex";
     },
 
     startSound() {
@@ -133,7 +160,7 @@ const addRoomObj = {
             audio.pause();
             audio.currentTime = 0;
         }
-        const sound = document.querySelector("#room_sound").value;
+        const sound = endTimerSoundList.value;
 
         if (!sound) {
             alert("Pas de musique selectionnée");
@@ -146,25 +173,25 @@ const addRoomObj = {
         audio.play();
 
         stopMusic.style.display = "block";
-        btnListenMusic.style.display = "none";
+        btnEndTimerMusic.style.display = "none";
 
         stopMusic.addEventListener("click", () => {
             audio.pause();
             audio.currentTime = 0;
 
             stopMusic.style.display = "none";
-            btnListenMusic.style.display = "flex";
+            btnEndTimerMusic.style.display = "flex";
         });
 
         audio.addEventListener("ended", () => {
             stopMusic.style.display = "none";
-            btnListenMusic.style.display = "flex";
+            btnEndTimerMusic.style.display = "flex";
         });
     },
 
     resetBtn() {
         stopMusic.style.display = "none";
-        btnListenMusic.style.display = "flex";
+        btnEndTimerMusic.style.display = "flex";
 
         if (audio) {
             audio.pause();

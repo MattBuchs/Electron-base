@@ -94,22 +94,81 @@
                         />
                     </div>
                     <div class="container-choice_sound">
-                        <label for="room_sound">Alarme :</label>
-                        <select name="sound" id="room_sound" required>
-                            <option value="">Choisir une alarme</option>
-                        </select>
-                        <button type="button" id="listen-to-music">
-                            <img
-                                src="../img/volume.svg"
-                                alt="Ecouter la musique"
-                            />
-                        </button>
-                        <button type="button" id="stop-music">
-                            <img
-                                src="../img/stop.svg"
-                                alt="Stopper la musique"
-                            />
-                        </button>
+                        <div>
+                            <label for="end-timer_sound-list">Alarme :</label>
+                            <select
+                                name="sound"
+                                id="end-timer_sound-list"
+                                required
+                            >
+                                <option value="">
+                                    Choisir un son de fin de timer
+                                </option>
+                            </select>
+                            <button type="button" id="listen-end_timer_sound">
+                                <img
+                                    src="../img/volume.svg"
+                                    alt="Ecouter le son de fin de timer"
+                                />
+                            </button>
+                            <button type="button" id="stop-music">
+                                <img
+                                    src="../img/stop.svg"
+                                    alt="Stopper la musique"
+                                />
+                            </button>
+                        </div>
+                        <div>
+                            <label for="notification_sound-list"
+                                >Notification :</label
+                            >
+                            <select
+                                name="sound"
+                                id="notification_sound-list"
+                                required
+                            >
+                                <option value="">
+                                    Choisir un son de notification
+                                </option>
+                            </select>
+                            <button
+                                type="button"
+                                id="listen-notification_sound"
+                            >
+                                <img
+                                    src="../img/volume.svg"
+                                    alt="Ecouter le son de notification"
+                                />
+                            </button>
+                            <button type="button" id="stop-music">
+                                <img
+                                    src="../img/stop.svg"
+                                    alt="Stopper la musique"
+                                />
+                            </button>
+                        </div>
+                        <div>
+                            <label for="ambient_sound-list"
+                                >Son d'ambiance :</label
+                            >
+                            <select name="sound" id="ambient_sound-list">
+                                <option value="">
+                                    Choisir un son d'ambiance
+                                </option>
+                            </select>
+                            <button type="button" id="listen-ambient_sound">
+                                <img
+                                    src="../img/volume.svg"
+                                    alt="Ecouter le son d'ambiance"
+                                />
+                            </button>
+                            <button type="button" id="stop-music">
+                                <img
+                                    src="../img/stop.svg"
+                                    alt="Stopper la musique"
+                                />
+                            </button>
+                        </div>
                     </div>
                     <button type="submit">Ajouter</button>
                 </form>

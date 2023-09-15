@@ -96,11 +96,11 @@
     display: flex;
 }
 
-.container-choice_sound {
+.container-choice_sound div {
     display: flex;
 }
 
-#listen-to-music {
+.container-choice_sound button {
     width: 30px;
     height: 30px;
     display: flex;
@@ -110,7 +110,7 @@
     border: 1px solid #ffffff4a;
 }
 
-#listen-to-music img {
+.container-choice_sound button img {
     width: 140%;
     height: 140%;
 }

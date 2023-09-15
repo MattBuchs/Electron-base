@@ -1,5 +1,4 @@
 node_modules/
 package-lock.json
 a-faire.md
-app/src/sounds/ambient/Harry Potter - musique ambiance.mp3
-app/src/sounds/end_timer/
+app/src/sounds/
