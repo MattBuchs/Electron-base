@@ -2,19 +2,19 @@
     {
         "id": "btn-room_1",
         "name": "Salle 1",
-        "song": "Alarm.mp3",
+        "end_timer_sound": "Alarm.mp3",
         "minutes": 59
     },
     {
         "id": "btn-room_2",
         "name": "Salle 2",
-        "song": "Alarm.mp3",
+        "end_timer_sound": "Alarm.mp3",
         "minutes": 44
     },
     {
         "id": "btn-room_4",
         "name": "Test2",
-        "song": "Sherlock Holmes.mp3",
+        "end_timer_sound": "Sherlock Holmes.mp3",
         "minutes": 0
     }
 ]

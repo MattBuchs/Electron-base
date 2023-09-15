@@ -7,10 +7,11 @@ const playTimer = document.querySelector("#play");
 const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
-const song = document.querySelector("#end-timer_song");
+const sound = document.querySelector("#end-timer_sound");
 const container = document.querySelector(".container");
 const containerHome = document.querySelector(".container-home");
 const confirmResetModal = document.querySelector("#request-reset");
+const home = document.querySelector("#btn-home");
 
 const timerObj = {
     seconds: 60,
@@ -24,9 +25,9 @@ const timerObj = {
             this.confirmResetTimer.bind(this)
         );
         stopAlert.addEventListener("click", this.resetAlert.bind(this));
-        song.addEventListener("ended", this.resetAlert.bind(this));
+        sound.addEventListener("ended", this.resetAlert.bind(this));
+        home.addEventListener("click", this.setupHomeButton.bind(this));
         this.setupAudioButtons();
-        this.setupHomeButton();
     },
 
     startTimer() {
@@ -42,7 +43,7 @@ const timerObj = {
                 playTimer.style.display = "none";
                 stopAlert.style.display = "initial";
 
-                song.play();
+                sound.play();
             } else {
                 if (this.seconds === -1) {
                     roomsObj.minutes--;
@@ -80,8 +81,8 @@ const timerObj = {
 
         utils.displayTimer(timer, roomsObj.minutes);
 
-        song.pause();
-        song.currentTime = 0;
+        sound.pause();
+        sound.currentTime = 0;
     },
 
     async confirmResetTimer() {
@@ -107,16 +108,16 @@ const timerObj = {
     },
 
     resetAlert() {
-        song.pause();
-        song.currentTime = 0;
+        sound.pause();
+        sound.currentTime = 0;
 
         stopAlert.style.display = "none";
     },
 
     setupAudioButtons() {
-        const btnSong = document.querySelector("#btn-song");
-        btnSong.addEventListener("click", () => {
-            song.play();
+        const btnSound = document.querySelector("#btn-sound");
+        btnSound.addEventListener("click", () => {
+            sound.play();
         });
 
         const btnClear = document.querySelector("#btn-clear");
@@ -126,14 +127,12 @@ const timerObj = {
     },
 
     setupHomeButton() {
-        const home = document.querySelector("#btn-home");
-        home.addEventListener("click", () => {
-            container.style.display = "none";
-            containerHome.style.display = "flex";
+        container.style.display = "none";
+        containerHome.style.display = "flex";
 
-            this.resetTimer();
-            ipcRenderer.send("reset-timer", roomsObj.resetMinutes);
-        });
+        this.resetTimer();
+        ipcRenderer.send("reset-timer", roomsObj.resetMinutes);
+        ipcRenderer.send("clear-message");
     },
 };
 

@@ -5,7 +5,7 @@ import utils from "../utils.js";
 
 const containerHome = document.querySelector(".container-home");
 const container = document.querySelector(".container");
-const endTimerSong = document.querySelector("#end-timer_song");
+const endTimerSound = document.querySelector("#end-timer_sound");
 const timer = document.querySelector(".container p");
 
 const roomsObj = {
@@ -46,7 +46,7 @@ const roomsObj = {
     startRoom(room) {
         this.minutes = room.minutes;
         this.resetMinutes = room.minutes;
-        endTimerSong.src = `../song/${room.song}`;
+        endTimerSound.src = `../sound/end_timer/${room.end_timer_sound}`;
 
         utils.displayTimer(timer, this.minutes);
 

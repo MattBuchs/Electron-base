@@ -29,10 +29,10 @@ const paramsObj = {
 
             if (fileContent) {
                 const { file, fileName } = fileContent;
-                // Créez le chemin du fichier destination dans le dossier "song"
+                // Créez le chemin du fichier destination dans le dossier "sound"
                 const destinationPath = path.join(
                     __dirname,
-                    "../song",
+                    "../sound/end_timer",
                     fileName
                 );
 

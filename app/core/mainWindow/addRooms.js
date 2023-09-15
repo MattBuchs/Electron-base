@@ -7,14 +7,14 @@ const modalAddRoom = document.querySelector(".modal-add_room");
 const closeAddRoom = document.querySelector("#close-add_room");
 const btnListenMusic = document.querySelector("#listen-to-music");
 const stopMusic = document.querySelector("#stop-music");
-const songSelected = document.querySelector("#room_song");
+const soundSelected = document.querySelector("#room_sound");
 let audio;
 
 const addRoomObj = {
     init() {
         closeAddRoom.addEventListener("click", this.closeModal.bind(this));
-        btnListenMusic.addEventListener("click", this.startSong.bind(this));
-        songSelected.addEventListener("change", this.resetBtn.bind(this));
+        btnListenMusic.addEventListener("click", this.startSound.bind(this));
+        soundSelected.addEventListener("change", this.resetBtn.bind(this));
         this.setupForm();
         this.setupModal();
     },
@@ -27,9 +27,9 @@ const addRoomObj = {
 
             const name = document.querySelector("#room_name").value;
             const minutes = document.querySelector("#room_minutes").value;
-            const song = document.querySelector("#room_song").value;
+            const end_timer_sound = document.querySelector("#room_sound").value;
 
-            this.addRoomToData({ name, minutes, song });
+            this.addRoomToData({ name, minutes, end_timer_sound });
         });
     },
 
@@ -38,12 +38,12 @@ const addRoomObj = {
             modalAddRoom.style.display = "flex";
             containerHome.style.display = "none";
 
-            this.listSongs();
+            this.listSounds();
         });
     },
 
-    listSongs() {
-        const soundOption = document.querySelectorAll(".recover-song");
+    listSounds() {
+        const soundOption = document.querySelectorAll(".recover-sound");
 
         if (soundOption) {
             soundOption.forEach((el) => {
@@ -51,10 +51,10 @@ const addRoomObj = {
             });
         }
 
-        const songFolder = path.join(__dirname, "../song");
-        const songList = document.querySelector("#room_song");
+        const soundFolder = path.join(__dirname, "../sound/end_timer");
+        const soundList = document.querySelector("#room_sound");
 
-        fs.readdir(songFolder, (err, files) => {
+        fs.readdir(soundFolder, (err, files) => {
             if (err) {
                 console.error(err);
                 return;
@@ -64,9 +64,9 @@ const addRoomObj = {
                 const option = document.createElement("option");
                 option.textContent = el;
                 option.value = el;
-                option.classList.add("recover-song");
+                option.classList.add("recover-sound");
 
-                songList.appendChild(option);
+                soundList.appendChild(option);
             });
         });
     },
@@ -92,7 +92,8 @@ const addRoomObj = {
 
         const newData = {
             id: `btn-room_${existingData.length + 1}`,
-            ...newRoom,
+            name: newRoom.name,
+            end_timer_sound: newRoom.end_timer_sound,
             minutes: Number(newRoom.minutes - 1),
         };
 
@@ -121,21 +122,21 @@ const addRoomObj = {
         containerHome.style.display = "flex";
     },
 
-    startSong() {
+    startSound() {
         if (audio) {
             audio.pause();
             audio.currentTime = 0;
         }
-        const song = document.querySelector("#room_song").value;
+        const sound = document.querySelector("#room_sound").value;
 
-        if (!song) {
+        if (!sound) {
             alert("Pas de musique selectionnée");
             return;
         }
 
-        const songPath = path.join(__dirname, `../song/${song}`);
+        const soundPath = path.join(__dirname, `../sound/end_timer/${sound}`);
 
-        audio = new Audio(songPath);
+        audio = new Audio(soundPath);
         audio.play();
 
         stopMusic.style.display = "block";
