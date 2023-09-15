@@ -7,7 +7,7 @@ const playTimer = document.querySelector("#play");
 const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
-const sound = document.querySelector("#end-timer_sound");
+const endTimerSound = document.querySelector("#end-timer_sound");
 const container = document.querySelector(".container");
 const containerHome = document.querySelector(".container-home");
 const confirmResetModal = document.querySelector("#request-reset");
@@ -16,6 +16,7 @@ const ambientSound = document.querySelector("#ambient_sound");
 const btnAmbientSound = document.querySelector("#btn-ambient_sound");
 const btnStopAmbientSound = document.querySelector("#btn-stop--ambient_sound");
 const notificationSound = document.querySelector("#notification_sound");
+const message = document.querySelector("#message");
 
 const timerObj = {
     seconds: 60,
@@ -29,7 +30,7 @@ const timerObj = {
             this.confirmResetTimer.bind(this)
         );
         stopAlert.addEventListener("click", this.resetAlert.bind(this));
-        sound.addEventListener("ended", this.resetAlert.bind(this));
+        endTimerSound.addEventListener("ended", this.resetAlert.bind(this));
         home.addEventListener("click", this.setupHomeButton.bind(this));
     },
 
@@ -51,7 +52,7 @@ const timerObj = {
                 btnStopAmbientSound.classList.add("hidden");
                 btnAmbientSound.classList.remove("hidden");
 
-                sound.play();
+                endTimerSound.play();
             } else {
                 if (this.seconds === -1) {
                     roomsObj.minutes--;
@@ -89,8 +90,8 @@ const timerObj = {
 
         utils.displayTimer(timer, roomsObj.minutes);
 
-        sound.pause();
-        sound.currentTime = 0;
+        endTimerSound.pause();
+        endTimerSound.currentTime = 0;
     },
 
     confirmResetTimer() {
@@ -116,8 +117,8 @@ const timerObj = {
     },
 
     resetAlert() {
-        sound.pause();
-        sound.currentTime = 0;
+        endTimerSound.pause();
+        endTimerSound.currentTime = 0;
 
         stopAlert.style.display = "none";
     },
@@ -134,6 +135,10 @@ const timerObj = {
         if (notificationSound.currentTime > 0) {
             notificationSound.pause();
             notificationSound.currentTime = 0;
+        }
+
+        if (message.value !== "") {
+            message.value = "";
         }
 
         btnStopAmbientSound.classList.add("hidden");

@@ -7,7 +7,7 @@ const btnClear = document.querySelector("#btn-clear");
 const messagesObj = {
     init() {
         formMessage.addEventListener("submit", this.sendMessage.bind(this));
-        btnClear.addEventListener("submit", this.clearMessage.bind(this));
+        btnClear.addEventListener("click", this.clearMessage.bind(this));
     },
 
     sendMessage(e) {

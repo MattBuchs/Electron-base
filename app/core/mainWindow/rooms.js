@@ -5,8 +5,10 @@ import utils from "../utils.js";
 
 const containerHome = document.querySelector(".container-home");
 const container = document.querySelector(".container");
-const endTimerSound = document.querySelector("#end-timer_sound");
 const timer = document.querySelector(".container p");
+const endTimerSound = document.querySelector("#end-timer_sound");
+const notificationSound = document.querySelector("#notification_sound");
+const ambientSound = document.querySelector("#ambient_sound");
 
 const roomsObj = {
     minutes: null,
@@ -25,21 +27,22 @@ const roomsObj = {
                 console.error(err);
                 return;
             }
+            if (data) {
+                const rooms = JSON.parse(data);
 
-            const rooms = JSON.parse(data);
+                rooms.forEach((el) => {
+                    const btn = document.createElement("button");
+                    btn.textContent = el.name;
+                    btn.id = el.id;
+                    btn.classList.add("btn-room");
 
-            rooms.forEach((el) => {
-                const btn = document.createElement("button");
-                btn.textContent = el.name;
-                btn.id = el.id;
-                btn.classList.add("btn-room");
+                    btn.addEventListener("click", () => {
+                        this.startRoom(el);
+                    });
 
-                btn.addEventListener("click", () => {
-                    this.startRoom(el);
+                    containerHome.appendChild(btn);
                 });
-
-                containerHome.appendChild(btn);
-            });
+            }
         });
     },
 
@@ -47,6 +50,8 @@ const roomsObj = {
         this.minutes = room.minutes;
         this.resetMinutes = room.minutes;
         endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
+        notificationSound.src = `../sounds/notification/${room.notification_sound}`;
+        ambientSound.src = `../sounds/ambient/${room.ambient_sound}`;
 
         utils.displayTimer(timer, this.minutes);
 

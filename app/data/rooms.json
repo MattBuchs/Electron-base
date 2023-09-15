@@ -1,42 +1,18 @@
 [
   {
     "id": "btn-room_1",
-    "name": "Salle 1",
-    "end_timer_sound": "Alarm.mp3",
+    "name": "Salle1",
+    "end_timer_sound": "Sherlock Holmes.mp3",
     "notification_sound": "Notification.mp3",
     "ambient_sound": "Harry Potter - musique ambiance.mp3",
     "minutes": 59
   },
   {
     "id": "btn-room_2",
-    "name": "Salle 2",
-    "end_timer_sound": "Alarm.mp3",
-    "notification_sound": "Notification.mp3",
+    "name": "Sale2",
+    "end_timer_sound": "Dark Time.mp3",
+    "notification_sound": "Notification Sms Tone.mp3",
     "ambient_sound": "Harry Potter - musique ambiance.mp3",
     "minutes": 44
-  },
-  {
-    "id": "btn-room_4",
-    "name": "Test2",
-    "end_timer_sound": "Sherlock Holmes.mp3",
-    "notification_sound": "Notification.mp3",
-    "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "minutes": 0
-  },
-  {
-    "id": "btn-room_4",
-    "name": "Test",
-    "end_timer_sound": "Dark Time.mp3",
-    "notification_sound": "Bird Notification Tone - sms tone.mp3",
-    "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "minutes": 36
-  },
-  {
-    "id": "btn-room_5",
-    "name": "Wow",
-    "end_timer_sound": "Alarm.mp3",
-    "notification_sound": "Notification.mp3",
-    "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "minutes": 87
   }
 ]

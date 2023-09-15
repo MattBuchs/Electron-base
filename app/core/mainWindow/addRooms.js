@@ -103,7 +103,9 @@ const addRoomObj = {
         if (fs.existsSync(filePath)) {
             const fileContent = fs.readFileSync(filePath, "utf8");
             try {
-                existingData = JSON.parse(fileContent);
+                if (fileContent) {
+                    existingData = JSON.parse(fileContent);
+                }
             } catch (err) {
                 console.error(
                     "Erreur lors de la lecture des données JSON existantes :",
