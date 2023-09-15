@@ -15,6 +15,7 @@ const home = document.querySelector("#btn-home");
 const ambientSound = document.querySelector("#ambient_sound");
 const btnAmbientSound = document.querySelector("#btn-ambient_sound");
 const btnStopAmbientSound = document.querySelector("#btn-stop--ambient_sound");
+const notificationSound = document.querySelector("#notification_sound");
 
 const timerObj = {
     seconds: 60,
@@ -124,6 +125,19 @@ const timerObj = {
     setupHomeButton() {
         container.style.display = "none";
         containerHome.style.display = "flex";
+
+        if (ambientSound.currentTime > 0) {
+            ambientSound.pause();
+            ambientSound.currentTime = 0;
+        }
+
+        if (notificationSound.currentTime > 0) {
+            notificationSound.pause();
+            notificationSound.currentTime = 0;
+        }
+
+        btnStopAmbientSound.classList.add("hidden");
+        btnAmbientSound.classList.remove("hidden");
 
         this.resetTimer();
         ipcRenderer.send("reset-timer", roomsObj.resetMinutes);

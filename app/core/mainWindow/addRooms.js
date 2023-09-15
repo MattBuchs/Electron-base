@@ -120,6 +120,12 @@ const addRoomObj = {
     closeModal() {
         modalAddRoom.style.display = "none";
         containerHome.style.display = "flex";
+
+        audio.pause();
+        audio.currentTime = 0;
+
+        stopMusic.style.display = "none";
+        btnListenMusic.style.display = "flex";
     },
 
     startSound() {
@@ -146,6 +152,11 @@ const addRoomObj = {
             audio.pause();
             audio.currentTime = 0;
 
+            stopMusic.style.display = "none";
+            btnListenMusic.style.display = "flex";
+        });
+
+        audio.addEventListener("ended", () => {
             stopMusic.style.display = "none";
             btnListenMusic.style.display = "flex";
         });

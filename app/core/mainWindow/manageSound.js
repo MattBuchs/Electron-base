@@ -22,6 +22,13 @@ const manageSoundObj = {
 
     startNotificationSound() {
         notificationSound.play();
+
+        if (notificationSound.duration > 6) {
+            setTimeout(() => {
+                notificationSound.pause();
+                notificationSound.currentTime = 0;
+            }, 6000);
+        }
     },
 
     startAmbientSound() {
