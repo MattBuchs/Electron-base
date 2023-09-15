@@ -116,8 +116,8 @@ const manageSoundObj = {
 
         btnNotificationMusic.addEventListener("click", () => {
             if (this.audioNotification) {
-                this.audioEndTimer.pause();
-                this.audioEndTimer.currentTime = 0;
+                this.audioNotification.pause();
+                this.audioNotification.currentTime = 0;
             }
             const notificationSoundValue = notificationSoundList.value;
 
