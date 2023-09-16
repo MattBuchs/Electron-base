@@ -20,9 +20,9 @@ const btnNotificationMusic = document.querySelector(
 const btnAmbientMusic = document.querySelector("#listen-ambient_sound");
 
 const manageSoundObj = {
-    audioEndTimer: null,
-    audioNotification: null,
-    audioAmbient: null,
+    endTimer: null,
+    notification: null,
+    ambient: null,
 
     init() {
         btnNotificationSound.addEventListener(
@@ -37,7 +37,33 @@ const manageSoundObj = {
             "click",
             this.stopAmbientSound.bind(this)
         );
-        this.startSound();
+        this.addSoundEvent(
+            btnEndTimerMusic,
+            "end_timer",
+            endTimerSoundList,
+            stopMusic1,
+            btnEndTimerMusic
+        );
+        this.addSoundEvent(
+            btnNotificationMusic,
+            "notification",
+            notificationSoundList,
+            stopMusic2,
+            btnNotificationMusic
+        );
+        this.addSoundEvent(
+            btnAmbientMusic,
+            "ambient",
+            ambientSoundList,
+            stopMusic3,
+            btnAmbientMusic
+        );
+    },
+
+    addSoundEvent(button, audioName, soundList, btnStopMusic, btnListenMusic) {
+        button.addEventListener("click", () => {
+            this.startSound(audioName, soundList, btnStopMusic, btnListenMusic);
+        });
     },
 
     startNotificationSound() {
@@ -76,116 +102,44 @@ const manageSoundObj = {
         btnAmbientSound.classList.remove("hidden");
     },
 
-    startSound() {
-        btnEndTimerMusic.addEventListener("click", () => {
-            if (this.audioEndTimer) {
-                this.audioEndTimer.pause();
-                this.audioEndTimer.currentTime = 0;
-            }
-            const endTimerSoundValue = endTimerSoundList.value;
+    startSound(audioName, soundList, btnStopMusic, btnListenMusic) {
+        const audio = this[audioName];
 
-            if (!endTimerSoundValue) {
-                alert("Veuillez selectionner un son !");
-                return;
-            }
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
 
-            const soundPath = path.join(
-                __dirname,
-                `../sounds/end_timer/${endTimerSoundValue}`
-            );
+        const soundValue = soundList.value;
 
-            this.audioEndTimer = new Audio(soundPath);
-            this.audioEndTimer.play();
+        if (!soundValue) {
+            alert("Veuillez sélectionner un son !");
+            return null;
+        }
 
-            stopMusic1.style.display = "block";
-            btnEndTimerMusic.style.display = "none";
+        const soundPath = path.join(
+            __dirname,
+            `../sounds/${audioName}/${soundValue}`
+        );
 
-            stopMusic1.addEventListener("click", () => {
-                this.audioEndTimer.pause();
-                this.audioEndTimer.currentTime = 0;
+        this[audioName] = new Audio(soundPath);
+        const newAudio = this[audioName];
+        newAudio.play();
 
-                stopMusic1.style.display = "none";
-                btnEndTimerMusic.style.display = "flex";
-            });
+        btnStopMusic.style.display = "block";
+        btnListenMusic.style.display = "none";
 
-            this.audioEndTimer.addEventListener("ended", () => {
-                stopMusic1.style.display = "none";
-                btnEndTimerMusic.style.display = "flex";
-            });
+        btnStopMusic.addEventListener("click", () => {
+            newAudio.pause();
+            newAudio.currentTime = 0;
+
+            btnStopMusic.style.display = "none";
+            btnListenMusic.style.display = "flex";
         });
 
-        btnNotificationMusic.addEventListener("click", () => {
-            if (this.audioNotification) {
-                this.audioNotification.pause();
-                this.audioNotification.currentTime = 0;
-            }
-            const notificationSoundValue = notificationSoundList.value;
-
-            if (!notificationSoundValue) {
-                alert("Veuillez selectionner un son !");
-                return;
-            }
-
-            const soundPath = path.join(
-                __dirname,
-                `../sounds/notification/${notificationSoundValue}`
-            );
-
-            this.audioNotification = new Audio(soundPath);
-            this.audioNotification.play();
-
-            stopMusic2.style.display = "block";
-            btnNotificationMusic.style.display = "none";
-
-            stopMusic2.addEventListener("click", () => {
-                this.audioNotification.pause();
-                this.audioNotification.currentTime = 0;
-
-                stopMusic2.style.display = "none";
-                btnNotificationMusic.style.display = "flex";
-            });
-
-            this.audioNotification.addEventListener("ended", () => {
-                stopMusic2.style.display = "none";
-                btnNotificationMusic.style.display = "flex";
-            });
-        });
-
-        btnAmbientMusic.addEventListener("click", () => {
-            if (this.audioAmbient) {
-                this.audioAmbient.pause();
-                this.audioAmbient.currentTime = 0;
-            }
-            const ambientSoundValue = ambientSoundList.value;
-
-            if (!ambientSoundValue) {
-                alert("Veuillez selectionner un son !");
-                return;
-            }
-
-            const soundPath = path.join(
-                __dirname,
-                `../sounds/ambient/${ambientSoundValue}`
-            );
-
-            this.audioAmbient = new Audio(soundPath);
-            this.audioAmbient.play();
-
-            stopMusic3.style.display = "block";
-            btnAmbientMusic.style.display = "none";
-
-            stopMusic3.addEventListener("click", () => {
-                this.audioAmbient.pause();
-                this.audioAmbient.currentTime = 0;
-
-                stopMusic3.style.display = "none";
-                btnAmbientMusic.style.display = "flex";
-            });
-
-            this.audioAmbient.addEventListener("ended", () => {
-                stopMusic3.style.display = "none";
-                btnAmbientMusic.style.display = "flex";
-            });
+        newAudio.addEventListener("ended", () => {
+            btnStopMusic.style.display = "none";
+            btnListenMusic.style.display = "flex";
         });
     },
 };

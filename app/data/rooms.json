@@ -22,5 +22,13 @@
     "notification_sound": "Bird Notification Tone - sms tone.mp3",
     "ambient_sound": "Harry Potter - musique ambiance.mp3",
     "minutes": 0
+  },
+  {
+    "id": "btn-room_4",
+    "name": "Test",
+    "end_timer_sound": "Dark Time.mp3",
+    "notification_sound": "Message Notification Tone.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "minutes": 4
   }
 ]
