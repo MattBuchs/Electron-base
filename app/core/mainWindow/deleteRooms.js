@@ -3,20 +3,38 @@ const fs = require("fs");
 
 const btnDeleteRoom = document.querySelector("#params-delete_room");
 const modal = document.querySelector(".modal-params");
+const btnAddRoom = document.querySelector("#btn-add_room");
+const btnParams = document.querySelector("#btn-params");
+const btnRemoveDelete = document.querySelector("#btn-remove_delete");
 
 const deleteRoomsObj = {
     init() {
         btnDeleteRoom.addEventListener("click", this.deleteRoom.bind(this));
+        btnRemoveDelete.addEventListener(
+            "click",
+            this.removeDeleteRoom.bind(this)
+        );
     },
 
     deleteRoom() {
         const btnsDelete = document.querySelectorAll(".btn-delete_room");
+
+        btnAddRoom.classList.add("hidden");
+        btnParams.classList.add("hidden");
+        btnRemoveDelete.classList.remove("hidden");
+
         btnsDelete.forEach((el) => {
             const id = el.parentNode.id;
 
             el.classList.remove("hidden");
             el.addEventListener("click", function () {
-                deleteRoomsObj.deleteRoomFromJson(id);
+                const deleteConfirm = confirm(
+                    "Etes-vous sur de vouloir supprimé le timer ?"
+                );
+
+                if (deleteConfirm) {
+                    deleteRoomsObj.deleteRoomFromJson(id);
+                }
             });
         });
 
@@ -46,6 +64,18 @@ const deleteRoomsObj = {
         }
 
         window.location.reload();
+    },
+
+    removeDeleteRoom() {
+        const btnDeleteRooms = document.querySelectorAll(".btn-delete_room");
+
+        btnAddRoom.classList.remove("hidden");
+        btnParams.classList.remove("hidden");
+        btnRemoveDelete.classList.add("hidden");
+
+        btnDeleteRooms.forEach((el) => {
+            el.classList.add("hidden");
+        });
     },
 };
 

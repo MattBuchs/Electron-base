@@ -2,6 +2,7 @@ const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
 import utils from "../utils.js";
+import deleteRoomsObj from "./deleteRooms.js";
 
 const containerHome = document.querySelector(".container-home");
 const container = document.querySelector(".container");
@@ -29,7 +30,7 @@ const roomsObj = {
                 return;
             }
 
-            if (data.length > 1) {
+            if (data.length > 2) {
                 const rooms = JSON.parse(data);
 
                 rooms.forEach((el) => {
@@ -54,11 +55,23 @@ const roomsObj = {
                     div.appendChild(btn);
                     div.appendChild(btnDelete);
                 });
+            } else {
+                const text = document.createElement("p");
+                text.textContent = "Pas de timer...";
+                text.classList.add("txt-no_toom");
+
+                containerBtnRooms.appendChild(text);
             }
         });
     },
 
     startRoom(room) {
+        const btnDeleteRoom = document.querySelector(".btn-delete_room");
+
+        if (btnDeleteRoom.className === "btn-delete_room") {
+            deleteRoomsObj.removeDeleteRoom();
+        }
+
         this.minutes = room.minutes;
         this.resetMinutes = room.minutes;
         endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
