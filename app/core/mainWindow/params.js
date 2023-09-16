@@ -5,14 +5,35 @@ const path = require("path");
 const btnParams = document.querySelector("#btn-params");
 const btnClose = document.querySelector("#close_params");
 const modal = document.querySelector(".modal-params");
-const btnAddFile = document.querySelector("#btn-add_file");
+const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
+const btnAddFileNotification = document.querySelector(
+    "#btn-add_file-notification"
+);
+const btnAddFileAmbient = document.querySelector("#btn-add_file-ambient");
 const notification = document.querySelector(".modal-notification");
 
 const paramsObj = {
     init() {
         btnParams.addEventListener("click", this.openModal.bind(this));
         btnClose.addEventListener("click", this.closeModal.bind(this));
-        btnAddFile.addEventListener("click", this.uploadFile.bind(this));
+        btnAddFileEndTimer.addEventListener(
+            "click",
+            function () {
+                this.uploadFile("end_timer");
+            }.bind(this)
+        );
+        btnAddFileNotification.addEventListener(
+            "click",
+            function () {
+                this.uploadFile("notification");
+            }.bind(this)
+        );
+        btnAddFileAmbient.addEventListener(
+            "click",
+            function () {
+                this.uploadFile("ambient");
+            }.bind(this)
+        );
     },
 
     openModal() {
@@ -23,7 +44,7 @@ const paramsObj = {
         modal.classList.add("hidden");
     },
 
-    async uploadFile() {
+    async uploadFile(pathName) {
         try {
             const fileContent = await ipcRenderer.invoke("open-file-dialog");
 
@@ -32,7 +53,7 @@ const paramsObj = {
                 // Créez le chemin du fichier destination dans le dossier "sound"
                 const destinationPath = path.join(
                     __dirname,
-                    "../sounds/end_timer",
+                    `../sounds/${pathName}`,
                     fileName
                 );
 
