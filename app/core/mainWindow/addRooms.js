@@ -96,7 +96,7 @@ const addRoomObj = {
         if (fs.existsSync(filePath)) {
             const fileContent = fs.readFileSync(filePath, "utf8");
             try {
-                if (fileContent) {
+                if (fileContent.length > 1) {
                     existingData = JSON.parse(fileContent);
                 }
             } catch (err) {

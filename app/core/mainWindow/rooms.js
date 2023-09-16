@@ -27,7 +27,8 @@ const roomsObj = {
                 console.error(err);
                 return;
             }
-            if (data) {
+
+            if (data.length > 1) {
                 const rooms = JSON.parse(data);
 
                 rooms.forEach((el) => {
