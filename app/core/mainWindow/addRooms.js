@@ -1,15 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-import manageSoundObj from "./manageSound.js";
 
 const containerHome = document.querySelector(".container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
 const modalAddRoom = document.querySelector(".modal-add_room");
-const closeAddRoom = document.querySelector("#close-add_room");
-const btnEndTimerMusic = document.querySelector("#listen-end_timer_sound");
-const stopMusic1 = document.querySelector("#stop-music-1");
-const stopMusic2 = document.querySelector("#stop-music-2");
-const stopMusic3 = document.querySelector("#stop-music-3");
 const endTimerSoundList = document.querySelector("#end-timer_sound-list");
 const notificationSoundList = document.querySelector(
     "#notification_sound-list"
@@ -18,7 +12,6 @@ const ambientSoundList = document.querySelector("#ambient_sound-list");
 
 const addRoomObj = {
     init() {
-        closeAddRoom.addEventListener("click", this.closeModal.bind(this));
         this.setupForm();
         this.setupModal();
     },
@@ -142,19 +135,6 @@ const addRoomObj = {
                 }
             }
         );
-    },
-
-    closeModal() {
-        modalAddRoom.style.display = "none";
-        containerHome.style.display = "flex";
-
-        if (manageSoundObj.endTimer) {
-            manageSoundObj.endTimer.pause();
-            manageSoundObj.endTimer.currentTime = 0;
-        }
-
-        stopMusic1.style.display = "none";
-        btnEndTimerMusic.style.display = "flex";
     },
 };
 
