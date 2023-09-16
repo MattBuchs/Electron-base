@@ -19,7 +19,6 @@ const ambientSoundList = document.querySelector("#ambient_sound-list");
 const addRoomObj = {
     init() {
         closeAddRoom.addEventListener("click", this.closeModal.bind(this));
-        endTimerSoundList.addEventListener("change", this.resetBtn.bind(this));
         this.setupForm();
         this.setupModal();
     },
@@ -149,23 +148,13 @@ const addRoomObj = {
         modalAddRoom.style.display = "none";
         containerHome.style.display = "flex";
 
-        if (manageSoundObj.audioEndTimer) {
-            manageSoundObj.audioEndTimer.pause();
-            manageSoundObj.audioEndTimer.currentTime = 0;
+        if (manageSoundObj.endTimer) {
+            manageSoundObj.endTimer.pause();
+            manageSoundObj.endTimer.currentTime = 0;
         }
 
         stopMusic1.style.display = "none";
         btnEndTimerMusic.style.display = "flex";
-    },
-
-    resetBtn() {
-        stopMusic1.style.display = "none";
-        btnEndTimerMusic.style.display = "flex";
-
-        if (manageSoundObj.audioEndTimer) {
-            manageSoundObj.audioEndTimer.pause();
-            manageSoundObj.audioEndTimer.currentTime = 0;
-        }
     },
 };
 

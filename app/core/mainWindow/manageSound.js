@@ -21,8 +21,6 @@ const btnAmbientMusic = document.querySelector("#listen-ambient_sound");
 
 const manageSoundObj = {
     endTimer: null,
-    notification: null,
-    ambient: null,
 
     init() {
         btnNotificationSound.addEventListener(
@@ -35,7 +33,7 @@ const manageSoundObj = {
         );
         btnStopAmbientSound.addEventListener(
             "click",
-            this.stopAmbientSound.bind(this)
+            this.stopAmbientSoundInRoom.bind(this)
         );
         this.addSoundEvent(
             btnEndTimerMusic,
@@ -94,7 +92,7 @@ const manageSoundObj = {
         btnAmbientSound.classList.add("hidden");
     },
 
-    stopAmbientSound() {
+    stopAmbientSoundInRoom() {
         ambientSound.pause();
         ambientSound.currentTime = 0;
 
@@ -141,6 +139,18 @@ const manageSoundObj = {
             btnStopMusic.style.display = "none";
             btnListenMusic.style.display = "flex";
         });
+
+        soundList.addEventListener("change", () => {
+            this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
+        });
+    },
+
+    resetBtn(stopMusic, btnListenMusic, audio) {
+        stopMusic.style.display = "none";
+        btnListenMusic.style.display = "flex";
+
+        audio.pause();
+        audio.currentTime = 0;
     },
 };
 
