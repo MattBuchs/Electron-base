@@ -5,6 +5,7 @@ import utils from "../utils.js";
 
 const containerHome = document.querySelector(".container-home");
 const container = document.querySelector(".container");
+const containerBtnRooms = document.querySelector("#container-btn_rooms");
 const timer = document.querySelector(".container p");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const notificationSound = document.querySelector("#notification_sound");
@@ -32,16 +33,26 @@ const roomsObj = {
                 const rooms = JSON.parse(data);
 
                 rooms.forEach((el) => {
+                    const div = document.createElement("div");
                     const btn = document.createElement("button");
+                    const btnDelete = document.createElement("button");
+
+                    btn.classList.add("room-btn");
+                    div.classList.add("container-one_btn");
+                    btnDelete.classList.add("btn-delete_room");
+                    btnDelete.classList.add("hidden");
+
+                    div.id = el.id;
                     btn.textContent = el.name;
-                    btn.id = el.id;
-                    btn.classList.add("btn-room");
+                    btnDelete.textContent = "X";
 
                     btn.addEventListener("click", () => {
                         this.startRoom(el);
                     });
 
-                    containerHome.appendChild(btn);
+                    containerBtnRooms.appendChild(div);
+                    div.appendChild(btn);
+                    div.appendChild(btnDelete);
                 });
             }
         });
