@@ -127,22 +127,12 @@ const manageSoundObj = {
         btnStopMusic.style.display = "block";
         btnListenMusic.style.display = "none";
 
-        btnStopMusic.addEventListener("click", () => {
-            newAudio.pause();
-            newAudio.currentTime = 0;
-
-            btnStopMusic.style.display = "none";
-            btnListenMusic.style.display = "flex";
-        });
-
-        newAudio.addEventListener("ended", () => {
-            btnStopMusic.style.display = "none";
-            btnListenMusic.style.display = "flex";
-        });
-
-        soundList.addEventListener("change", () => {
-            this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
-        });
+        this.managesSoundButtonEvents(
+            btnStopMusic,
+            newAudio,
+            soundList,
+            btnListenMusic
+        );
     },
 
     resetBtn(stopMusic, btnListenMusic, audio) {
@@ -151,6 +141,30 @@ const manageSoundObj = {
 
         audio.pause();
         audio.currentTime = 0;
+    },
+
+    managesSoundButtonEvents(
+        btnStopMusic,
+        newAudio,
+        soundList,
+        btnListenMusic
+    ) {
+        // Retire les gestionnaires d'événements existants
+        btnStopMusic.removeEventListener("click", this.resetBtn);
+        newAudio.removeEventListener("ended", this.resetBtn);
+        soundList.removeEventListener("change", this.resetBtn);
+
+        btnStopMusic.addEventListener("click", () => {
+            this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
+        });
+
+        newAudio.addEventListener("ended", () => {
+            this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
+        });
+
+        soundList.addEventListener("change", () => {
+            this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
+        });
     },
 };
 
