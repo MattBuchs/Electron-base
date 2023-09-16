@@ -16,11 +16,11 @@ const paramsObj = {
     },
 
     openModal() {
-        modal.classList.add("open");
+        modal.classList.remove("hidden");
     },
 
     closeModal() {
-        modal.classList.remove("open");
+        modal.classList.add("hidden");
     },
 
     async uploadFile() {

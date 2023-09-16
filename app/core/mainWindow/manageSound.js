@@ -38,6 +38,7 @@ const manageSoundObj = {
             "click",
             this.stopAmbientSoundInRoom.bind(this)
         );
+        closeAddRoom.addEventListener("click", this.closeModal.bind(this));
         this.addSoundEvent(
             btnEndTimerMusic,
             "end_timer",
@@ -156,6 +157,7 @@ const manageSoundObj = {
         btnStopMusic.removeEventListener("click", this.resetBtn);
         newAudio.removeEventListener("ended", this.resetBtn);
         soundList.removeEventListener("change", this.resetBtn);
+        closeAddRoom.removeEventListener("click", this.closeModal);
 
         btnStopMusic.addEventListener("click", () => {
             this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
@@ -178,7 +180,9 @@ const manageSoundObj = {
         modalAddRoom.style.display = "none";
         containerHome.style.display = "flex";
 
-        this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
+        if (newAudio) {
+            this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
+        }
     },
 };
 

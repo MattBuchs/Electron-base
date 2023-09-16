@@ -92,6 +92,9 @@ const timerObj = {
 
         endTimerSound.pause();
         endTimerSound.currentTime = 0;
+
+        message.value = "";
+        ipcRenderer.send("clear-message");
     },
 
     confirmResetTimer() {
