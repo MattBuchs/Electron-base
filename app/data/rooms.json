@@ -1,10 +1,47 @@
 [
   {
     "id": "btn-room_1",
-    "name": "Salle1",
-    "end_timer_sound": "Dark Time.mp3",
-    "notification_sound": "Bird Notification Tone - sms tone.mp3",
+    "name": "Salle 1",
+    "end_timer_sound": "Countdown Timer.mp3",
+    "notification_sound": "Eagle - Notification ! Sms ! Tone.mp3",
     "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "minutes": 59
+    "hours": 2,
+    "minutes": 29
+  },
+  {
+    "id": "btn-room_3",
+    "name": "Teest",
+    "end_timer_sound": "Dark Time.mp3",
+    "notification_sound": "Game Coin - Notification.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 2,
+    "minutes": 1
+  },
+  {
+    "id": "btn-room_3",
+    "name": "1h1",
+    "end_timer_sound": "Dark Time.mp3",
+    "notification_sound": "Game Coin - Notification.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 1,
+    "minutes": 1
+  },
+  {
+    "id": "btn-room_4",
+    "name": "1h00",
+    "end_timer_sound": "Sherlock Holmes.mp3",
+    "notification_sound": "Eagle - Notification ! Sms ! Tone.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 1,
+    "minutes": 0
+  },
+  {
+    "id": "btn-room_5",
+    "name": "0",
+    "end_timer_sound": "Dark Time.mp3",
+    "notification_sound": "Game Coin - Notification.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 0,
+    "minutes": 1
   }
 ]

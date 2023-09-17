@@ -13,7 +13,9 @@ const notificationSound = document.querySelector("#notification_sound");
 const ambientSound = document.querySelector("#ambient_sound");
 
 const roomsObj = {
+    hours: null,
     minutes: null,
+    resetHours: null,
     resetMinutes: null,
 
     init() {
@@ -72,18 +74,20 @@ const roomsObj = {
             deleteRoomsObj.removeDeleteRoom();
         }
 
+        this.hours = room.hours;
         this.minutes = room.minutes;
+        this.resetHours = room.hours;
         this.resetMinutes = room.minutes;
         endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
         notificationSound.src = `../sounds/notification/${room.notification_sound}`;
         ambientSound.src = `../sounds/ambient/${room.ambient_sound}`;
 
-        utils.displayTimer(timer, this.minutes);
+        utils.displayTimer(timer, this.hours, this.minutes);
 
         container.style.display = "flex";
         containerHome.style.display = "none";
 
-        ipcRenderer.send("minutes", this.resetMinutes);
+        ipcRenderer.send("times", this.resetHours, this.resetMinutes);
     },
 };
 

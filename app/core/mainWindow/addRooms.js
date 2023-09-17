@@ -9,6 +9,7 @@ const notificationSoundList = document.querySelector(
     "#notification_sound-list"
 );
 const ambientSoundList = document.querySelector("#ambient_sound-list");
+const notification = document.querySelector(".modal-notification");
 
 const addRoomObj = {
     init() {
@@ -23,13 +24,22 @@ const addRoomObj = {
             e.preventDefault();
 
             const name = document.querySelector("#room_name").value;
-            const minutes = document.querySelector("#room_minutes").value;
+            const time = document.querySelector("#room_times").value;
             const endTimerSound = endTimerSoundList.value;
             const notificationSound = notificationSoundList.value;
             const ambientSound = ambientSoundList.value;
 
+            const hours = time.split(":")[0];
+            const minutes = time.split(":")[1];
+
+            if (hours === "00" && minutes === "00") {
+                this.notification();
+                return;
+            }
+
             this.addRoomToData({
                 name,
+                hours,
                 minutes,
                 endTimerSound,
                 notificationSound,
@@ -107,6 +117,7 @@ const addRoomObj = {
                 return;
             }
         }
+        console.log(newRoom);
 
         const newData = {
             id: `btn-room_${existingData.length + 1}`,
@@ -114,7 +125,8 @@ const addRoomObj = {
             end_timer_sound: newRoom.endTimerSound,
             notification_sound: newRoom.notificationSound,
             ambient_sound: newRoom.ambientSound,
-            minutes: Number(newRoom.minutes - 1),
+            hours: Number(newRoom.hours),
+            minutes: Number(newRoom.minutes),
         };
 
         const updatedData = [...existingData, newData];
@@ -135,6 +147,18 @@ const addRoomObj = {
                 }
             }
         );
+    },
+
+    notification() {
+        notification.style.backgroundColor = "#ff0000";
+        notification.querySelector("p").textContent =
+            "Le timer ne peut pas avoir une durée de 0 !";
+
+        notification.style.transform = "translateY(0)";
+
+        setTimeout(() => {
+            notification.style.transform = "translateY(-100%)";
+        }, 3000);
     },
 };
 

@@ -11,8 +11,12 @@ function setupIPCFunctions(windows) {
         windows.secondWindow.webContents.send("stop-timer");
     });
 
-    ipcMain.on("reset-timer", (event, resetMinutes) => {
-        windows.secondWindow.webContents.send("reset-timer", resetMinutes);
+    ipcMain.on("reset-timer", (event, resetHours, resetMinutes) => {
+        windows.secondWindow.webContents.send(
+            "reset-timer",
+            resetHours,
+            resetMinutes
+        );
     });
 
     ipcMain.on("send-message", (_, message) => {
@@ -23,8 +27,12 @@ function setupIPCFunctions(windows) {
         windows.secondWindow.webContents.send("clear-message");
     });
 
-    ipcMain.on("minutes", (event, resetMinutes) => {
-        windows.secondWindow.webContents.send("minutes", resetMinutes);
+    ipcMain.on("times", (event, resetHours, resetMinutes) => {
+        windows.secondWindow.webContents.send(
+            "times",
+            resetHours,
+            resetMinutes
+        );
     });
 
     ipcMain.handle("open-file-dialog", async (event) => {

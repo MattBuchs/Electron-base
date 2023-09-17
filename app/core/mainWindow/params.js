@@ -57,19 +57,39 @@ const paramsObj = {
                     fileName
                 );
 
+                if (fs.existsSync(destinationPath)) {
+                    // Affiche une notification d'erreur
+                    this.displayNotification(true);
+                    return;
+                }
+
                 // Écrie le contenu du fichier dans le fichier destination
                 fs.writeFileSync(destinationPath, file, "binary");
 
                 // Affiche une notification
-                notification.style.transform = "translateY(0)";
-
-                setTimeout(() => {
-                    notification.style.transform = "translateY(-100%)";
-                }, 3000);
+                this.displayNotification();
             }
         } catch (error) {
             console.error("Erreur lors de la sélection du fichier :", error);
         }
+    },
+
+    displayNotification(isError = false) {
+        if (isError) {
+            notification.style.backgroundColor = "#ff0000";
+            notification.querySelector("p").textContent =
+                "Le fichier existe déjà !";
+        } else {
+            notification.style.backgroundColor = "#00ff00";
+            notification.querySelector("p").textContent =
+                "Le fichier a bien été ajouté !";
+        }
+
+        notification.style.transform = "translateY(0)";
+
+        setTimeout(() => {
+            notification.style.transform = "translateY(-100%)";
+        }, 3000);
     },
 };
 

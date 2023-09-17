@@ -37,11 +37,16 @@ const timerObj = {
     startTimer() {
         stopTimer.style.display = "initial";
         playTimer.style.display = "none";
+        roomsObj.minutes--;
 
         this.loop = setInterval(() => {
             this.seconds--;
 
-            if (roomsObj.minutes === 0 && this.seconds === 0) {
+            if (
+                roomsObj.hours === 0 &&
+                roomsObj.minutes === 0 &&
+                this.seconds === 0
+            ) {
                 clearInterval(this.loop);
                 stopTimer.style.display = "none";
                 playTimer.style.display = "none";
@@ -58,11 +63,20 @@ const timerObj = {
                     roomsObj.minutes--;
                     this.seconds = 59;
                 }
+
+                if (roomsObj.minutes === -1) {
+                    roomsObj.hours--;
+                    roomsObj.minutes = 59;
+                }
             }
 
-            timer.textContent = `${roomsObj.minutes < 10 ? "0" : ""}${
+            timer.textContent = `${
+                roomsObj.hours === 0 ? "" : roomsObj.hours + "h : "
+            }${roomsObj.minutes < 10 && roomsObj.minutes > 0 ? "0" : ""}${
                 roomsObj.minutes
-            }mn : ${this.seconds < 10 ? "0" : ""}${this.seconds}s`;
+            }mn : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
+                this.seconds
+            }s`;
         }, 1000);
 
         ipcRenderer.send("play-timer");
@@ -85,10 +99,11 @@ const timerObj = {
 
         clearInterval(this.loop);
 
+        roomsObj.hours = roomsObj.resetHours;
         roomsObj.minutes = roomsObj.resetMinutes;
         this.seconds = 60;
 
-        utils.displayTimer(timer, roomsObj.minutes);
+        utils.displayTimer(timer, roomsObj.hours, roomsObj.minutes);
 
         endTimerSound.pause();
         endTimerSound.currentTime = 0;
@@ -110,7 +125,11 @@ const timerObj = {
             confirmResetModal.style.display = "none";
             container.style.filter = "none";
 
-            ipcRenderer.send("reset-timer", roomsObj.resetMinutes);
+            ipcRenderer.send(
+                "reset-timer",
+                roomsObj.resetHours,
+                roomsObj.resetMinutes
+            );
         });
 
         cancelReset.addEventListener("click", () => {
@@ -148,7 +167,11 @@ const timerObj = {
         btnAmbientSound.classList.remove("hidden");
 
         this.resetTimer();
-        ipcRenderer.send("reset-timer", roomsObj.resetMinutes);
+        ipcRenderer.send(
+            "reset-timer",
+            roomsObj.resetHours,
+            roomsObj.resetMinutes
+        );
         ipcRenderer.send("clear-message");
     },
 };
