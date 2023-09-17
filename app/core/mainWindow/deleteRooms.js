@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+import utils from "../utils.js";
 
 const btnDeleteRoom = document.querySelector("#params-delete_room");
 const modal = document.querySelector(".modal-params");
@@ -18,6 +19,11 @@ const deleteRoomsObj = {
 
     deleteRoom() {
         const btnsDelete = document.querySelectorAll(".btn-delete_room");
+
+        if (btnsDelete.length === 0) {
+            utils.notification("Aucune salle à supprimer !");
+            return;
+        }
 
         btnAddRoom.classList.add("hidden");
         btnParams.classList.add("hidden");
@@ -52,7 +58,6 @@ const deleteRoomsObj = {
         const indexToDelete = jsonData.findIndex(
             (obj) => obj.id === objectIdToDelete
         );
-        console.log(indexToDelete);
 
         // Vérifie si l'objet a été trouvé
         if (indexToDelete !== -1) {

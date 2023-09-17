@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+import utils from "../utils.js";
 
 const containerHome = document.querySelector(".container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
@@ -9,7 +10,6 @@ const notificationSoundList = document.querySelector(
     "#notification_sound-list"
 );
 const ambientSoundList = document.querySelector("#ambient_sound-list");
-const notification = document.querySelector(".modal-notification");
 
 const addRoomObj = {
     init() {
@@ -33,7 +33,9 @@ const addRoomObj = {
             const minutes = time.split(":")[1];
 
             if (hours === "00" && minutes === "00") {
-                this.notification();
+                utils.notification(
+                    "Le timer ne peut pas avoir une durée de 0 !"
+                );
                 return;
             }
 
@@ -117,7 +119,6 @@ const addRoomObj = {
                 return;
             }
         }
-        console.log(newRoom);
 
         const newData = {
             id: `btn-room_${existingData.length + 1}`,
@@ -147,18 +148,6 @@ const addRoomObj = {
                 }
             }
         );
-    },
-
-    notification() {
-        notification.style.backgroundColor = "#ff0000";
-        notification.querySelector("p").textContent =
-            "Le timer ne peut pas avoir une durée de 0 !";
-
-        notification.style.transform = "translateY(0)";
-
-        setTimeout(() => {
-            notification.style.transform = "translateY(-100%)";
-        }, 3000);
     },
 };
 
