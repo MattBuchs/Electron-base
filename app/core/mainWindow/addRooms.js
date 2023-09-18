@@ -128,6 +128,9 @@ const addRoomObj = {
             ambient_sound: newRoom.ambientSound,
             hours: Number(newRoom.hours),
             minutes: Number(newRoom.minutes),
+            end_timer_volume: 1,
+            notification_volume: 1,
+            ambient_volume: 1,
         };
 
         const updatedData = [...existingData, newData];

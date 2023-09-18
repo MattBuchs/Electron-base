@@ -55,8 +55,11 @@
                     Stopper son d'ambiance
                 </button>
             </div>
-            <button type="submit" id="btn-clear">Suppr</button>
+            <button type="button" id="btn-clear">Suppr</button>
             <button type="button" id="btn-home">home</button>
+            <button class="params-sound">
+                <img src="../img/volume.svg" alt="Paramètre volume" />
+            </button>
             <audio src="" id="end-timer_sound" class="sound"></audio>
             <audio src="" id="notification_sound" class="sound"></audio>
             <audio src="" id="ambient_sound" class="sound"></audio>
@@ -194,6 +197,63 @@
                     <button type="button" id="params-delete_room">
                         Supprimer un timer
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-params_sound hidden">
+            <div class="modal-params_sound__content">
+                <button id="close-params_sound" class="cross-to-close hidden">
+                    <img src="../img/close.svg" alt="fermer" />
+                </button>
+
+                <div>
+                    <label for="volume-end_timer"
+                        >Volume du son de fin de timer :</label
+                    >
+                    <div class="volume">
+                        <input
+                            type="range"
+                            id="volume-end_timer"
+                            value="100"
+                            min="0"
+                            max="100"
+                            step="5"
+                        />
+                        <p>100%</p>
+                    </div>
+                </div>
+                <div>
+                    <label for="volume-notification"
+                        >Volume du son de notification :</label
+                    >
+                    <div class="volume">
+                        <input
+                            type="range"
+                            id="volume-notification"
+                            value="100"
+                            min="0"
+                            max="100"
+                            step="5"
+                        />
+                        <p>100%</p>
+                    </div>
+                </div>
+                <div>
+                    <label for="volume-amibent"
+                        >Volume du son d'ambiance :</label
+                    >
+                    <div class="volume">
+                        <input
+                            type="range"
+                            id="volume-amibent"
+                            value="100"
+                            min="0"
+                            max="100"
+                            step="5"
+                        />
+                        <p>100%</p>
+                    </div>
                 </div>
             </div>
         </div>

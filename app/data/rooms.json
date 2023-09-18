@@ -1,11 +1,1 @@
-[
-  {
-    "id": "btn-room_1",
-    "name": "Salle1",
-    "end_timer_sound": "Sherlock.mp3",
-    "notification_sound": "Bird Notification Tone - sms tone.mp3",
-    "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "hours": 1,
-    "minutes": 0
-  }
-]
+[{"id":"btn-room_1","name":"Salle1","end_timer_sound":"Sherlock.mp3","notification_sound":"Bird Notification Tone - sms tone.mp3","ambient_sound":"Harry Potter - musique ambiance.mp3","hours":1,"minutes":0,"end_timer_volume":0.9,"notification_volume":0.35,"ambient_volume":1},{"id":"btn-room_2","name":"Salle2","end_timer_sound":"The Countdown Clock.mp3","notification_sound":"Game Coin - Notification.mp3","ambient_sound":"Harry Potter - musique ambiance.mp3","hours":0,"minutes":1,"end_timer_volume":0.6,"notification_volume":0.1,"ambient_volume":1}]

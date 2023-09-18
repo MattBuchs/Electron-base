@@ -11,12 +11,18 @@ const timer = document.querySelector(".container p");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const notificationSound = document.querySelector("#notification_sound");
 const ambientSound = document.querySelector("#ambient_sound");
+const endTimerRange = document.querySelector("#volume-end_timer");
+const notificationRange = document.querySelector("#volume-notification");
+const amibentRange = document.querySelector("#volume-amibent");
+const pourcentageVolume = document.querySelectorAll(".volume p");
 
 const roomsObj = {
     hours: null,
     minutes: null,
     resetHours: null,
     resetMinutes: null,
+    roomId: null,
+    rangeValue: [],
 
     init() {
         this.loadRooms();
@@ -34,6 +40,7 @@ const roomsObj = {
 
             if (data.length > 2) {
                 const rooms = JSON.parse(data);
+                this.rangeValue = rooms;
 
                 rooms.forEach((el) => {
                     const div = document.createElement("div");
@@ -49,8 +56,10 @@ const roomsObj = {
                     btn.textContent = el.name;
                     btnDelete.textContent = "X";
 
+                    const idOfRoom = el.id;
+
                     btn.addEventListener("click", () => {
-                        this.startRoom(el);
+                        this.startRoom(el, idOfRoom);
                     });
 
                     containerBtnRooms.appendChild(div);
@@ -67,27 +76,46 @@ const roomsObj = {
         });
     },
 
-    startRoom(room) {
+    startRoom(room, idOfRoom) {
         const btnDeleteRoom = document.querySelector(".btn-delete_room");
 
         if (btnDeleteRoom.className === "btn-delete_room") {
             deleteRoomsObj.removeDeleteRoom();
         }
 
+        this.roomId = idOfRoom;
         this.hours = room.hours;
         this.minutes = room.minutes;
         this.resetHours = room.hours;
         this.resetMinutes = room.minutes;
+
         endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
         notificationSound.src = `../sounds/notification/${room.notification_sound}`;
         ambientSound.src = `../sounds/ambient/${room.ambient_sound}`;
 
         utils.displayTimer(timer, this.hours, this.minutes);
+        this.updateRangeAndSound(idOfRoom);
 
         container.style.display = "flex";
         containerHome.style.display = "none";
 
         ipcRenderer.send("times", this.resetHours, this.resetMinutes);
+    },
+
+    updateRangeAndSound(idOfRoom) {
+        const findRoom = this.rangeValue.find((el) => el.id === idOfRoom);
+
+        endTimerRange.value = findRoom.end_timer_volume * 100;
+        notificationRange.value = findRoom.notification_volume * 100;
+        amibentRange.value = findRoom.ambient_volume * 100;
+
+        pourcentageVolume[0].textContent = endTimerRange.value + "%";
+        pourcentageVolume[1].textContent = notificationRange.value + "%";
+        pourcentageVolume[2].textContent = amibentRange.value + "%";
+
+        endTimerSound.volume = Number(endTimerRange.value) / 100;
+        notificationSound.volume = Number(notificationRange.value) / 100;
+        ambientSound.volume = Number(amibentRange.value) / 100;
     },
 };
 

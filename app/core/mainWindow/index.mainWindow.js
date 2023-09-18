@@ -5,6 +5,7 @@ import addRoomObj from "./addRooms.js";
 import paramsObj from "./params.js";
 import manageSoundObj from "./manageSound.js";
 import deleteRoomsObj from "./deleteRooms.js";
+import updateSoundObj from "./updateSound.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -20,3 +21,5 @@ paramsObj.init();
 manageSoundObj.init();
 // Initialisation des fonctionnalités liées à la suppression de salles
 deleteRoomsObj.init();
+// Initialisation des fonctionnalités liées à la mise à jour du son
+updateSoundObj.init();
