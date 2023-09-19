@@ -7,6 +7,7 @@ const setupIPCFunctions = require("./app/services/ipcFunctions");
 let windows = {
     mainWindow: null,
     secondWindow: null,
+    thirdWindow: null,
 };
 
 const createWindow = () => {
@@ -14,9 +15,8 @@ const createWindow = () => {
     setupIPCFunctions(windows);
 
     windows.mainWindow.on("closed", () => {
-        if (windows.secondWindow) {
-            windows.secondWindow.close();
-        }
+        if (windows.secondWindow) windows.secondWindow.close();
+        if (windows.thirdWindow) windows.thirdWindow.close();
     });
 };
 

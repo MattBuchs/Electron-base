@@ -16,35 +16,49 @@ function createWindows(windows) {
             enableRemoteModule: true,
         },
     });
-    windows.mainWindow.loadFile("app/src/html/mainWindow.html");
 
-    if (displays.length >= 2) {
+    windows.secondWindow = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        fullscreen: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        },
+    });
+
+    if (displays.length === 2) {
         const secondScreen = displays[1];
 
-        windows.secondWindow = new BrowserWindow({
-            width: 800,
-            height: 600,
-            fullscreen: true,
-            x: secondScreen.bounds.x,
-            y: secondScreen.bounds.y,
-            webPreferences: { nodeIntegration: true, contextIsolation: false },
-        });
-        windows.secondWindow.loadFile("app/src/html/secondWindow.html");
-
-        windows.secondWindow.webContents.openDevTools();
-    } else {
-        // Si un seul écran, afficher la deuxième fenêtre à côté de la première
-        windows.secondWindow = new BrowserWindow({
-            width: 800,
-            height: 600,
-            fullscreen: true,
-            webPreferences: { nodeIntegration: true, contextIsolation: false },
-        });
-        windows.secondWindow.loadFile("app/src/html/secondWindow.html");
-
-        windows.secondWindow.webContents.openDevTools();
+        windows.secondWindow.setPosition(
+            secondScreen.bounds.x,
+            secondScreen.bounds.y
+        );
     }
+
+    if (displays.length === 3) {
+        const thirdScreen = displays[2];
+
+        windows.thirdWindow = new BrowserWindow({
+            width: 1200,
+            height: 800,
+            x: thirdScreen.bounds.x,
+            y: thirdScreen.bounds.y,
+            fullscreen: true,
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false,
+            },
+        });
+
+        windows.thirdWindow.loadFile("app/src/html/secondWindow.html");
+    }
+
+    windows.mainWindow.loadFile("app/src/html/mainWindow.html");
+    windows.secondWindow.loadFile("app/src/html/secondWindow.html");
+
     windows.mainWindow.webContents.openDevTools();
+    windows.secondWindow.webContents.openDevTools();
 }
 
 module.exports = createWindows;

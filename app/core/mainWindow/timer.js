@@ -71,12 +71,12 @@ const timerObj = {
             }
 
             timer.textContent = `${
-                roomsObj.hours === 0 ? "" : roomsObj.hours + "h : "
+                roomsObj.hours === 0 ? "" : roomsObj.hours + " : "
             }${roomsObj.minutes < 10 && roomsObj.minutes > 0 ? "0" : ""}${
                 roomsObj.minutes
-            }mn : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
+            } : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
                 this.seconds
-            }s`;
+            }`;
         }, 1000);
 
         ipcRenderer.send("play-timer");
