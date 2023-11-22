@@ -15,6 +15,7 @@ const createWindow = () => {
     setupIPCFunctions(windows);
 
     windows.mainWindow.on("closed", () => {
+        console.log(windows.secondWindow);
         if (windows.secondWindow) windows.secondWindow.close();
         if (windows.thirdWindow) windows.thirdWindow.close();
     });
