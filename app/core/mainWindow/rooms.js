@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 import utils from "../utils.js";
 import deleteRoomsObj from "./deleteRooms.js";
+import addPhrasesObj from "./addPhrasesObj.js";
 
 const containerHome = document.querySelector(".container-home");
 const container = document.querySelector(".container");
@@ -15,6 +16,9 @@ const endTimerRange = document.querySelector("#volume-end_timer");
 const notificationRange = document.querySelector("#volume-notification");
 const amibentRange = document.querySelector("#volume-amibent");
 const pourcentageVolume = document.querySelectorAll(".volume p");
+
+const dataFolderPath = path.join(__dirname, "../../data");
+const filePath = path.join(dataFolderPath, "rooms.json");
 
 const roomsObj = {
     hours: null,
@@ -29,9 +33,6 @@ const roomsObj = {
     },
 
     loadRooms() {
-        const dataFolderPath = path.join(__dirname, "../../data");
-        const filePath = path.join(dataFolderPath, "rooms.json");
-
         fs.readFile(filePath, "utf8", (err, data) => {
             if (err) {
                 console.error(err);
@@ -98,6 +99,18 @@ const roomsObj = {
 
         container.style.display = "flex";
         containerHome.style.display = "none";
+
+        fs.readFile(filePath, "utf8", (err, data) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            const dataObj = JSON.parse(data);
+            const index = dataObj.findIndex((obj) => obj.id === this.roomId);
+
+            addPhrasesObj.loadOption(dataObj[index]);
+        });
 
         ipcRenderer.send("times", this.resetHours, this.resetMinutes);
     },

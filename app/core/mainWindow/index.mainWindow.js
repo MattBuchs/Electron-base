@@ -6,6 +6,7 @@ import paramsObj from "./params.js";
 import manageSoundObj from "./manageSound.js";
 import deleteRoomsObj from "./deleteRooms.js";
 import updateSoundObj from "./updateSound.js";
+import addPhrasesObj from "./addPhrasesObj.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -15,7 +16,7 @@ messagesObj.init();
 roomsObj.init();
 // Initialisation des fonctionnalités liées à l'ajout de timer
 addRoomObj.init();
-// Initialisation des fonctionnalités liées aux paramètres
+// Initialisation des fonctionnalités liées aux paramètres du home
 paramsObj.init();
 // Initialisation des fonctionnalités liées à la gestion du son
 manageSoundObj.init();
@@ -23,3 +24,5 @@ manageSoundObj.init();
 deleteRoomsObj.init();
 // Initialisation des fonctionnalités liées à la mise à jour du son
 updateSoundObj.init();
+// Initialisation des fonctionnalités liées aux paramètres de la room
+addPhrasesObj.init();

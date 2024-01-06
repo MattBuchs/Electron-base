@@ -36,6 +36,9 @@
             </section>
 
             <form id="form-message">
+                <select name="phrases" id="phrases-select">
+                    <option value="" selected>Choisir une phrase</option>
+                </select>
                 <input type="text" id="message" />
                 <button type="submit">Envoyer</button>
             </form>
@@ -57,6 +60,7 @@
             </div>
             <button type="button" id="btn-clear">Suppr</button>
             <button type="button" id="btn-home">home</button>
+            <button type="button" id="btn-add_phrases">ajouter phrases</button>
             <button class="params-sound">
                 <img src="../img/volume.svg" alt="Paramètre volume" />
             </button>
@@ -260,6 +264,19 @@
 
         <div class="modal-notification">
             <p>Le son à bien été ajouté !</p>
+        </div>
+
+        <div class="modal-add_phrases hidden">
+            <div class="modal-add_phrases__content">
+                <button id="close-modal_addphrases" class="cross-to-close">
+                    <img src="../img/close.svg" alt="fermer" />
+                </button>
+                <label for="add-phrases"
+                    >Ajouter une phrase pré-enregistré :</label
+                >
+                <textarea id="add-phrases" cols="30" rows="10"></textarea>
+                <button id="btn-validate_addphrases">Valider</button>
+            </div>
         </div>
 
         <script

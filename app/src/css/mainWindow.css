@@ -202,7 +202,8 @@
     height: 100%;
 }
 
-.modal-params_sound {
+.modal-params_sound,
+.modal-add_phrases {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,6 +243,23 @@
 
 .modal-params_sound__content label {
     width: 100%;
+}
+
+.modal-add_phrases__content {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    width: 70%;
+    background-color: #111;
+    color: #f1f1f1;
+    border-radius: 4px;
+    border: 1px solid #ffffff84;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.modal-add_phrases__content textarea {
+    min-width: 50%;
 }
 
 .volume {
