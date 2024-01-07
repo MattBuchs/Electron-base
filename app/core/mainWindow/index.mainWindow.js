@@ -7,6 +7,8 @@ import manageSoundObj from "./manageSound.js";
 import deleteRoomsObj from "./deleteRooms.js";
 import updateSoundObj from "./updateSound.js";
 import addPhrasesObj from "./addPhrasesObj.js";
+import updateColorObj from "./updateColor.js";
+import manageTabsObj from "./manageTabs.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -26,3 +28,7 @@ deleteRoomsObj.init();
 updateSoundObj.init();
 // Initialisation des fonctionnalités liées aux paramètres de la room
 addPhrasesObj.init();
+// Initialisation des fonctionnalités liées au changement de couleur de l'app
+updateColorObj.init();
+// Initialisation des fonctionnalités liées aux onglets de la navbar
+manageTabsObj.init();

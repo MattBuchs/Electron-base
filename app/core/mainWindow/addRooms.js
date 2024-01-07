@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 import utils from "../utils.js";
 
-const containerHome = document.querySelector(".container-home");
+const containerHome = document.querySelector("#container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
-const modalAddRoom = document.querySelector(".modal-add_room");
+const containerAddRoom = document.querySelector("#container-add_room");
 const endTimerSoundList = document.querySelector("#end-timer_sound-list");
 const notificationSoundList = document.querySelector(
     "#notification_sound-list"
@@ -52,7 +52,7 @@ const addRoomObj = {
 
     setupModal() {
         btnAddRoom.addEventListener("click", () => {
-            modalAddRoom.style.display = "flex";
+            containerAddRoom.style.display = "flex";
             containerHome.style.display = "none";
 
             this.listSounds();

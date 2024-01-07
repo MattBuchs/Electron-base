@@ -3,7 +3,7 @@ const fs = require("fs");
 import utils from "../utils.js";
 
 const btnDeleteRoom = document.querySelector("#params-delete_room");
-const modal = document.querySelector(".modal-params");
+const settings = document.querySelector("#global-settings");
 const btnAddRoom = document.querySelector("#btn-add_room");
 const btnParams = document.querySelector("#btn-params");
 const btnRemoveDelete = document.querySelector("#btn-remove_delete");
@@ -44,7 +44,7 @@ const deleteRoomsObj = {
             });
         });
 
-        modal.classList.add("hidden");
+        settings.classList.add("hidden");
     },
 
     deleteRoomFromJson(objectIdToDelete) {

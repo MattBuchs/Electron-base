@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 import roomsObj from "./rooms.js";
 
-const container = document.querySelector(".container");
+const containerRoom = document.querySelector("#container-room");
 const modalParamsSound = document.querySelector(".modal-params_sound");
 const openParamsSound = document.querySelector(".params-sound");
 const closeParamsSound = document.querySelector("#close-params_sound");
@@ -38,13 +38,13 @@ const updateSoundObj = {
     openModal() {
         modalParamsSound.classList.remove("hidden");
         closeParamsSound.classList.remove("hidden");
-        container.classList.add("blur");
+        containerRoom.classList.add("blur");
     },
 
     closeModal() {
         modalParamsSound.classList.add("hidden");
         closeParamsSound.classList.add("hidden");
-        container.classList.remove("blur");
+        containerRoom.classList.remove("blur");
 
         const dataFolderPath = path.join(__dirname, "../../data");
         const filePath = path.join(dataFolderPath, "rooms.json");

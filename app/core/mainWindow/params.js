@@ -4,7 +4,7 @@ const path = require("path");
 
 const btnParams = document.querySelector("#btn-params");
 const btnClose = document.querySelector("#close_params");
-const modal = document.querySelector(".modal-params");
+const settings = document.querySelector("#global-settings");
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(
     "#btn-add_file-notification"
@@ -37,11 +37,11 @@ const paramsObj = {
     },
 
     openModal() {
-        modal.classList.remove("hidden");
+        settings.classList.remove("hidden");
     },
 
     closeModal() {
-        modal.classList.add("hidden");
+        settings.classList.add("hidden");
     },
 
     async uploadFile(pathName) {

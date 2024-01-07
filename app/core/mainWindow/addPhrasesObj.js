@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 import roomsObj from "./rooms.js";
 
-const container = document.querySelector(".container");
+const containerRoom = document.querySelector("#container-room");
 const btnAddPhrases = document.querySelector("#btn-add_phrases");
 const modalAddPhrases = document.querySelector(".modal-add_phrases");
 const modalContent = document.querySelector(".modal-add_phrases__content");
@@ -22,12 +22,12 @@ const addPhrasesObj = {
 
     openModal() {
         modalAddPhrases.classList.remove("hidden");
-        container.classList.add("blur");
+        containerRoom.classList.add("blur");
     },
 
     closeModal() {
         modalAddPhrases.classList.add("hidden");
-        container.classList.remove("blur");
+        containerRoom.classList.remove("blur");
     },
 
     addPhrases() {

@@ -1,0 +1,64 @@
+#app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.header {
+    position: fixed;
+    height: 100vh;
+    width: 4rem;
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
+
+.main {
+    background-color: #333;
+    width: 100%;
+    margin-left: 4rem;
+    position: relative;
+}
+
+img {
+    width: 3rem;
+}
+
+.content {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animation onglet */
+
+.active {
+    background-color: midnightblue;
+    transition: all 0.3s ease;
+}
+
+.activeContent {
+    animation: fade 0.5s forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

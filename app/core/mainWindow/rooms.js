@@ -5,8 +5,8 @@ import utils from "../utils.js";
 import deleteRoomsObj from "./deleteRooms.js";
 import addPhrasesObj from "./addPhrasesObj.js";
 
-const containerHome = document.querySelector(".container-home");
-const container = document.querySelector(".container");
+const containerHome = document.querySelector("#container-home");
+const containerRoom = document.querySelector("#container-room");
 const containerBtnRooms = document.querySelector("#container-btn_rooms");
 const timer = document.querySelector(".container p");
 const endTimerSound = document.querySelector("#end-timer_sound");
@@ -97,7 +97,7 @@ const roomsObj = {
         utils.displayTimer(timer, this.hours, this.minutes);
         this.updateRangeAndSound(idOfRoom);
 
-        container.style.display = "flex";
+        containerRoom.style.display = "flex";
         containerHome.style.display = "none";
 
         fs.readFile(filePath, "utf8", (err, data) => {

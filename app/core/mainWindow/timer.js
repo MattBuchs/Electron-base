@@ -8,8 +8,8 @@ const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
 const endTimerSound = document.querySelector("#end-timer_sound");
-const container = document.querySelector(".container");
-const containerHome = document.querySelector(".container-home");
+const containerRoom = document.querySelector("#container-room");
+const containerHome = document.querySelector("#container-home");
 const confirmResetModal = document.querySelector("#request-reset");
 const home = document.querySelector("#btn-home");
 const ambientSound = document.querySelector("#ambient_sound");
@@ -114,7 +114,7 @@ const timerObj = {
 
     confirmResetTimer() {
         confirmResetModal.style.display = "flex";
-        container.style.filter = "blur(10px)";
+        containerRoom.style.filter = "blur(10px)";
 
         const confirmReset = document.querySelector("#confirm_reset");
         const cancelReset = document.querySelector("#cancel_reset");
@@ -123,7 +123,7 @@ const timerObj = {
             this.resetTimer();
 
             confirmResetModal.style.display = "none";
-            container.style.filter = "none";
+            containerRoom.style.filter = "none";
 
             ipcRenderer.send(
                 "reset-timer",
@@ -134,7 +134,7 @@ const timerObj = {
 
         cancelReset.addEventListener("click", () => {
             confirmResetModal.style.display = "none";
-            container.style.filter = "none";
+            containerRoom.style.filter = "none";
         });
     },
 
@@ -146,7 +146,7 @@ const timerObj = {
     },
 
     setupHomeButton() {
-        container.style.display = "none";
+        containerRoom.style.display = "none";
         containerHome.style.display = "flex";
 
         if (ambientSound.currentTime > 0) {
