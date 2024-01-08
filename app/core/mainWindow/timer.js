@@ -2,14 +2,13 @@ const { ipcRenderer } = require("electron");
 import utils from "../utils.js";
 import roomsObj from "./rooms.js";
 
-const timer = document.querySelector(".container p");
+const timer = document.querySelector("#timer-room");
 const playTimer = document.querySelector("#play");
 const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const containerRoom = document.querySelector("#container-room");
-const containerHome = document.querySelector("#container-home");
 const confirmResetModal = document.querySelector("#request-reset");
 const home = document.querySelector("#btn-home");
 const ambientSound = document.querySelector("#ambient_sound");
@@ -21,6 +20,7 @@ const message = document.querySelector("#message");
 const timerObj = {
     seconds: 60,
     loop: null,
+    isActive: false,
 
     init() {
         playTimer.addEventListener("click", this.startTimer.bind(this));
@@ -31,10 +31,12 @@ const timerObj = {
         );
         stopAlert.addEventListener("click", this.resetAlert.bind(this));
         endTimerSound.addEventListener("ended", this.resetAlert.bind(this));
-        home.addEventListener("click", this.setupHomeButton.bind(this));
+        // home.addEventListener("click", this.setupHomeButton.bind(this));
     },
 
     startTimer() {
+        this.isActive = true;
+
         stopTimer.style.display = "initial";
         playTimer.style.display = "none";
         roomsObj.minutes--;
@@ -146,9 +148,6 @@ const timerObj = {
     },
 
     setupHomeButton() {
-        containerRoom.style.display = "none";
-        containerHome.style.display = "flex";
-
         if (ambientSound.currentTime > 0) {
             ambientSound.pause();
             ambientSound.currentTime = 0;

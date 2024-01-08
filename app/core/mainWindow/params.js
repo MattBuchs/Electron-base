@@ -2,9 +2,6 @@ const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
 
-const btnParams = document.querySelector("#btn-params");
-const btnClose = document.querySelector("#close_params");
-const settings = document.querySelector("#global-settings");
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(
     "#btn-add_file-notification"
@@ -14,8 +11,6 @@ const notification = document.querySelector(".modal-notification");
 
 const paramsObj = {
     init() {
-        btnParams.addEventListener("click", this.openModal.bind(this));
-        btnClose.addEventListener("click", this.closeModal.bind(this));
         btnAddFileEndTimer.addEventListener(
             "click",
             function () {
@@ -34,14 +29,6 @@ const paramsObj = {
                 this.uploadFile("ambient");
             }.bind(this)
         );
-    },
-
-    openModal() {
-        settings.classList.remove("hidden");
-    },
-
-    closeModal() {
-        settings.classList.add("hidden");
     },
 
     async uploadFile(pathName) {

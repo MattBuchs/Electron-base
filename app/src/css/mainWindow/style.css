@@ -37,6 +37,24 @@ img {
     width: 100%;
     position: absolute;
     opacity: 0;
+    display: none;
+}
+
+#modal-check_exit_timer {
+    width: 100%;
+    height: 100%;
+    background-color: #0000009d;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#modal-check_exit_timer > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
 }
 
 .hidden {
@@ -52,6 +70,7 @@ img {
 
 .activeContent {
     animation: fade 0.5s forwards;
+    display: initial;
 }
 
 @keyframes fade {

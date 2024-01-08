@@ -5,10 +5,9 @@ import utils from "../utils.js";
 import deleteRoomsObj from "./deleteRooms.js";
 import addPhrasesObj from "./addPhrasesObj.js";
 
-const containerHome = document.querySelector("#container-home");
 const containerRoom = document.querySelector("#container-room");
 const containerBtnRooms = document.querySelector("#container-btn_rooms");
-const timer = document.querySelector(".container p");
+const timer = document.querySelector("#timer-room");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const notificationSound = document.querySelector("#notification_sound");
 const ambientSound = document.querySelector("#ambient_sound");
@@ -16,6 +15,10 @@ const endTimerRange = document.querySelector("#volume-end_timer");
 const notificationRange = document.querySelector("#volume-notification");
 const amibentRange = document.querySelector("#volume-amibent");
 const pourcentageVolume = document.querySelectorAll(".volume p");
+const btnHome = document.querySelector("#btn-home");
+const btnTimerSelected = document.querySelector("#btn-timer_selected");
+const content = document.querySelectorAll(".content");
+const navbarTimer = document.querySelector("#navbar-timer");
 
 const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
@@ -97,8 +100,15 @@ const roomsObj = {
         utils.displayTimer(timer, this.hours, this.minutes);
         this.updateRangeAndSound(idOfRoom);
 
-        containerRoom.style.display = "flex";
-        containerHome.style.display = "none";
+        navbarTimer.classList.remove("hidden");
+        btnHome.classList.remove("active");
+        btnTimerSelected.classList.add("active");
+
+        for (let i = 0; i < content.length; i++) {
+            content[i].classList.remove("activeContent");
+        }
+
+        containerRoom.classList.add("activeContent");
 
         fs.readFile(filePath, "utf8", (err, data) => {
             if (err) {

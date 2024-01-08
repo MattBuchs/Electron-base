@@ -5,6 +5,7 @@ import utils from "../utils.js";
 const containerHome = document.querySelector("#container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
 const containerAddRoom = document.querySelector("#container-add_room");
+const formAddRoom = document.querySelector("#form-add_room");
 const endTimerSoundList = document.querySelector("#end-timer_sound-list");
 const notificationSoundList = document.querySelector(
     "#notification_sound-list"
@@ -13,49 +14,36 @@ const ambientSoundList = document.querySelector("#ambient_sound-list");
 
 const addRoomObj = {
     init() {
-        this.setupForm();
-        this.setupModal();
+        formAddRoom.addEventListener("submit", (e) =>
+            this.setupForm.bind(this)(e)
+        );
+        btnAddRoom.addEventListener("click", this.listSounds.bind(this));
     },
 
     setupForm() {
-        const formAddRoom = document.querySelector("#form-add_room");
+        e.preventDefault();
 
-        formAddRoom.addEventListener("submit", (e) => {
-            e.preventDefault();
+        const name = document.querySelector("#room_name").value;
+        const time = document.querySelector("#room_times").value;
+        const endTimerSound = endTimerSoundList.value;
+        const notificationSound = notificationSoundList.value;
+        const ambientSound = ambientSoundList.value;
 
-            const name = document.querySelector("#room_name").value;
-            const time = document.querySelector("#room_times").value;
-            const endTimerSound = endTimerSoundList.value;
-            const notificationSound = notificationSoundList.value;
-            const ambientSound = ambientSoundList.value;
+        const hours = time.split(":")[0];
+        const minutes = time.split(":")[1];
 
-            const hours = time.split(":")[0];
-            const minutes = time.split(":")[1];
+        if (hours === "00" && minutes === "00") {
+            utils.notification("Le timer ne peut pas avoir une durée de 0 !");
+            return;
+        }
 
-            if (hours === "00" && minutes === "00") {
-                utils.notification(
-                    "Le timer ne peut pas avoir une durée de 0 !"
-                );
-                return;
-            }
-
-            this.addRoomToData({
-                name,
-                hours,
-                minutes,
-                endTimerSound,
-                notificationSound,
-                ambientSound,
-            });
-        });
-    },
-
-    setupModal() {
-        btnAddRoom.addEventListener("click", () => {
-            containerAddRoom.style.display = "flex";
-            containerHome.style.display = "none";
-
-            this.listSounds();
+        this.addRoomToData({
+            name,
+            hours,
+            minutes,
+            endTimerSound,
+            notificationSound,
+            ambientSound,
         });
     },
 
