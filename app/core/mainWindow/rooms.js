@@ -47,28 +47,44 @@ const roomsObj = {
                 this.rangeValue = rooms;
 
                 rooms.forEach((el) => {
-                    const div = document.createElement("div");
                     const btn = document.createElement("button");
-                    const btnDelete = document.createElement("button");
-
                     btn.classList.add("room-btn");
-                    div.classList.add("container-one_btn");
-                    btnDelete.classList.add("btn-delete_room");
-                    btnDelete.classList.add("hidden");
 
-                    div.id = el.id;
-                    btn.textContent = el.name;
-                    btnDelete.textContent = "X";
+                    const h2 = document.createElement("h2");
+                    h2.textContent = el.name;
+                    btn.appendChild(h2);
+
+                    const pTimer = this.createParagraphWithSpan(
+                        `${el.hours > 0 ? el.hours + "h : " : ""}${
+                            el.minutes
+                        }mn : 0s`,
+                        "Timer : "
+                    );
+                    const pNotification = this.createParagraphWithSpan(
+                        el.notification_sound,
+                        "Son notification : "
+                    );
+                    const pAmbient = this.createParagraphWithSpan(
+                        el.ambient_sound,
+                        "Son ambiant : "
+                    );
+                    const pAlarm = this.createParagraphWithSpan(
+                        el.end_timer_sound,
+                        "Son timer : "
+                    );
+
+                    btn.appendChild(pTimer);
+                    btn.appendChild(pNotification);
+                    btn.appendChild(pAmbient);
+                    btn.appendChild(pAlarm);
+
+                    containerBtnRooms.appendChild(btn);
 
                     const idOfRoom = el.id;
 
                     btn.addEventListener("click", () => {
                         this.startRoom(el, idOfRoom);
                     });
-
-                    containerBtnRooms.appendChild(div);
-                    div.appendChild(btn);
-                    div.appendChild(btnDelete);
                 });
             } else {
                 const text = document.createElement("p");
@@ -83,9 +99,9 @@ const roomsObj = {
     startRoom(room, idOfRoom) {
         const btnDeleteRoom = document.querySelector(".btn-delete_room");
 
-        if (btnDeleteRoom.className === "btn-delete_room") {
-            deleteRoomsObj.removeDeleteRoom();
-        }
+        // if (btnDeleteRoom.className === "btn-delete_room") {
+        //     deleteRoomsObj.removeDeleteRoom();
+        // }
 
         this.roomId = idOfRoom;
         this.hours = room.hours;
@@ -139,6 +155,15 @@ const roomsObj = {
         endTimerSound.volume = Number(endTimerRange.value) / 100;
         notificationSound.volume = Number(notificationRange.value) / 100;
         ambientSound.volume = Number(amibentRange.value) / 100;
+    },
+
+    createParagraphWithSpan(text, spanText) {
+        const p = document.createElement("p");
+        const span = document.createElement("span");
+        span.textContent = spanText + " ";
+        p.appendChild(span);
+        p.appendChild(document.createTextNode(text));
+        return p;
     },
 };
 

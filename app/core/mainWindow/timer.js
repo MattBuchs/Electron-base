@@ -122,6 +122,7 @@ const timerObj = {
         const cancelReset = document.querySelector("#cancel_reset");
 
         confirmReset.addEventListener("click", () => {
+            this.isActive = false;
             this.resetTimer();
 
             confirmResetModal.style.display = "none";
