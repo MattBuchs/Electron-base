@@ -4,12 +4,13 @@ import roomsObj from "./rooms.js";
 
 const containerRoom = document.querySelector("#container-room");
 const modalParamsSound = document.querySelector(".modal-params_sound");
-const openParamsSound = document.querySelector(".params-sound");
+const openParamsSound = document.querySelector("#params-sound");
 const closeParamsSound = document.querySelector("#close-params_sound");
 const endTimerRange = document.querySelector("#volume-end_timer");
 const notificationRange = document.querySelector("#volume-notification");
 const amibentRange = document.querySelector("#volume-amibent");
 const pourcentageVolume = document.querySelectorAll(".volume p");
+const modalAddPhrases = document.querySelector(".modal-add_phrases");
 
 const updateSoundObj = {
     init() {
@@ -39,6 +40,10 @@ const updateSoundObj = {
         modalParamsSound.classList.remove("hidden");
         closeParamsSound.classList.remove("hidden");
         containerRoom.classList.add("blur");
+
+        if (!modalAddPhrases.classList.contains("hidden")) {
+            modalAddPhrases.classList.add("hidden");
+        }
     },
 
     closeModal() {

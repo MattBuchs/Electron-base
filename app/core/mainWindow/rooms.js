@@ -18,6 +18,8 @@ const btnHome = document.querySelector("#btn-home");
 const btnTimerSelected = document.querySelector("#btn-timer_selected");
 const content = document.querySelectorAll(".content");
 const navbarTimer = document.querySelector("#navbar-timer");
+const btnNotification = document.querySelector("#btn-notification_sound");
+const btnAmbient = document.querySelector("#btn-ambient_sound");
 
 const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
@@ -102,9 +104,22 @@ const roomsObj = {
         this.resetHours = room.hours;
         this.resetMinutes = room.minutes;
 
-        endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
-        notificationSound.src = `../sounds/notification/${room.notification_sound}`;
-        ambientSound.src = `../sounds/ambient/${room.ambient_sound}`;
+        console.log(room);
+
+        if (room.end_timer_sound)
+            endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
+        if (room.notification_sound) {
+            notificationSound.src = `../sounds/notification/${room.notification_sound}`;
+
+            if (btnNotification.classList.contains("hidden"))
+                btnNotification.classList.remove("hidden");
+        } else btnNotification.classList.add("hidden");
+        if (room.ambient_sound) {
+            ambientSound.src = `../sounds/ambient/${room.ambient_sound}`;
+
+            if (btnAmbient.classList.contains("hidden"))
+                btnAmbient.classList.remove("hidden");
+        } else btnAmbient.classList.add("hidden");
 
         utils.displayTimer(timer, this.hours, this.minutes);
         this.updateRangeAndSound(idOfRoom);

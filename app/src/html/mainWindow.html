@@ -65,7 +65,7 @@
                             </button>
                         </li>
                         <li>
-                            <button class="params-sound">
+                            <button id="params-sound">
                                 <img
                                     src="../img/volume.svg"
                                     alt="Paramètre volume"
@@ -156,11 +156,7 @@
                                 <label for="end-timer_sound-list"
                                     >Alarme :</label
                                 >
-                                <select
-                                    name="sound"
-                                    id="end-timer_sound-list"
-                                    required
-                                >
+                                <select name="sound" id="end-timer_sound-list">
                                     <option value="">
                                         Choisir un son de fin de timer
                                     </option>
@@ -188,7 +184,6 @@
                                 <select
                                     name="sound"
                                     id="notification_sound-list"
-                                    required
                                 >
                                     <option value="">
                                         Choisir un son de notification

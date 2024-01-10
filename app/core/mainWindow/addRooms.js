@@ -21,9 +21,9 @@ const addRoomObj = {
 
         const name = document.querySelector("#room_name").value;
         const time = document.querySelector("#room_times").value;
-        const endTimerSound = endTimerSoundList.value;
-        const notificationSound = notificationSoundList.value;
-        const ambientSound = ambientSoundList.value;
+        const endTimerSound = endTimerSoundList.value || null;
+        const notificationSound = notificationSoundList.value || null;
+        const ambientSound = ambientSoundList.value || null;
 
         const hours = time.split(":")[0];
         const minutes = time.split(":")[1];

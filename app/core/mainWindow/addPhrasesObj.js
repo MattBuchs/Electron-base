@@ -10,6 +10,7 @@ const btnCloseModal = document.querySelector("#close-modal_addphrases");
 const btnValidate = document.querySelector("#btn-validate_addphrases");
 const phrases = document.querySelector("#add-phrases");
 const phrasesSelect = document.querySelector("#phrases-select");
+const modalParamsSound = document.querySelector(".modal-params_sound");
 
 const addPhrasesObj = {
     init() {
@@ -23,6 +24,10 @@ const addPhrasesObj = {
     openModal() {
         modalAddPhrases.classList.remove("hidden");
         containerRoom.classList.add("blur");
+
+        if (!modalParamsSound.classList.contains("hidden")) {
+            modalParamsSound.classList.add("hidden");
+        }
     },
 
     closeModal() {
