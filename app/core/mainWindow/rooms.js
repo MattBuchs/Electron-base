@@ -160,6 +160,7 @@ const roomsObj = {
     createParagraphWithSpan(text, spanText) {
         const p = document.createElement("p");
         const span = document.createElement("span");
+        span.classList.add("strong");
         span.textContent = spanText + " ";
         p.appendChild(span);
         p.appendChild(document.createTextNode(text));

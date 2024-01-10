@@ -57,6 +57,18 @@ img {
     background-color: #fff;
 }
 
+.room-btn {
+    text-align: left;
+}
+
+.room-btn h2 {
+    text-align: center;
+}
+
+.strong {
+    font-weight: bold;
+}
+
 .hidden {
     display: none;
 }

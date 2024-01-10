@@ -3,84 +3,68 @@ const fs = require("fs");
 import utils from "../utils.js";
 
 const btnDeleteRoom = document.querySelector("#params-delete_room");
-const settings = document.querySelector("#global-settings");
-const btnAddRoom = document.querySelector("#btn-add_room");
-const btnParams = document.querySelector("#btn-params");
-const btnRemoveDelete = document.querySelector("#btn-remove_delete");
+const roomsSelect = document.querySelector("#rooms-select");
+
+const dataFolderPath = path.join(__dirname, "../../data");
+const filePath = path.join(dataFolderPath, "rooms.json");
 
 const deleteRoomsObj = {
     init() {
+        this.loadRooms();
         btnDeleteRoom.addEventListener("click", this.deleteRoom.bind(this));
-        btnRemoveDelete.addEventListener(
-            "click",
-            this.removeDeleteRoom.bind(this)
-        );
+    },
+
+    loadRooms() {
+        fs.readFile(filePath, "utf8", (err, data) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            if (data.length > 2) {
+                const rooms = JSON.parse(data);
+
+                rooms.forEach((room) => {
+                    const option = document.createElement("option");
+                    option.textContent = room.name;
+                    option.value = room.name;
+
+                    roomsSelect.appendChild(option);
+                });
+            }
+        });
     },
 
     deleteRoom() {
-        const btnsDelete = document.querySelectorAll(".btn-delete_room");
+        const optionSelected =
+            roomsSelect.options[roomsSelect.selectedIndex].value;
 
-        if (btnsDelete.length === 0) {
-            utils.notification("Aucune salle à supprimer !");
-            return;
-        }
-
-        btnAddRoom.classList.add("hidden");
-        btnParams.classList.add("hidden");
-        btnRemoveDelete.classList.remove("hidden");
-
-        btnsDelete.forEach((el) => {
-            const id = el.parentNode.id;
-
-            el.classList.remove("hidden");
-            el.addEventListener("click", function () {
-                const deleteConfirm = confirm(
-                    "Etes-vous sur de vouloir supprimé le timer ?"
-                );
-
-                if (deleteConfirm) {
-                    deleteRoomsObj.deleteRoomFromJson(id);
-                }
-            });
-        });
-
-        settings.classList.add("hidden");
+        if (optionSelected === "")
+            return utils.notification("Veuillez choisir une salle");
+        this.deleteRoomFromJson(optionSelected);
     },
 
-    deleteRoomFromJson(objectIdToDelete) {
-        const dataFolderPath = path.join(__dirname, "../../data");
-        const filePath = path.join(dataFolderPath, "rooms.json");
-
+    deleteRoomFromJson(valueSelectedOption) {
         // Charge le contenu du fichier JSON
         const jsonData = require(filePath);
 
         // Trouver l'index de l'objet avec l'ID donné dans le tableau
-        const indexToDelete = jsonData.findIndex(
-            (obj) => obj.id === objectIdToDelete
+        const index = jsonData.findIndex(
+            (obj) => obj.name === valueSelectedOption
         );
 
+        console.log(index);
+
         // Vérifie si l'objet a été trouvé
-        if (indexToDelete !== -1) {
+        if (index !== -1) {
             // Supprime l'objet du tableau
-            jsonData.splice(indexToDelete, 1);
+            jsonData.splice(index, 1);
 
             // Enregistre le tableau mis à jour dans le fichier JSON
             fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
         }
 
         window.location.reload();
-    },
-
-    removeDeleteRoom() {
-        const btnDeleteRooms = document.querySelectorAll(".btn-delete_room");
-
-        btnAddRoom.classList.remove("hidden");
-        btnParams.classList.remove("hidden");
-        btnRemoveDelete.classList.add("hidden");
-
-        btnDeleteRooms.forEach((el) => {
-            el.classList.add("hidden");
-        });
     },
 };
 

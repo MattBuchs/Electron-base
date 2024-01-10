@@ -82,9 +82,6 @@
                     class="content activeContent"
                     data-onglet="1"
                 >
-                    <button type="submit" class="hidden" id="btn-remove_delete">
-                        X
-                    </button>
                     <div id="container-btn_rooms"></div>
                 </section>
 
@@ -259,8 +256,14 @@
                         </button>
                     </div>
                     <div>
+                        <label for="rooms-select">Supprimer un timer</label>
+                        <select name="rooms" id="rooms-select">
+                            <option value="">
+                                Choisir le timer à supprimer
+                            </option>
+                        </select>
                         <button type="button" id="params-delete_room">
-                            Supprimer un timer
+                            Valider
                         </button>
                     </div>
                     <div>
