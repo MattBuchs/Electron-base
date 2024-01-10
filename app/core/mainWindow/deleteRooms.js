@@ -53,8 +53,6 @@ const deleteRoomsObj = {
             (obj) => obj.name === valueSelectedOption
         );
 
-        console.log(index);
-
         // Vérifie si l'objet a été trouvé
         if (index !== -1) {
             // Supprime l'objet du tableau

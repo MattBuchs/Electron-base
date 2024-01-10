@@ -11,23 +11,14 @@ const notification = document.querySelector(".modal-notification");
 
 const paramsObj = {
     init() {
-        btnAddFileEndTimer.addEventListener(
-            "click",
-            function () {
-                this.uploadFile("end_timer");
-            }.bind(this)
+        btnAddFileEndTimer.addEventListener("click", () =>
+            this.uploadFile("end_timer")
         );
-        btnAddFileNotification.addEventListener(
-            "click",
-            function () {
-                this.uploadFile("notification");
-            }.bind(this)
+        btnAddFileNotification.addEventListener("click", () =>
+            this.uploadFile("notification")
         );
-        btnAddFileAmbient.addEventListener(
-            "click",
-            function () {
-                this.uploadFile("ambient");
-            }.bind(this)
+        btnAddFileAmbient.addEventListener("click", () =>
+            this.uploadFile("ambient")
         );
     },
 
@@ -46,8 +37,7 @@ const paramsObj = {
 
                 if (fs.existsSync(destinationPath)) {
                     // Affiche une notification d'erreur
-                    this.displayNotification(true);
-                    return;
+                    return this.displayNotification(true);
                 }
 
                 // Écrie le contenu du fichier dans le fichier destination

@@ -2,25 +2,21 @@ const fs = require("fs");
 const path = require("path");
 import utils from "../utils.js";
 
-const containerHome = document.querySelector("#container-home");
 const btnAddRoom = document.querySelector("#btn-add_room");
-const containerAddRoom = document.querySelector("#container-add_room");
 const formAddRoom = document.querySelector("#form-add_room");
 const endTimerSoundList = document.querySelector("#end-timer_sound-list");
+const ambientSoundList = document.querySelector("#ambient_sound-list");
 const notificationSoundList = document.querySelector(
     "#notification_sound-list"
 );
-const ambientSoundList = document.querySelector("#ambient_sound-list");
 
 const addRoomObj = {
     init() {
-        formAddRoom.addEventListener("submit", (e) =>
-            this.setupForm.bind(this)(e)
-        );
+        formAddRoom.addEventListener("submit", (e) => this.setupForm(e));
         btnAddRoom.addEventListener("click", this.listSounds.bind(this));
     },
 
-    setupForm() {
+    setupForm(e) {
         e.preventDefault();
 
         const name = document.querySelector("#room_name").value;

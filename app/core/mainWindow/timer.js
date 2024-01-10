@@ -10,7 +10,6 @@ const stopAlert = document.querySelector("#stop-alert");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const containerRoom = document.querySelector("#container-room");
 const confirmResetModal = document.querySelector("#request-reset");
-const home = document.querySelector("#btn-home");
 const ambientSound = document.querySelector("#ambient_sound");
 const btnAmbientSound = document.querySelector("#btn-ambient_sound");
 const btnStopAmbientSound = document.querySelector("#btn-stop--ambient_sound");
@@ -31,7 +30,6 @@ const timerObj = {
         );
         stopAlert.addEventListener("click", this.resetAlert.bind(this));
         endTimerSound.addEventListener("ended", this.resetAlert.bind(this));
-        // home.addEventListener("click", this.setupHomeButton.bind(this));
     },
 
     startTimer() {

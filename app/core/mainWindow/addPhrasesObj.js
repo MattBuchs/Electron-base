@@ -59,6 +59,7 @@ const addPhrasesObj = {
             }
         });
 
+        phrases.value = "";
         this.closeModal();
     },
 

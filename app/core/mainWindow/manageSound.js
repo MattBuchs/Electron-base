@@ -18,9 +18,6 @@ const btnNotificationMusic = document.querySelector(
     "#listen-notification_sound"
 );
 const btnAmbientMusic = document.querySelector("#listen-ambient_sound");
-// const closeAddRoom = document.querySelector("#close-add_room");
-// const modalAddRoom = document.querySelector(".modal-add_room");
-// const containerHome = document.querySelector("#container-home");
 
 const manageSoundObj = {
     endTimer: null,
@@ -170,20 +167,7 @@ const manageSoundObj = {
         soundList.addEventListener("change", () => {
             this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
         });
-
-        // closeAddRoom.addEventListener("click", () => {
-        //     this.closeModal(btnStopMusic, btnListenMusic, newAudio);
-        // });
     },
-
-    // closeModal(btnStopMusic, btnListenMusic, newAudio) {
-    //     modalAddRoom.style.display = "none";
-    //     containerHome.style.display = "flex";
-
-    //     if (newAudio) {
-    //         this.resetBtn(btnStopMusic, btnListenMusic, newAudio);
-    //     }
-    // },
 };
 
 export default manageSoundObj;

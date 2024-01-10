@@ -33,12 +33,7 @@ const manageTabsObj = {
     },
 
     handleClickTab(tab) {
-        console.log(timerObj.isActive);
-
-        if (timerObj.isActive) {
-            return this.openModal(tab);
-        }
-
+        if (timerObj.isActive) return this.openModal(tab);
         this.manageTab(tab);
     },
 

@@ -2,7 +2,6 @@ const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
 import utils from "../utils.js";
-import deleteRoomsObj from "./deleteRooms.js";
 import addPhrasesObj from "./addPhrasesObj.js";
 
 const containerRoom = document.querySelector("#container-room");
@@ -97,12 +96,6 @@ const roomsObj = {
     },
 
     startRoom(room, idOfRoom) {
-        const btnDeleteRoom = document.querySelector(".btn-delete_room");
-
-        // if (btnDeleteRoom.className === "btn-delete_room") {
-        //     deleteRoomsObj.removeDeleteRoom();
-        // }
-
         this.roomId = idOfRoom;
         this.hours = room.hours;
         this.minutes = room.minutes;

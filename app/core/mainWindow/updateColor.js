@@ -1,6 +1,5 @@
 const inputColor = document.querySelector("#update-color");
 const buttons = document.querySelectorAll("button");
-const btnHome = document.querySelectorAll("#container-btn_rooms button");
 const containerTimer = document.querySelector(".container-room__timer");
 
 const updateColorObj = {
