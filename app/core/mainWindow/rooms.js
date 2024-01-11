@@ -104,8 +104,6 @@ const roomsObj = {
         this.resetHours = room.hours;
         this.resetMinutes = room.minutes;
 
-        console.log(room);
-
         if (room.end_timer_sound)
             endTimerSound.src = `../sounds/end_timer/${room.end_timer_sound}`;
         if (room.notification_sound) {

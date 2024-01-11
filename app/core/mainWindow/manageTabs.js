@@ -1,4 +1,5 @@
 import timerObj from "./timer.js";
+import { closeModal } from "../utils.js";
 
 const tabs = document.querySelectorAll(".tabs");
 const content = document.querySelectorAll(".content");
@@ -6,9 +7,11 @@ const btnTimerSelected = document.querySelector("#btn-timer_selected");
 const containerRoom = document.querySelector("#container-room");
 const navbarTimer = document.querySelector("#navbar-timer");
 const modal = document.querySelector("#modal-check_exit_timer");
+const modalContent = document.querySelector("#modal-check_exit_timer__content");
 const exitModalTimer = document.querySelector("#exit-modal_timer");
 const cancelCheckExitTimer = document.querySelector("#cancel-check_exit_timer");
 const closeCheckExitTimer = document.querySelector("#close-check_exit_timer");
+const modals = document.querySelectorAll(".modal");
 
 const manageTabsObj = {
     index: 0,
@@ -22,18 +25,17 @@ const manageTabsObj = {
             "click",
             this.handleClickTimerTab.bind(this)
         );
-        cancelCheckExitTimer.addEventListener(
-            "click",
-            this.closeModal.bind(this)
+        cancelCheckExitTimer.addEventListener("click", () =>
+            closeModal(modal, containerRoom)
         );
-        closeCheckExitTimer.addEventListener(
-            "click",
-            this.closeModal.bind(this)
+        closeCheckExitTimer.addEventListener("click", () =>
+            closeModal(modal, containerRoom)
         );
+        modal.addEventListener("click", () => closeModal(modal, containerRoom));
     },
 
     handleClickTab(tab) {
-        if (timerObj.isActive) return this.openModal(tab);
+        if (timerObj.isActive) return this.openModalExitTimer(tab);
         this.manageTab(tab);
     },
 
@@ -81,12 +83,19 @@ const manageTabsObj = {
             }
         }
 
+        modals.forEach((modal) => {
+            if (!modal.classList.contains("hidden")) {
+                modal.classList.add("hidden");
+            }
+        });
+
         timerObj.setupHomeButton();
     },
 
-    openModal(tab) {
+    openModalExitTimer(tab) {
         modal.classList.remove("hidden");
 
+        modalContent.addEventListener("click", (e) => e.stopPropagation());
         exitModalTimer.addEventListener("click", () => {
             this.manageTab(tab);
             modal.classList.add("hidden");

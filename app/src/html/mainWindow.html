@@ -273,12 +273,9 @@
                 </div>
             </div>
 
-            <div class="modal-params_sound hidden">
-                <div class="modal-params_sound__content">
-                    <button
-                        id="close-params_sound"
-                        class="cross-to-close hidden"
-                    >
+            <div id="modal-params_sound" class="modal hidden">
+                <div id="modal-params_sound__content" class="modal-content">
+                    <button id="close-params_sound" class="cross-to-close">
                         <img src="../img/close.svg" alt="fermer" />
                     </button>
 
@@ -333,12 +330,8 @@
                 </div>
             </div>
 
-            <div class="modal-notification hidden">
-                <p>Le son à bien été ajouté !</p>
-            </div>
-
-            <div class="modal-add_phrases hidden">
-                <div class="modal-add_phrases__content">
+            <div id="modal-add_phrases" class="modal hidden">
+                <div id="modal-add_phrases__content" class="modal-content">
                     <button id="close-modal_addphrases" class="cross-to-close">
                         <img src="../img/close.svg" alt="fermer" />
                     </button>
@@ -351,8 +344,8 @@
             </div>
         </div>
 
-        <div id="modal-check_exit_timer" class="hidden">
-            <div>
+        <div id="modal-check_exit_timer" class="modal hidden">
+            <div id="modal-check_exit_timer__content">
                 <p>
                     Etes-vous sur de vouloir quitter, le timer et toujours en
                     marche.
@@ -367,6 +360,10 @@
                     <img src="../img/close.svg" alt="Fermer la fenêtre" />
                 </button>
             </div>
+        </div>
+
+        <div id="notification" class="notification hidden">
+            <p>Le son à bien été ajouté !</p>
         </div>
 
         <script

@@ -1,38 +1,35 @@
 const fs = require("fs");
 const path = require("path");
 import roomsObj from "./rooms.js";
+import { openModal, closeModal } from "../utils.js";
 
 const containerRoom = document.querySelector("#container-room");
 const btnAddPhrases = document.querySelector("#btn-add_phrases");
-const modalAddPhrases = document.querySelector(".modal-add_phrases");
-const modalContent = document.querySelector(".modal-add_phrases__content");
+const modalAddPhrases = document.querySelector("#modal-add_phrases");
+const modalContent = document.querySelector("#modal-add_phrases__content");
 const btnCloseModal = document.querySelector("#close-modal_addphrases");
 const btnValidate = document.querySelector("#btn-validate_addphrases");
 const phrases = document.querySelector("#add-phrases");
 const phrasesSelect = document.querySelector("#phrases-select");
-const modalParamsSound = document.querySelector(".modal-params_sound");
+const modalParamsSound = document.querySelector("#modal-params_sound");
 
 const addPhrasesObj = {
     init() {
-        btnAddPhrases.addEventListener("click", this.openModal.bind(this));
-        btnCloseModal.addEventListener("click", this.closeModal.bind(this));
-        modalContent.addEventListener("click", (e) => e.stopPropagation());
-        modalAddPhrases.addEventListener("click", this.closeModal.bind(this));
+        btnAddPhrases.addEventListener("click", () =>
+            openModal(
+                containerRoom,
+                modalAddPhrases,
+                modalContent,
+                modalParamsSound
+            )
+        );
+        btnCloseModal.addEventListener("click", () =>
+            closeModal(modalAddPhrases, containerRoom)
+        );
+        modalAddPhrases.addEventListener("click", () =>
+            closeModal(modalAddPhrases, containerRoom)
+        );
         btnValidate.addEventListener("click", this.addPhrases.bind(this));
-    },
-
-    openModal() {
-        modalAddPhrases.classList.remove("hidden");
-        containerRoom.classList.add("blur");
-
-        if (!modalParamsSound.classList.contains("hidden")) {
-            modalParamsSound.classList.add("hidden");
-        }
-    },
-
-    closeModal() {
-        modalAddPhrases.classList.add("hidden");
-        containerRoom.classList.remove("blur");
     },
 
     addPhrases() {
@@ -65,7 +62,7 @@ const addPhrasesObj = {
         });
 
         phrases.value = "";
-        this.closeModal();
+        closeModal(modalAddPhrases, containerRoom);
     },
 
     loadOption(data) {

@@ -1,54 +1,50 @@
 const fs = require("fs");
 const path = require("path");
 import roomsObj from "./rooms.js";
+import { openModal } from "../utils.js";
 
 const containerRoom = document.querySelector("#container-room");
-const modalParamsSound = document.querySelector(".modal-params_sound");
+const modalParamsSound = document.querySelector("#modal-params_sound");
+const modalContent = document.querySelector("#modal-params_sound__content");
 const openParamsSound = document.querySelector("#params-sound");
 const closeParamsSound = document.querySelector("#close-params_sound");
 const endTimerRange = document.querySelector("#volume-end_timer");
 const notificationRange = document.querySelector("#volume-notification");
 const amibentRange = document.querySelector("#volume-amibent");
 const pourcentageVolume = document.querySelectorAll(".volume p");
-const modalAddPhrases = document.querySelector(".modal-add_phrases");
+const modalAddPhrases = document.querySelector("#modal-add_phrases");
 
 const updateSoundObj = {
     init() {
-        openParamsSound.addEventListener("click", this.openModal.bind(this));
-        endTimerRange.addEventListener(
-            "input",
-            function () {
-                this.percentageUpdate(endTimerRange, 0);
-            }.bind(this)
+        openParamsSound.addEventListener("click", () =>
+            openModal(
+                containerRoom,
+                modalParamsSound,
+                modalContent,
+                modalAddPhrases
+            )
         );
-        notificationRange.addEventListener(
-            "input",
-            function () {
-                this.percentageUpdate(notificationRange, 1);
-            }.bind(this)
+        endTimerRange.addEventListener("input", () =>
+            this.percentageUpdate(endTimerRange, 0)
         );
-        amibentRange.addEventListener(
-            "input",
-            function () {
-                this.percentageUpdate(amibentRange, 2);
-            }.bind(this)
+        notificationRange.addEventListener("input", () =>
+            this.percentageUpdate(notificationRange, 1)
         );
-        closeParamsSound.addEventListener("click", this.closeModal.bind(this));
+        amibentRange.addEventListener("input", () =>
+            this.percentageUpdate(amibentRange, 2)
+        );
+        closeParamsSound.addEventListener(
+            "click",
+            this.closeModalUpdateSound.bind(this)
+        );
+        modalParamsSound.addEventListener(
+            "click",
+            this.closeModalUpdateSound.bind(this)
+        );
     },
 
-    openModal() {
-        modalParamsSound.classList.remove("hidden");
-        closeParamsSound.classList.remove("hidden");
-        containerRoom.classList.add("blur");
-
-        if (!modalAddPhrases.classList.contains("hidden")) {
-            modalAddPhrases.classList.add("hidden");
-        }
-    },
-
-    closeModal() {
+    closeModalUpdateSound() {
         modalParamsSound.classList.add("hidden");
-        closeParamsSound.classList.add("hidden");
         containerRoom.classList.remove("blur");
 
         const dataFolderPath = path.join(__dirname, "../../data");

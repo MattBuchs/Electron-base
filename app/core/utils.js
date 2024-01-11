@@ -1,4 +1,4 @@
-const notification = document.querySelector(".modal-notification");
+const notification = document.querySelector("#notification");
 
 const utils = {
     displayTimer(timer, hours, minutes) {
@@ -15,6 +15,23 @@ const utils = {
             notification.style.transform = "translateY(-100%)";
         }, 3000);
     },
+
+    openModal(container, modal, modalContent, otherModal) {
+        modalContent.addEventListener("click", (e) => e.stopPropagation());
+
+        modal.classList.remove("hidden");
+        container.classList.add("blur");
+
+        if (!otherModal.classList.contains("hidden")) {
+            otherModal.classList.add("hidden");
+        }
+    },
+
+    closeModal(modal, container) {
+        modal.classList.add("hidden");
+        container.classList.remove("blur");
+    },
 };
 
+export const { openModal, closeModal } = utils;
 export default utils;

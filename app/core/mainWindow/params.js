@@ -7,7 +7,7 @@ const btnAddFileNotification = document.querySelector(
     "#btn-add_file-notification"
 );
 const btnAddFileAmbient = document.querySelector("#btn-add_file-ambient");
-const notification = document.querySelector(".modal-notification");
+const notification = document.querySelector("#notification");
 
 const paramsObj = {
     init() {
