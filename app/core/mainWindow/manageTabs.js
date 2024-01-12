@@ -55,7 +55,8 @@ const manageTabsObj = {
     },
 
     manageTab(tab) {
-        navbarTimer.classList.add("hidden");
+        if (Number(tab.dataset.onglet) !== 4)
+            navbarTimer.classList.add("hidden");
 
         if (tab.classList.contains("active")) {
             return;

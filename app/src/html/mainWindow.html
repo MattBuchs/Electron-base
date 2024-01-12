@@ -72,6 +72,18 @@
                                 />
                             </button>
                         </li>
+                        <li>
+                            <button
+                                id="update-timer"
+                                data-onglet="4"
+                                class="tabs"
+                            >
+                                <img
+                                    src="../img/update.svg"
+                                    alt="Paramètre du Timer"
+                                />
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </header>
@@ -233,10 +245,6 @@
                 </section>
 
                 <section id="global-settings" class="content" data-onglet="3">
-                    <!-- <button id="close_params" class="cross-to-close">
-                        <img src="../img/close.svg" alt="fermer" />
-                    </button> -->
-
                     <div>
                         <button type="submit" id="btn-add_file-endtimer">
                             Ajouter un son de fin de timer
@@ -262,6 +270,112 @@
                     <div>
                         <input type="color" id="update-color" />
                     </div>
+                </section>
+
+                <section data-onglet="4" class="content">
+                    <form id="update-timer_value">
+                        <div>
+                            <label for="update-title"
+                                >Changer le titre du timer</label
+                            >
+                            <input type="text" id="update-title" />
+                        </div>
+                        <div>
+                            <label for="">Changer le temps du timer</label>
+                            <input type="time" id="update-title" />
+                        </div>
+                        <div>
+                            <label for="update-alarm_sound-list"
+                                >Alarme :</label
+                            >
+                            <select name="sound" id="update-alarm_sound-list">
+                                <option value="">
+                                    Choisir un son de fin de timer
+                                </option>
+                            </select>
+                            <button
+                                type="button"
+                                id="update-listen-alarme_sound"
+                            >
+                                <img
+                                    src="../img/volume.svg"
+                                    alt="Ecouter le son de fin de timer"
+                                />
+                            </button>
+                            <button type="button" id="update-stop-music-1">
+                                <img
+                                    src="../img/stop.svg"
+                                    alt="Stopper la musique"
+                                />
+                            </button>
+                        </div>
+                        <div>
+                            <label for="update-notification_sound-list"
+                                >Notification :</label
+                            >
+                            <select
+                                name="sound"
+                                id="update-notification_sound-list"
+                            >
+                                <option value="">
+                                    Choisir un son de notification
+                                </option>
+                            </select>
+                            <button
+                                type="button"
+                                id="update-notification_sound"
+                            >
+                                <img
+                                    src="../img/volume.svg"
+                                    alt="Ecouter le son de notification"
+                                />
+                            </button>
+                            <button type="button" id="update-stop-music-2">
+                                <img
+                                    src="../img/stop.svg"
+                                    alt="Stopper la musique"
+                                />
+                            </button>
+                        </div>
+                        <div>
+                            <label for="update-ambient_sound-list"
+                                >Son d'ambiance :</label
+                            >
+                            <select name="sound" id="update-ambient_sound-list">
+                                <option value="">
+                                    Choisir un son d'ambiance
+                                </option>
+                            </select>
+                            <button
+                                type="button"
+                                id="update-listen-ambient_sound"
+                            >
+                                <img
+                                    src="../img/volume.svg"
+                                    alt="Ecouter le son d'ambiance"
+                                />
+                            </button>
+                            <button type="button" id="update-stop-music-3">
+                                <img
+                                    src="../img/stop.svg"
+                                    alt="Stopper la musique"
+                                />
+                            </button>
+                        </div>
+                        <button type="submit">Valider</button>
+                    </form>
+
+                    <form id="delete-phrase">
+                        <label for="select-delete_phrase"
+                            >Phrase à supprimer :
+                        </label>
+                        <select name="delete_phrase" id="select-delete_phrase">
+                            <option value="">
+                                Choisir La phrases à supprimer
+                            </option>
+                        </select>
+                        <button type="submit">Valider</button>
+                    </form>
                 </section>
             </main>
 

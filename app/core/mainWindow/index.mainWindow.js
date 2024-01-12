@@ -9,6 +9,7 @@ import updateSoundObj from "./updateSound.js";
 import addPhrasesObj from "./addPhrasesObj.js";
 import updateColorObj from "./updateColor.js";
 import manageTabsObj from "./manageTabs.js";
+import updateRoomObj from "./updateRoomObj.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -32,3 +33,5 @@ addPhrasesObj.init();
 updateColorObj.init();
 // Initialisation des fonctionnalités liées aux onglets de la navbar
 manageTabsObj.init();
+// Initialisation des fonctionnalités liées à l'update d'un timer
+updateRoomObj.init();

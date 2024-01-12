@@ -169,7 +169,7 @@ const roomsObj = {
         span.classList.add("strong");
         span.textContent = spanText + " ";
         p.appendChild(span);
-        p.appendChild(document.createTextNode(text));
+        p.appendChild(document.createTextNode(text ? text : " - "));
         return p;
     },
 };
