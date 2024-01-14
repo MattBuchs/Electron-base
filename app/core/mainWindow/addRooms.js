@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-import utils from "../utils.js";
+import { listSounds, notification } from "../utils.js";
 
 const btnAddRoom = document.querySelector("#btn-add_room");
 const formAddRoom = document.querySelector("#form-add_room");
@@ -11,9 +11,30 @@ const notificationSoundList = document.querySelector(
 );
 
 const addRoomObj = {
+    isOptionCreatedInAddRoom: false,
+    soundDirectories: [
+        {
+            path: path.join(__dirname, "../sounds/end_timer"),
+            listId: "#end-timer_sound-list",
+        },
+        {
+            path: path.join(__dirname, "../sounds/ambient"),
+            listId: "#ambient_sound-list",
+        },
+        {
+            path: path.join(__dirname, "../sounds/notification"),
+            listId: "#notification_sound-list",
+        },
+    ],
+
     init() {
         formAddRoom.addEventListener("submit", (e) => this.setupForm(e));
-        btnAddRoom.addEventListener("click", this.listSounds.bind(this));
+        btnAddRoom.addEventListener("click", () => {
+            if (!this.isOptionCreatedInAddRoom) {
+                listSounds(this.soundDirectories);
+                this.isOptionCreatedInAddRoom = true;
+            }
+        });
     },
 
     setupForm(e) {
@@ -29,7 +50,7 @@ const addRoomObj = {
         const minutes = time.split(":")[1];
 
         if (hours === "00" && minutes === "00") {
-            utils.notification("Le timer ne peut pas avoir une durée de 0 !");
+            notification("Le timer ne peut pas avoir une durée de 0 !");
             return;
         }
 
@@ -40,46 +61,6 @@ const addRoomObj = {
             endTimerSound,
             notificationSound,
             ambientSound,
-        });
-    },
-
-    addOptionsFromDirectory(directoryPath, listElement) {
-        const soundFiles = fs.readdirSync(directoryPath);
-        soundFiles.forEach((fileName) => {
-            const option = document.createElement("option");
-            option.textContent = fileName;
-            option.value = fileName;
-            option.classList.add("recover-sound");
-            listElement.appendChild(option);
-        });
-    },
-
-    listSounds() {
-        const directories = [
-            {
-                path: path.join(__dirname, "../sounds/end_timer"),
-                listId: "#end-timer_sound-list",
-            },
-            {
-                path: path.join(__dirname, "../sounds/ambient"),
-                listId: "#ambient_sound-list",
-            },
-            {
-                path: path.join(__dirname, "../sounds/notification"),
-                listId: "#notification_sound-list",
-            },
-        ];
-
-        directories.forEach((directory) => {
-            const soundOption = document.querySelectorAll(
-                `${directory.listId} .recover-sound`
-            );
-            soundOption.forEach((el) => {
-                el.remove();
-            });
-
-            const listElement = document.querySelector(directory.listId);
-            addRoomObj.addOptionsFromDirectory(directory.path, listElement);
         });
     },
 
@@ -139,4 +120,5 @@ const addRoomObj = {
     },
 };
 
+export const { isOptionCreatedInAddRoom } = addRoomObj;
 export default addRoomObj;

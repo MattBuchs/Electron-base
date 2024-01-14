@@ -18,7 +18,7 @@
   },
   {
     "id": "btn-room_2",
-    "name": "Salle2",
+    "name": "Sherlock",
     "end_timer_sound": "Sherlock Holmes.mp3",
     "notification_sound": "Eagle - Notification ! Sms ! Tone.mp3",
     "ambient_sound": "Harry Potter - musique ambiance.mp3",

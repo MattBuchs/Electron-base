@@ -1,4 +1,6 @@
-const notification = document.querySelector("#notification");
+const fs = require("fs");
+const path = require("path");
+const notificationContainer = document.querySelector("#notification");
 
 const utils = {
     displayTimer(timer, hours, minutes) {
@@ -6,13 +8,13 @@ const utils = {
     },
 
     notification(message) {
-        notification.style.backgroundColor = "#ff0000";
-        notification.querySelector("p").textContent = message;
+        notificationContainer.style.backgroundColor = "#ff0000";
+        notificationContainer.querySelector("p").textContent = message;
 
-        notification.style.transform = "translateY(0)";
+        notificationContainer.style.transform = "translateY(0)";
 
         setTimeout(() => {
-            notification.style.transform = "translateY(-100%)";
+            notificationContainer.style.transform = "translateY(-100%)";
         }, 3000);
     },
 
@@ -31,7 +33,32 @@ const utils = {
         modal.classList.add("hidden");
         container.classList.remove("blur");
     },
+
+    listSounds(soundDirectories) {
+        soundDirectories.forEach((directory) => {
+            const soundOption = document.querySelectorAll(
+                `${directory.listId} .recover-sound`
+            );
+
+            if (soundOption.length > 0) {
+                soundOption.forEach((el) => {
+                    el.remove();
+                });
+            }
+
+            const listElement = document.querySelector(directory.listId);
+            const soundFiles = fs.readdirSync(directory.path);
+
+            soundFiles.forEach((fileName) => {
+                const option = document.createElement("option");
+                option.textContent = fileName;
+                option.value = fileName;
+                option.classList.add("recover-sound");
+                listElement.appendChild(option);
+            });
+        });
+    },
 };
 
-export const { openModal, closeModal } = utils;
+export const { openModal, closeModal, listSounds, notification } = utils;
 export default utils;

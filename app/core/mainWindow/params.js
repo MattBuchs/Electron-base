@@ -1,6 +1,8 @@
 const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
+import { isOptionCreatedInAddRoom } from "./addRooms.js";
+import { isOptionCreatedInUpdateRoom } from "./updateRoomObj.js";
 
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(
@@ -42,6 +44,10 @@ const paramsObj = {
 
                 // Écrie le contenu du fichier dans le fichier destination
                 fs.writeFileSync(destinationPath, file, "binary");
+
+                // Ajout de "false" pour que ça reload les endroits ou il y a besoin d'ajouter le nouveau fichier
+                isOptionCreatedInAddRoom = false;
+                isOptionCreatedInUpdateRoom = false;
 
                 // Affiche une notification
                 this.displayNotification();
