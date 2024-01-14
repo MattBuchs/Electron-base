@@ -1,5 +1,6 @@
 import { listSounds } from "../utils.js";
 import roomsObj from "./rooms.js";
+import { loadPhrases } from "./deletePhrases.js";
 const fs = require("fs");
 const path = require("path");
 
@@ -43,6 +44,7 @@ const updateRoomObj = {
                 this.isOptionCreatedInUpdateRoom = true;
             }
             this.addValuesInInputs();
+            loadPhrases();
         });
     },
 

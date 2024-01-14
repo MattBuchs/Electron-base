@@ -2,7 +2,7 @@ const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
 import { isOptionCreatedInAddRoom } from "./addRooms.js";
-import { isOptionCreatedInUpdateRoom } from "./updateRoomObj.js";
+import { isOptionCreatedInUpdateRoom } from "./updateRoom.js";
 
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(

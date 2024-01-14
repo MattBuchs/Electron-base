@@ -6,10 +6,11 @@ import paramsObj from "./params.js";
 import manageSoundObj from "./manageSound.js";
 import deleteRoomsObj from "./deleteRooms.js";
 import updateSoundObj from "./updateSound.js";
-import addPhrasesObj from "./addPhrasesObj.js";
+import addPhrasesObj from "./addPhrases.js";
 import updateColorObj from "./updateColor.js";
 import manageTabsObj from "./manageTabs.js";
-import updateRoomObj from "./updateRoomObj.js";
+import updateRoomObj from "./updateRoom.js";
+import deletePhrasesObj from "./deletePhrases.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -35,3 +36,5 @@ updateColorObj.init();
 manageTabsObj.init();
 // Initialisation des fonctionnalités liées à l'update d'un timer
 updateRoomObj.init();
+// Initialisation des fonctionnalités liées à la suppression d'une phrase
+deletePhrasesObj.init();

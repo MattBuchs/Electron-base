@@ -2,7 +2,7 @@ const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
 import utils from "../utils.js";
-import addPhrasesObj from "./addPhrasesObj.js";
+import addPhrasesObj from "./addPhrases.js";
 
 const containerRoom = document.querySelector("#container-room");
 const containerBtnRooms = document.querySelector("#container-btn_rooms");
