@@ -1,8 +1,8 @@
 const { app, BrowserWindow } = require("electron");
 require("electron-reload")(__dirname, { ignored: [/\.json$/] });
 
-const createWindows = require("./app/services/createWindows");
-const setupIPCFunctions = require("./app/services/ipcFunctions");
+const createWindows = require("./src/services/createWindows");
+const setupIPCFunctions = require("./src/services/ipcFunctions");
 
 let windows = {
     mainWindow: null,
