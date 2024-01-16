@@ -1,0 +1,17 @@
+.header {
+    position: fixed;
+    height: 100vh;
+    width: 4rem;
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__nav {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 4rem;
+    }
+}
