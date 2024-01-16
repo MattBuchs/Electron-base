@@ -166,5 +166,4 @@ const updateRoomObj = {
     },
 };
 
-export const { isOptionCreatedInUpdateRoom } = updateRoomObj;
 export default updateRoomObj;

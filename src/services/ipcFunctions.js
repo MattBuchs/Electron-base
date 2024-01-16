@@ -75,6 +75,7 @@ function setupIPCFunctions(windows) {
 
         if (!result.canceled) {
             const filePath = result.filePaths[0];
+            console.log("filepath : ", filePath);
             const fileName = path.basename(filePath); // Obtenir le nom de fichier
             const fileContent = fs.readFileSync(filePath, "binary"); // Lire le contenu du fichier
 

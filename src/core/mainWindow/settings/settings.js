@@ -1,8 +1,8 @@
 const { ipcRenderer } = require("electron");
 const fs = require("fs");
 const path = require("path");
-import { isOptionCreatedInAddRoom } from "../rooms/addRooms.js";
-import { isOptionCreatedInUpdateRoom } from "../rooms/updateRoom.js";
+import addRoomObj from "../rooms/addRooms.js";
+import updateRoomObj from "../rooms/updateRoom.js";
 
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(
@@ -25,35 +25,31 @@ const paramsObj = {
     },
 
     async uploadFile(pathName) {
-        try {
-            const fileContent = await ipcRenderer.invoke("open-file-dialog");
+        const fileContent = await ipcRenderer.invoke("open-file-dialog");
 
-            if (fileContent) {
-                const { file, fileName } = fileContent;
-                // Créez le chemin du fichier destination dans le dossier "sound"
-                const destinationPath = path.join(
-                    __dirname,
-                    `../sounds/${pathName}`,
-                    fileName
-                );
+        if (fileContent) {
+            const { file, fileName } = fileContent;
+            // Créez le chemin du fichier destination dans le dossier "sound"
+            const destinationPath = path.join(
+                __dirname,
+                `../../public/sounds/${pathName}`,
+                fileName
+            );
 
-                if (fs.existsSync(destinationPath)) {
-                    // Affiche une notification d'erreur
-                    return this.displayNotification(true);
-                }
-
-                // Écrie le contenu du fichier dans le fichier destination
-                fs.writeFileSync(destinationPath, file, "binary");
-
-                // Ajout de "false" pour que ça reload les endroits ou il y a besoin d'ajouter le nouveau fichier
-                isOptionCreatedInAddRoom = false;
-                isOptionCreatedInUpdateRoom = false;
-
-                // Affiche une notification
-                this.displayNotification();
+            if (fs.existsSync(destinationPath)) {
+                // Affiche une notification d'erreur
+                return this.displayNotification(true);
             }
-        } catch (error) {
-            console.error("Erreur lors de la sélection du fichier :", error);
+
+            // Écrie le contenu du fichier dans le fichier destination
+            fs.writeFileSync(destinationPath, file, "binary");
+
+            // Ajout de "false" pour que ça reload les endroits ou il y a besoin d'ajouter le nouveau fichier
+            addRoomObj.isOptionCreatedInAddRoom = false;
+            updateRoomObj.isOptionCreatedInUpdateRoom = false;
+
+            // Affiche une notification
+            this.displayNotification();
         }
     },
 

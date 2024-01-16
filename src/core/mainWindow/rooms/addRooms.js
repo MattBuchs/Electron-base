@@ -120,5 +120,4 @@ const addRoomObj = {
     },
 };
 
-export const { isOptionCreatedInAddRoom } = addRoomObj;
 export default addRoomObj;

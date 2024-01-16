@@ -65,6 +65,11 @@ img {
     text-align: center;
 }
 
+.container-drop {
+    width: 200px;
+    height: 150px;
+}
+
 .strong {
     font-weight: bold;
 }

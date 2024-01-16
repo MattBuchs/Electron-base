@@ -11,6 +11,7 @@ import updateColorObj from "./settings/updateColor.js";
 import manageTabsObj from "./UI/manageTabs.js";
 import updateRoomObj from "./rooms/updateRoom.js";
 import deletePhrasesObj from "./phrases/deletePhrases.js";
+import dragAndDropObj from "./settings/DragAndDrop.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -38,3 +39,5 @@ manageTabsObj.init();
 updateRoomObj.init();
 // Initialisation des fonctionnalités liées à la suppression d'une phrase
 deletePhrasesObj.init();
+// Initialisation des fonctionnalités liées au drag and drop
+dragAndDropObj.init();
