@@ -1,23 +1,11 @@
 const path = require("path");
+import { sounds } from "./loadInput.js";
 
 const btnNotificationSound = document.querySelector("#btn-notification_sound");
 const btnAmbientSound = document.querySelector("#btn-ambient_sound");
 const btnStopAmbientSound = document.querySelector("#btn-stop--ambient_sound");
 const notificationSound = document.querySelector("#notification_sound");
 const ambientSound = document.querySelector("#ambient_sound");
-const endTimerSoundList = document.querySelector("#end-timer_sound-list");
-const notificationSoundList = document.querySelector(
-    "#notification_sound-list"
-);
-const ambientSoundList = document.querySelector("#ambient_sound-list");
-const stopMusic1 = document.querySelector("#stop-music-1");
-const stopMusic2 = document.querySelector("#stop-music-2");
-const stopMusic3 = document.querySelector("#stop-music-3");
-const btnEndTimerMusic = document.querySelector("#listen-end_timer_sound");
-const btnNotificationMusic = document.querySelector(
-    "#listen-notification_sound"
-);
-const btnAmbientMusic = document.querySelector("#listen-ambient_sound");
 
 const manageSoundObj = {
     endTimer: null,
@@ -35,33 +23,16 @@ const manageSoundObj = {
             "click",
             this.stopAmbientSoundInRoom.bind(this)
         );
-        // closeAddRoom.addEventListener("click", this.closeModal.bind(this));
-        this.addSoundEvent(
-            btnEndTimerMusic,
-            "end_timer",
-            endTimerSoundList,
-            stopMusic1,
-            btnEndTimerMusic
-        );
-        this.addSoundEvent(
-            btnNotificationMusic,
-            "notification",
-            notificationSoundList,
-            stopMusic2,
-            btnNotificationMusic
-        );
-        this.addSoundEvent(
-            btnAmbientMusic,
-            "ambient",
-            ambientSoundList,
-            stopMusic3,
-            btnAmbientMusic
-        );
-    },
-
-    addSoundEvent(button, audioName, soundList, btnStopMusic, btnListenMusic) {
-        button.addEventListener("click", () => {
-            this.startSound(audioName, soundList, btnStopMusic, btnListenMusic);
+        sounds.forEach((obj) => {
+            console.log(obj);
+            obj.btnListenMusic.addEventListener("click", () => {
+                this.startSound(
+                    obj.audioFolderName,
+                    obj.soundList,
+                    obj.btnStopMusic,
+                    obj.btnListenMusic
+                );
+            });
         });
     },
 

@@ -24,5 +24,18 @@
     "notification_volume": 1,
     "ambient_volume": 1,
     "phrases": []
+  },
+  {
+    "id": "btn-room_3",
+    "name": "Test",
+    "end_timer_sound": "Sherlock.mp3",
+    "notification_sound": "Message Notification Tone.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 0,
+    "minutes": 5,
+    "end_timer_volume": 1,
+    "notification_volume": 1,
+    "ambient_volume": 1,
+    "phrases": []
   }
 ]
