@@ -7,7 +7,6 @@
             http-equiv="Content-Security-Policy"
             content="default-src 'self'; script-src 'self'"
         />
-        <link rel="stylesheet" href="../css/reset.css" />
         <link
             rel="stylesheet"
             href="../css/mainWindow/compilation/output.css"
@@ -306,6 +305,18 @@
                         </button>
                     </div>
                     <div>
+                        <label for="delete-song"
+                            >Supprimer un son définitivement</label
+                        >
+                        <select id="delete-song">
+                            <option value="">Choisr le son à supprimer</option>
+                        </select>
+                        <button id="validate-delete_song">Valider</button>
+                    </div>
+                    <div>
+                        <label for="update-color"
+                            >Choisir la couleur des boutons</label
+                        >
                         <input type="color" id="update-color" />
                     </div>
                 </section>

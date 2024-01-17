@@ -37,6 +37,13 @@ const roomsObj = {
     },
 
     loadRooms() {
+        if (containerBtnRooms.children.length > 0) {
+            const buttons = containerBtnRooms.querySelectorAll("button");
+            buttons.forEach((room) => {
+                containerBtnRooms.removeChild(room);
+            });
+        }
+
         fs.readFile(filePath, "utf8", (err, data) => {
             if (err) {
                 console.error(err);

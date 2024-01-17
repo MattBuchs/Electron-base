@@ -1,1 +1,28 @@
-[{"id":"btn-room_1","name":"Salle1","end_timer_sound":"Sherlock Holmes.mp3","notification_sound":"Game Coin - Notification.mp3","ambient_sound":"Harry Potter - musique ambiance.mp3","hours":1,"minutes":0,"end_timer_volume":1,"notification_volume":0.5,"ambient_volume":0.05,"phrases":["Test","Wow","Testbtbertb"]},{"id":"btn-room_2","name":"Sherlock","end_timer_sound":"Sherlock Holmes.mp3","notification_sound":"Eagle - Notification ! Sms ! Tone.mp3","ambient_sound":"Harry Potter - musique ambiance.mp3","hours":0,"minutes":5,"end_timer_volume":1,"notification_volume":1,"ambient_volume":1,"phrases":[]}]
+[
+  {
+    "id": "btn-room_1",
+    "name": "Salle1",
+    "end_timer_sound": null,
+    "notification_sound": null,
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 1,
+    "minutes": 1,
+    "end_timer_volume": 1,
+    "notification_volume": 1,
+    "ambient_volume": 1,
+    "phrases": []
+  },
+  {
+    "id": "btn-room_2",
+    "name": "Salelzfr2",
+    "end_timer_sound": null,
+    "notification_sound": null,
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 15,
+    "minutes": 21,
+    "end_timer_volume": 1,
+    "notification_volume": 1,
+    "ambient_volume": 1,
+    "phrases": []
+  }
+]
