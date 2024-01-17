@@ -13,6 +13,7 @@ import updateRoomObj from "./rooms/updateRoom.js";
 import deletePhrasesObj from "./phrases/deletePhrases.js";
 import dragAndDropObj from "./settings/DragAndDrop.js";
 import deleteSongFileObj from "./settings/deleteSongFile.js";
+import manageNavbarObj from "./UI/manageNavbar.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -44,3 +45,5 @@ deletePhrasesObj.init();
 dragAndDropObj.init();
 
 deleteSongFileObj.init();
+
+manageNavbarObj.init();

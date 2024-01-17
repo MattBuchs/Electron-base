@@ -16,12 +16,13 @@
     <body>
         <div id="app">
             <header class="header">
-                <h1 class="header__title">
+                <div class="header__logo">
                     <img
                         src="../../public/img/Logo.png"
                         alt="logo Angel's Game"
                     />
-                </h1>
+                    <h1>EscapeTime</h1>
+                </div>
 
                 <nav class="header__nav">
                     <ul>
@@ -37,6 +38,7 @@
                                     alt="Accueil"
                                 />
                             </button>
+                            <p>Accueil</p>
                         </li>
                         <li>
                             <button
@@ -50,6 +52,7 @@
                                     alt="Ajouter un timer"
                                 />
                             </button>
+                            <p>Ajouter un timer</p>
                         </li>
                         <li>
                             <button
@@ -63,6 +66,7 @@
                                     alt="paramètre"
                                 />
                             </button>
+                            <p>Paramètre</p>
                         </li>
                     </ul>
 
@@ -74,6 +78,7 @@
                                     alt="Timer"
                                 />
                             </button>
+                            <p>Timer</p>
                         </li>
                         <li>
                             <button type="button" id="btn-add_phrases">
@@ -82,6 +87,7 @@
                                     alt=""
                                 />
                             </button>
+                            <p>Ajouter une phrase</p>
                         </li>
                         <li>
                             <button id="params-sound">
@@ -90,6 +96,7 @@
                                     alt="Paramètre volume"
                                 />
                             </button>
+                            <p>Modifier le volume</p>
                         </li>
                         <li>
                             <button
@@ -102,9 +109,17 @@
                                     alt="Paramètre du Timer"
                                 />
                             </button>
+                            <p>Modifier le timer</p>
                         </li>
                     </ul>
                 </nav>
+
+                <button id="expand-navbar" class="header__expandNavbar">
+                    <img
+                        src="../../public/img/chevron-right.svg"
+                        alt="Agrandir la barre de navigation"
+                    />
+                </button>
             </header>
 
             <main class="main">

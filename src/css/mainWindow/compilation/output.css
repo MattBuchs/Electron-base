@@ -136,13 +136,21 @@ table {
 }
 
 .header {
-  position: fixed;
+  position: relative;
   height: 100vh;
-  width: 4rem;
+  width: 10%;
   background-color: #eeeeee;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all ease-out 0.3s;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+.header__logo h1 {
+  display: none;
 }
 .header__nav {
   height: 100%;
@@ -151,16 +159,38 @@ table {
   justify-content: space-between;
   margin-top: 4rem;
 }
+.header__nav li {
+  display: flex;
+  align-items: center;
+}
+.header__nav p {
+  display: none;
+}
+.header__expandNavbar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+  width: 2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.header__expandNavbar img {
+  width: 100%;
+  height: 100%;
+}
 
 #app {
   display: flex;
   min-height: 100vh;
+  background-color: #333;
 }
 
 .main {
-  background-color: #333;
-  width: 100%;
-  margin-left: 4rem;
+  width: 90%;
   position: relative;
 }
 

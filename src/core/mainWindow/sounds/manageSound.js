@@ -24,7 +24,6 @@ const manageSoundObj = {
             this.stopAmbientSoundInRoom.bind(this)
         );
         sounds.forEach((obj) => {
-            console.log(obj);
             obj.btnListenMusic.addEventListener("click", () => {
                 this.startSound(
                     obj.audioFolderName,
