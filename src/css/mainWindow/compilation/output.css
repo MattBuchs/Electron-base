@@ -138,12 +138,11 @@ table {
 .header {
   position: relative;
   height: 100vh;
-  width: 10%;
+  width: 4rem;
   background-color: #eeeeee;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all ease-out 0.3s;
 }
 .header__logo {
   display: flex;
@@ -183,6 +182,36 @@ table {
   height: 100%;
 }
 
+.navbar-anim {
+  animation: navbarAnim 0.5s ease-out forwards;
+}
+
+.navbar-anim2 {
+  animation: navbarAnim2 0.5s ease-out forwards;
+}
+
+@keyframes navbarAnim {
+  0% {
+    align-items: normal;
+  }
+  100% {
+    width: 16rem;
+    align-items: normal;
+  }
+}
+@keyframes navbarAnim2 {
+  0% {
+    width: 16rem;
+    align-items: normal;
+  }
+  75% {
+    align-items: normal;
+  }
+  100% {
+    width: 4rem;
+    align-items: center;
+  }
+}
 #app {
   display: flex;
   min-height: 100vh;
@@ -190,7 +219,7 @@ table {
 }
 
 .main {
-  width: 90%;
+  width: 100%;
   position: relative;
 }
 

@@ -1,16 +1,16 @@
 .header {
     position: relative;
     height: 100vh;
-    width: 10%;
+    width: 4rem;
     background-color: #eeeeee;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all ease-out 0.3s;
 
     &__logo {
         display: flex;
         align-items: center;
+        // transition: all ease-out 0.5s;
 
         h1 {
             display: none;
@@ -50,5 +50,37 @@
             width: 100%;
             height: 100%;
         }
+    }
+}
+
+.navbar-anim {
+    animation: navbarAnim 0.5s ease-out forwards;
+}
+
+.navbar-anim2 {
+    animation: navbarAnim2 0.5s ease-out forwards;
+}
+
+@keyframes navbarAnim {
+    0% {
+        align-items: normal;
+    }
+    100% {
+        width: 16rem;
+        align-items: normal;
+    }
+}
+
+@keyframes navbarAnim2 {
+    0% {
+        width: 16rem;
+        align-items: normal;
+    }
+    75% {
+        align-items: normal;
+    }
+    100% {
+        width: 4rem;
+        align-items: center;
     }
 }
