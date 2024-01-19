@@ -2,15 +2,20 @@
     position: relative;
     height: 100vh;
     width: 4rem;
-    background-color: #eeeeee;
+    background-color: #dfe1ff;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-right: 1px solid #000;
+    box-shadow: 1px 0 10px #90909063;
 
     &__logo {
         display: flex;
         align-items: center;
-        // transition: all ease-out 0.5s;
+
+        img {
+            width: 4.2rem;
+        }
 
         h1 {
             display: none;
@@ -19,6 +24,7 @@
 
     &__nav {
         height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -27,10 +33,35 @@
         li {
             display: flex;
             align-items: center;
+            width: 100%;
+            height: 4rem;
         }
 
         p {
             display: none;
+        }
+
+        &--ul2 {
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: rgb(38, 38, 145);
+            }
+        }
+
+        &--svg {
+            width: 2.8rem;
+            height: 2.8rem;
+            fill: #080030;
+
+            &:hover {
+                fill: red;
+            }
         }
     }
 
@@ -51,6 +82,19 @@
             height: 100%;
         }
     }
+}
+
+.tabs {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.tabs:hover {
+    background-color: rgb(47, 47, 183);
 }
 
 .navbar-anim {

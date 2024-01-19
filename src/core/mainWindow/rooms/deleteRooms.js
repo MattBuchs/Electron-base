@@ -5,7 +5,7 @@ import utils from "../../utils.js";
 const btnDeleteRoom = document.querySelector("#params-delete_room");
 const roomsSelect = document.querySelector("#rooms-select");
 
-const dataFolderPath = path.join(__dirname, "../data");
+const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
 
 const deleteRoomsObj = {

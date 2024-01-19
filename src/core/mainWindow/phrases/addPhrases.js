@@ -15,14 +15,15 @@ const modalParamsSound = document.querySelector("#modal-params_sound");
 
 const addPhrasesObj = {
     init() {
-        btnAddPhrases.addEventListener("click", () =>
+        btnAddPhrases.addEventListener("click", () => {
+            // btnAddPhrases.style.background = "midnightblue";
             openModal(
                 containerRoom,
                 modalAddPhrases,
                 modalContent,
                 modalParamsSound
-            )
-        );
+            );
+        });
         btnCloseModal.addEventListener("click", () =>
             closeModal(modalAddPhrases, containerRoom)
         );

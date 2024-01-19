@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'"
+        />
+        <link
+            rel="stylesheet"
+            href="../../css/mainWindow/compilation/output.css"
+        />
+        <title>Main Window</title>
+    </head>
+    <body>
+        <div id="app">
+            <header id="header-load" class="header"></header>
+
+            <main class="main">
+                <section
+                    id="container-home"
+                    class="content activeContent"
+                    data-onglet="1"
+                >
+                    <div id="container-btn_rooms"></div>
+                </section>
+
+                <section id="container-room" class="content"></section>
+
+                <section
+                    id="container-add_room"
+                    class="content"
+                    data-onglet="2"
+                ></section>
+
+                <section
+                    id="global-settings"
+                    class="content"
+                    data-onglet="3"
+                ></section>
+
+                <section
+                    id="update-room"
+                    data-onglet="4"
+                    class="content"
+                ></section>
+            </main>
+
+            <div id="modal-settings"></div>
+            <div id="modal-utils"></div>
+        </div>
+
+        <script src="../../services/loadHtml.js"></script>
+        <script
+            type="module"
+            src="../../core/mainWindow/index.mainWindow.js"
+        ></script>
+    </body>
+</html>

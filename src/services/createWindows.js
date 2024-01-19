@@ -54,7 +54,7 @@ function createWindows(windows) {
         windows.thirdWindow.loadFile("src/html/secondWindow.html");
     }
 
-    windows.mainWindow.loadFile("src/html/mainWindow.html");
+    windows.mainWindow.loadFile("src/html/mainWindow/index.html");
     windows.secondWindow.loadFile("src/html/secondWindow.html");
 
     windows.mainWindow.webContents.openDevTools();

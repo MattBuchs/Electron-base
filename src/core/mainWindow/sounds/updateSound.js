@@ -47,7 +47,7 @@ const updateSoundObj = {
         modalParamsSound.classList.add("hidden");
         containerRoom.classList.remove("blur");
 
-        const dataFolderPath = path.join(__dirname, "../data");
+        const dataFolderPath = path.join(__dirname, "../../data");
         const filePath = path.join(dataFolderPath, "rooms.json");
 
         // Charger les données JSON existantes

@@ -5,15 +5,15 @@ import roomsObj from "../rooms/rooms.js";
 const selectDeleteSong = document.querySelector("#delete-song");
 const btnDeleteSong = document.querySelector("#validate-delete_song");
 
-const dataFolderPath = path.join(__dirname, "../data");
+const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
 
 const deleteSongFileObj = {
-    alarmSoundsFolder: path.join(__dirname, "../../public/sounds/end_timer"),
-    ambientSoundsFolder: path.join(__dirname, "../../public/sounds/ambient"),
+    alarmSoundsFolder: path.join(__dirname, "../../../public/sounds/end_timer"),
+    ambientSoundsFolder: path.join(__dirname, "../../../public/sounds/ambient"),
     notificationSoundsFolder: path.join(
         __dirname,
-        "../../public/sounds/notification"
+        "../../../public/sounds/notification"
     ),
 
     init() {
@@ -86,6 +86,8 @@ const deleteSongFileObj = {
 
     async getSoundName() {
         const selectedValue = selectDeleteSong.value;
+
+        if (selectedValue === "") return;
 
         const indexGroup = selectedValue.split("-")[0];
         const indexValue = selectedValue.split("-")[1];

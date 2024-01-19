@@ -88,7 +88,7 @@ const manageSoundObj = {
 
         const soundPath = path.join(
             __dirname,
-            `../../public/sounds/${audioName}/${soundValue}`
+            `../../../public/sounds/${audioName}/${soundValue}`
         );
 
         this[audioName] = new Audio(soundPath);

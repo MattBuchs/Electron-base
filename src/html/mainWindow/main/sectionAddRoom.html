@@ -1,0 +1,69 @@
+<form id="form-add_room">
+    <div>
+        <label for="room_name">Nom du bouton du timer :</label>
+        <input type="text" id="room_name" placeholder="ex: Salle 1" required />
+    </div>
+    <div>
+        <label for="room_times"
+            >Choisir le temps souhaité (format - heure : minute) :</label
+        >
+        <input type="time" id="room_times" required />
+    </div>
+    <div class="container-choice_sound">
+        <div>
+            <label for="end-timer_sound-list">Alarme :</label>
+            <select name="sound" id="end-timer_sound-list">
+                <option value="">Choisir un son de fin de timer</option>
+            </select>
+            <button type="button" class="listen-music">
+                <img
+                    src="../../../public/img/volume.svg"
+                    alt="Ecouter le son de fin de timer"
+                />
+            </button>
+            <button type="button" class="stop-music">
+                <img
+                    src="../../../public/img/stop.svg"
+                    alt="Stopper la musique"
+                />
+            </button>
+        </div>
+        <div>
+            <label for="notification_sound-list">Notification :</label>
+            <select name="sound" id="notification_sound-list">
+                <option value="">Choisir un son de notification</option>
+            </select>
+            <button type="button" class="listen-music">
+                <img
+                    src="../../../public/img/volume.svg"
+                    alt="Ecouter le son de notification"
+                />
+            </button>
+            <button type="button" class="stop-music">
+                <img
+                    src="../../../public/img/stop.svg"
+                    alt="Stopper la musique"
+                />
+            </button>
+        </div>
+        <div>
+            <label for="ambient_sound-list">Son d'ambiance :</label>
+            <select name="sound" id="ambient_sound-list">
+                <option value="">Choisir un son d'ambiance</option>
+            </select>
+            <button type="button" class="listen-music">
+                <img
+                    src="../../../public/img/volume.svg"
+                    alt="Ecouter le son d'ambiance"
+                />
+            </button>
+            <button type="button" class="stop-music">
+                <img
+                    src="../../../public/img/stop.svg"
+                    alt="Stopper la musique"
+                />
+            </button>
+        </div>
+    </div>
+    <button type="submit">Ajouter</button>
+</form>

@@ -16,22 +16,22 @@ const updateNotificationSoundList = document.querySelector(
     "#update-notification_sound-list"
 );
 
-const dataFolderPath = path.join(__dirname, "../data");
+const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
 
 const updateRoomObj = {
     isOptionCreatedInUpdateRoom: false,
     soundDirectories: [
         {
-            path: path.join(__dirname, "../../public/sounds/end_timer"),
+            path: path.join(__dirname, "../../../public/sounds/end_timer"),
             listId: "#update-alarm_sound-list",
         },
         {
-            path: path.join(__dirname, "../../public/sounds/ambient"),
+            path: path.join(__dirname, "../../../public/sounds/ambient"),
             listId: "#update-ambient_sound-list",
         },
         {
-            path: path.join(__dirname, "../../public/sounds/notification"),
+            path: path.join(__dirname, "../../../public/sounds/notification"),
             listId: "#update-notification_sound-list",
         },
     ],

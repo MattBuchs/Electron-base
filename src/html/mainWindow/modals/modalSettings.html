@@ -1,0 +1,65 @@
+<div id="modal-params_sound" class="modal hidden">
+    <div id="modal-params_sound__content" class="modal-content">
+        <button id="close-params_sound" class="cross-to-close">
+            <img src="../../../public/img/close.svg" alt="fermer" />
+        </button>
+
+        <div>
+            <label for="volume-end_timer"
+                >Volume du son de fin de timer :</label
+            >
+            <div class="volume">
+                <input
+                    type="range"
+                    id="volume-end_timer"
+                    value="100"
+                    min="0"
+                    max="100"
+                    step="5"
+                />
+                <p>100%</p>
+            </div>
+        </div>
+        <div>
+            <label for="volume-notification"
+                >Volume du son de notification :</label
+            >
+            <div class="volume">
+                <input
+                    type="range"
+                    id="volume-notification"
+                    value="100"
+                    min="0"
+                    max="100"
+                    step="5"
+                />
+                <p>100%</p>
+            </div>
+        </div>
+        <div>
+            <label for="volume-amibent">Volume du son d'ambiance :</label>
+            <div class="volume">
+                <input
+                    type="range"
+                    id="volume-amibent"
+                    value="100"
+                    min="0"
+                    max="100"
+                    step="5"
+                />
+                <p>100%</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-add_phrases" class="modal hidden">
+    <div id="modal-add_phrases__content" class="modal-content">
+        <button id="close-modal_addphrases" class="cross-to-close">
+            <img src="../../../public/img/close.svg" alt="fermer" />
+        </button>
+        <label for="add-phrases">Ajouter une phrase pré-enregistré :</label>
+        <textarea id="add-phrases" cols="30" rows="10"></textarea>
+        <button id="btn-validate_addphrases">Valider</button>
+    </div>
+</div>

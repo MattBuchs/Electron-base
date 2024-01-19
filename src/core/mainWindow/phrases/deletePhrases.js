@@ -5,7 +5,7 @@ const path = require("path");
 const selectDeletePhrase = document.querySelector("#select-delete_phrase");
 const deletePhraseForm = document.querySelector("#delete-phrase");
 
-const dataFolderPath = path.join(__dirname, "../data");
+const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
 
 const deletePhrasesObj = {

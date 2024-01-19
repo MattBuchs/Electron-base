@@ -21,7 +21,7 @@ const navbarTimer = document.querySelector("#navbar-timer");
 const btnNotification = document.querySelector("#btn-notification_sound");
 const btnAmbient = document.querySelector("#btn-ambient_sound");
 
-const dataFolderPath = path.join(__dirname, "../data");
+const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
 
 const roomsObj = {
@@ -112,15 +112,15 @@ const roomsObj = {
         this.resetMinutes = room.minutes;
 
         if (room.end_timer_sound)
-            endTimerSound.src = `../../public/sounds/end_timer/${room.end_timer_sound}`;
+            endTimerSound.src = `../../../public/sounds/end_timer/${room.end_timer_sound}`;
         if (room.notification_sound) {
-            notificationSound.src = `../../public/sounds/notification/${room.notification_sound}`;
+            notificationSound.src = `../../../public/sounds/notification/${room.notification_sound}`;
 
             if (btnNotification.classList.contains("hidden"))
                 btnNotification.classList.remove("hidden");
         } else btnNotification.classList.add("hidden");
         if (room.ambient_sound) {
-            ambientSound.src = `../../public/sounds/ambient/${room.ambient_sound}`;
+            ambientSound.src = `../../../public/sounds/ambient/${room.ambient_sound}`;
 
             if (btnAmbient.classList.contains("hidden"))
                 btnAmbient.classList.remove("hidden");

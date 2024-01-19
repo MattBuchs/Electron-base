@@ -14,15 +14,15 @@ const addRoomObj = {
     isOptionCreatedInAddRoom: false,
     soundDirectories: [
         {
-            path: path.join(__dirname, "../../public/sounds/end_timer"),
+            path: path.join(__dirname, "../../../public/sounds/end_timer"),
             listId: "#end-timer_sound-list",
         },
         {
-            path: path.join(__dirname, "../../public/sounds/ambient"),
+            path: path.join(__dirname, "../../../public/sounds/ambient"),
             listId: "#ambient_sound-list",
         },
         {
-            path: path.join(__dirname, "../../public/sounds/notification"),
+            path: path.join(__dirname, "../../../public/sounds/notification"),
             listId: "#notification_sound-list",
         },
     ],
@@ -65,7 +65,7 @@ const addRoomObj = {
     },
 
     addRoomToData(newRoom) {
-        const dataFolderPath = path.join(__dirname, "../data");
+        const dataFolderPath = path.join(__dirname, "../../data");
         const filePath = path.join(dataFolderPath, "rooms.json");
 
         // Charger les données JSON existantes (si le fichier existe)

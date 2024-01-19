@@ -1,0 +1,64 @@
+<form id="update-timer_value">
+    <div>
+        <label for="update-title">Changer le titre du timer</label>
+        <input type="text" id="update-title" />
+    </div>
+    <div>
+        <label for="">Changer le temps du timer</label>
+        <input type="time" id="update-timer_input" />
+    </div>
+    <div>
+        <label for="update-alarm_sound-list"
+            >Modifier le son de fin de timer</label
+        >
+        <select name="sound" id="update-alarm_sound-list"></select>
+        <button type="button" class="listen-music">
+            <img
+                src="../../../public/img/volume.svg"
+                alt="Ecouter le son de fin de timer"
+            />
+        </button>
+        <button type="button" class="stop-music">
+            <img src="../../../public/img/stop.svg" alt="Stopper la musique" />
+        </button>
+    </div>
+    <div>
+        <label for="update-notification_sound-list"
+            >Modifier le son de notification</label
+        >
+        <select name="sound" id="update-notification_sound-list"></select>
+        <button type="button" class="listen-music">
+            <img
+                src="../../../public/img/volume.svg"
+                alt="Ecouter le son de notification"
+            />
+        </button>
+        <button type="button" class="stop-music">
+            <img src="../../../public/img/stop.svg" alt="Stopper la musique" />
+        </button>
+    </div>
+    <div>
+        <label for="update-ambient_sound-list"
+            >Modifier le son d'ambiance</label
+        >
+        <select name="sound" id="update-ambient_sound-list"></select>
+        <button type="button" class="listen-music">
+            <img
+                src="../../../public/img/volume.svg"
+                alt="Ecouter le son d'ambiance"
+            />
+        </button>
+        <button type="button" class="stop-music">
+            <img src="../../../public/img/stop.svg" alt="Stopper la musique" />
+        </button>
+    </div>
+    <button type="submit">Valider</button>
+</form>
+
+<form id="delete-phrase">
+    <label for="select-delete_phrase">Phrase à supprimer : </label>
+    <select name="delete_phrase" id="select-delete_phrase">
+        <option value="">Choisir La phrases à supprimer</option>
+    </select>
+    <button type="submit">Valider</button>
+</form>
