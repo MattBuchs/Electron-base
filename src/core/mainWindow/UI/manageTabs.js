@@ -12,6 +12,8 @@ const exitModalTimer = document.querySelector("#exit-modal_timer");
 const cancelCheckExitTimer = document.querySelector("#cancel-check_exit_timer");
 const closeCheckExitTimer = document.querySelector("#close-check_exit_timer");
 const modals = document.querySelectorAll(".modal");
+const openParamsSound = document.querySelector("#params-sound");
+const btnAddPhrases = document.querySelector("#btn-add_phrases");
 
 const manageTabsObj = {
     index: 0,
@@ -55,14 +57,20 @@ const manageTabsObj = {
     },
 
     manageTab(tab) {
-        if (Number(tab.dataset.onglet) !== 4)
+        if (Number(tab.dataset.onglet) < 4) {
             navbarTimer.classList.add("hidden");
 
-        if (tab.classList.contains("active")) {
-            return;
-        } else {
-            tab.classList.add("active");
+            if (openParamsSound.classList.contains("active")) {
+                openParamsSound.classList.remove("active");
+            }
+
+            if (btnAddPhrases.classList.contains("active")) {
+                btnAddPhrases.classList.remove("active");
+            }
         }
+
+        if (tab.classList.contains("active")) return;
+        else tab.classList.add("active");
 
         this.index = tab.getAttribute("data-onglet");
 

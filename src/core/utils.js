@@ -17,7 +17,7 @@ const utils = {
         }, 3000);
     },
 
-    openModal(container, modal, modalContent, otherModal) {
+    openModal(container, modal, modalContent, otherModal, btn, otherBtn) {
         modalContent.addEventListener("click", (e) => e.stopPropagation());
 
         modal.classList.remove("hidden");
@@ -26,11 +26,17 @@ const utils = {
         if (!otherModal.classList.contains("hidden")) {
             otherModal.classList.add("hidden");
         }
+
+        if (!btn.classList.contains("active")) btn.classList.add("active");
+        if (otherBtn.classList.contains("active"))
+            otherBtn.classList.remove("active");
     },
 
-    closeModal(modal, container) {
+    closeModal(modal, container, btn) {
         modal.classList.add("hidden");
         container.classList.remove("blur");
+
+        if (btn.classList.contains("active")) btn.classList.remove("active");
     },
 
     listSounds(soundDirectories) {

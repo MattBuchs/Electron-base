@@ -67,6 +67,11 @@ img {
 .active {
     background-color: midnightblue;
     transition: all 0.3s ease;
+
+    .header__nav--svg path,
+    .header__nav--svg polygon {
+        fill: #f1f1f1;
+    }
 }
 
 .activeContent {

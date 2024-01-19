@@ -12,23 +12,25 @@ const btnValidate = document.querySelector("#btn-validate_addphrases");
 const phrases = document.querySelector("#add-phrases");
 const phrasesSelect = document.querySelector("#phrases-select");
 const modalParamsSound = document.querySelector("#modal-params_sound");
+const openParamsSound = document.querySelector("#params-sound");
 
 const addPhrasesObj = {
     init() {
         btnAddPhrases.addEventListener("click", () => {
-            // btnAddPhrases.style.background = "midnightblue";
             openModal(
                 containerRoom,
                 modalAddPhrases,
                 modalContent,
-                modalParamsSound
+                modalParamsSound,
+                btnAddPhrases,
+                openParamsSound
             );
         });
         btnCloseModal.addEventListener("click", () =>
-            closeModal(modalAddPhrases, containerRoom)
+            closeModal(modalAddPhrases, containerRoom, btnAddPhrases)
         );
         modalAddPhrases.addEventListener("click", () =>
-            closeModal(modalAddPhrases, containerRoom)
+            closeModal(modalAddPhrases, containerRoom, btnAddPhrases)
         );
         btnValidate.addEventListener("click", this.addPhrases.bind(this));
     },
@@ -63,7 +65,7 @@ const addPhrasesObj = {
         });
 
         phrases.value = "";
-        closeModal(modalAddPhrases, containerRoom);
+        closeModal(modalAddPhrases, containerRoom, btnAddPhrases);
     },
 
     loadOption(data) {

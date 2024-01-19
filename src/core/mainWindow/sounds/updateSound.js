@@ -13,6 +13,7 @@ const notificationRange = document.querySelector("#volume-notification");
 const amibentRange = document.querySelector("#volume-amibent");
 const pourcentageVolume = document.querySelectorAll(".volume p");
 const modalAddPhrases = document.querySelector("#modal-add_phrases");
+const btnAddPhrases = document.querySelector("#btn-add_phrases");
 
 const updateSoundObj = {
     init() {
@@ -21,7 +22,9 @@ const updateSoundObj = {
                 containerRoom,
                 modalParamsSound,
                 modalContent,
-                modalAddPhrases
+                modalAddPhrases,
+                openParamsSound,
+                btnAddPhrases
             )
         );
         endTimerRange.addEventListener("input", () =>
@@ -33,19 +36,19 @@ const updateSoundObj = {
         amibentRange.addEventListener("input", () =>
             this.percentageUpdate(amibentRange, 2)
         );
-        closeParamsSound.addEventListener(
-            "click",
-            this.closeModalUpdateSound.bind(this)
+        closeParamsSound.addEventListener("click", () =>
+            this.closeModalUpdateSound(openParamsSound)
         );
-        modalParamsSound.addEventListener(
-            "click",
-            this.closeModalUpdateSound.bind(this)
+        modalParamsSound.addEventListener("click", () =>
+            this.closeModalUpdateSound(openParamsSound)
         );
     },
 
-    closeModalUpdateSound() {
+    closeModalUpdateSound(btn) {
         modalParamsSound.classList.add("hidden");
         containerRoom.classList.remove("blur");
+
+        if (btn.classList.contains("active")) btn.classList.remove("active");
 
         const dataFolderPath = path.join(__dirname, "../../data");
         const filePath = path.join(dataFolderPath, "rooms.json");
