@@ -96,6 +96,7 @@ const addRoomObj = {
             end_timer_volume: 1,
             notification_volume: 1,
             ambient_volume: 1,
+            isPreferenceTimer: true,
             phrases: [],
         };
 

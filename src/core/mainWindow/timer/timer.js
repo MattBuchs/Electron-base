@@ -1,6 +1,7 @@
 const { ipcRenderer } = require("electron");
 import utils from "../../utils.js";
 import roomsObj from "../rooms/rooms.js";
+import utilsSettingsObj from "../settings/utilsSettings.js";
 
 const timer = document.querySelector("#timer-room");
 const playTimer = document.querySelector("#play");
@@ -71,12 +72,16 @@ const timerObj = {
             }
 
             timer.textContent = `${
-                roomsObj.hours === 0 ? "" : roomsObj.hours + " : "
+                roomsObj.hours === 0
+                    ? ""
+                    : `${roomsObj.hours}${
+                          utilsSettingsObj.isPreferenceTimer ? "h" : ""
+                      } : `
             }${roomsObj.minutes < 10 && roomsObj.minutes > 0 ? "0" : ""}${
                 roomsObj.minutes
-            } : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
-                this.seconds
-            }`;
+            }${utilsSettingsObj.isPreferenceTimer ? "mn" : ""} : ${
+                this.seconds < 10 && this.seconds > 0 ? "0" : ""
+            }${this.seconds}${utilsSettingsObj.isPreferenceTimer ? "s" : ""}`;
         }, 1000);
 
         ipcRenderer.send("play-timer");

@@ -7,7 +7,7 @@ import manageSoundObj from "./sounds/manageSound.js";
 import deleteRoomsObj from "./rooms/deleteRooms.js";
 import updateSoundObj from "./sounds/updateSound.js";
 import addPhrasesObj from "./phrases/addPhrases.js";
-import updateColorObj from "./settings/updateColor.js";
+import utilsSettingsObj from "./settings/utilsSettings.js";
 import manageTabsObj from "./UI/manageTabs.js";
 import updateRoomObj from "./rooms/updateRoom.js";
 import deletePhrasesObj from "./phrases/deletePhrases.js";
@@ -34,7 +34,7 @@ updateSoundObj.init();
 // Initialisation des fonctionnalités liées aux paramètres de la room
 addPhrasesObj.init();
 // Initialisation des fonctionnalités liées au changement de couleur de l'app
-updateColorObj.init();
+utilsSettingsObj.init();
 // Initialisation des fonctionnalités liées aux onglets de la navbar
 manageTabsObj.init();
 // Initialisation des fonctionnalités liées à l'update d'un timer
