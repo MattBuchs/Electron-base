@@ -4,7 +4,8 @@ const header = document.querySelector(".header");
 const btnExpandNavbar = document.querySelector("#expand-navbar");
 const imgExpandNavbar = document.querySelector("#expand-navbar img");
 const h1 = document.querySelector(".header__logo h1");
-const paragraphs = document.querySelectorAll(".header__nav p");
+const btns = document.querySelectorAll(".header__nav button");
+const paragraphs = document.querySelectorAll(".header__nav span");
 
 const manageNavbarObj = {
     navbarExpanded: false,
@@ -25,11 +26,16 @@ const manageNavbarObj = {
                 paragraph.style.display = "";
             });
 
+            btns.forEach((btn) => {
+                btn.style.justifyContent = "";
+            });
+
             header.classList.remove("navbar-anim");
             header.classList.add("navbar-anim2");
 
             this.navbarExpanded = false;
         } else {
+            // header.style.alignItems = "start";
             h1.style.display = "initial";
             imgExpandNavbar.src = path.join(
                 __dirname,
@@ -38,6 +44,10 @@ const manageNavbarObj = {
 
             paragraphs.forEach((paragraph) => {
                 paragraph.style.display = "initial";
+            });
+
+            btns.forEach((btn) => {
+                btn.style.justifyContent = "start";
             });
 
             header.classList.add("navbar-anim");

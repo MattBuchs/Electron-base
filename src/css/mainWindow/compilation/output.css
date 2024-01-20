@@ -152,6 +152,7 @@ table {
 }
 .header__logo img {
   width: 4.2rem;
+  user-select: none;
 }
 .header__logo h1 {
   display: none;
@@ -173,8 +174,18 @@ table {
 .header__nav li:hover .header__nav--svg path, .header__nav li:hover .header__nav--svg polygon {
   fill: #f1f1f1;
 }
-.header__nav p {
+.header__nav li button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__nav li button:hover {
+  color: #f1f1f1;
+}
+.header__nav li span {
   display: none;
+  margin-left: 1rem;
+  font-size: 1rem;
 }
 .header__nav--ul2 {
   background-color: transparent;
@@ -182,6 +193,7 @@ table {
   cursor: pointer;
   width: 100%;
   height: 100%;
+  text-align: left;
   transition: all 0.3s ease;
 }
 .header__nav--ul2:hover {
@@ -215,6 +227,7 @@ table {
   cursor: pointer;
   width: 100%;
   height: 100%;
+  text-align: left;
   transition: all 0.3s ease;
 }
 .tabs:hover {
@@ -231,11 +244,11 @@ table {
 
 @keyframes navbarAnim {
   0% {
-    align-items: normal;
+    align-items: start;
   }
   100% {
     width: 16rem;
-    align-items: normal;
+    align-items: start;
   }
 }
 @keyframes navbarAnim2 {
@@ -315,6 +328,7 @@ img {
 /* Animation onglet */
 .active {
   background-color: midnightblue;
+  color: #f1f1f1;
   transition: all 0.3s ease;
 }
 .active .header__nav--svg path,

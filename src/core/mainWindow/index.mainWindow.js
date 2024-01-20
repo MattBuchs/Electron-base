@@ -14,6 +14,7 @@ import deletePhrasesObj from "./phrases/deletePhrases.js";
 import dragAndDropObj from "./settings/DragAndDrop.js";
 import deleteSongFileObj from "./settings/deleteSongFile.js";
 import manageNavbarObj from "./UI/manageNavbar.js";
+import checkFoldersExist from "./sounds/checkFoldersExist.js";
 
 // Initialisation du chronomètre
 timerObj.init();
@@ -47,3 +48,5 @@ dragAndDropObj.init();
 deleteSongFileObj.init();
 
 manageNavbarObj.init();
+
+checkFoldersExist();

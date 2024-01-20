@@ -5,6 +5,7 @@ const inputColor = document.querySelector("#update-color");
 const buttons = document.querySelectorAll("button");
 const containerTimer = document.querySelector(".container-room__timer");
 const inputsRadio = document.getElementsByName("preference-timer");
+const logo = document.querySelector(".header__logo img");
 
 const dataFolderPath = path.join(__dirname, "../../data");
 const filePath = path.join(dataFolderPath, "rooms.json");
@@ -28,6 +29,8 @@ const utilsSettingsObj = {
                 this.updatePreferenceTimer(input)
             );
         });
+
+        logo.addEventListener("dragstart", (e) => e.preventDefault());
     },
 
     updateColor() {
