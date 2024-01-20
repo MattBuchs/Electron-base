@@ -1,30 +1,25 @@
-const { app, BrowserWindow } = require("electron");
+const { app } = require("electron");
 require("electron-reload")(__dirname, { ignored: [/\.json$/] });
 
 const createWindows = require("./src/services/createWindows");
 const setupIPCFunctions = require("./src/services/ipcFunctions");
 
-let windows = {
-    mainWindow: null,
-    secondWindow: null,
-    thirdWindow: null,
-};
+let windows = [];
 
-const createWindow = () => {
-    createWindows(windows);
+const createAppWindows = () => {
+    windows = createWindows();
     setupIPCFunctions(windows);
 
-    windows.mainWindow.on("closed", () => {
-        if (windows.secondWindow) windows.secondWindow.close();
-        if (windows.thirdWindow) windows.thirdWindow.close();
+    windows[0].on("closed", () => {
+        windows.slice(1).forEach((win) => win.close());
     });
 };
 
 app.whenReady().then(() => {
-    createWindow();
+    createAppWindows();
 
     app.on("activate", () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+        if (windows.length === 0) createAppWindows();
     });
 
     app.on("window-all-closed", () => {

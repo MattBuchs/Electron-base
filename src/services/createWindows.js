@@ -1,64 +1,51 @@
 const { BrowserWindow, screen } = require("electron");
 
-function createWindows(windows) {
+function createWindows() {
     const displays = screen.getAllDisplays();
-    const mainScreen = displays[0];
+    console.log(displays);
+    const mainScreen = screen.getPrimaryDisplay();
+    let x = 0;
 
-    windows.mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 800,
-        x: mainScreen.bounds.x,
-        y: mainScreen.bounds.y,
-        center: true,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true,
-        },
-    });
+    const windows = displays.map((display, index) => {
+        if (index === 0) {
+            return new BrowserWindow({
+                width: 1200,
+                height: 800,
+                x: mainScreen.bounds.x,
+                y: mainScreen.bounds.y,
+                center: true,
+                webPreferences: {
+                    nodeIntegration: true,
+                    contextIsolation: false,
+                    enableRemoteModule: true,
+                },
+            });
+        }
 
-    windows.secondWindow = new BrowserWindow({
-        width: 1200,
-        height: 800,
-        fullscreen: true,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        },
-    });
-
-    if (displays.length === 2) {
-        const secondScreen = displays[1];
-
-        windows.secondWindow.setPosition(
-            secondScreen.bounds.x,
-            secondScreen.bounds.y
-        );
-    }
-
-    if (displays.length === 3) {
-        const thirdScreen = displays[2];
-
-        windows.thirdWindow = new BrowserWindow({
+        x += display.bounds.x;
+        return new BrowserWindow({
             width: 1200,
             height: 800,
-            x: thirdScreen.bounds.x,
-            y: thirdScreen.bounds.y,
+            x: display.bounds.x - x,
+            y: display.bounds.y,
             fullscreen: true,
             webPreferences: {
                 nodeIntegration: true,
                 contextIsolation: false,
             },
         });
+    });
 
-        windows.thirdWindow.loadFile("src/html/secondWindow.html");
-    }
+    windows.forEach((window, index) => {
+        window.loadFile(
+            index === 0
+                ? "src/html/mainWindow/index.html"
+                : "src/html/secondWindow.html"
+        );
+        window.webContents.openDevTools();
+    });
 
-    windows.mainWindow.loadFile("src/html/mainWindow/index.html");
-    windows.secondWindow.loadFile("src/html/secondWindow.html");
-
-    windows.mainWindow.webContents.openDevTools();
-    windows.secondWindow.webContents.openDevTools();
+    return windows;
 }
 
 module.exports = createWindows;
