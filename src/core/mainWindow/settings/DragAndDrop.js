@@ -48,13 +48,12 @@ const dragAndDropObj = {
     },
 
     handleFolder(file, pathName) {
-        console.log(file);
         const fileName = path.basename(file.path); // Obtenir le nom de fichier
         const fileContent = fs.readFileSync(file.path, "binary"); // Lire le contenu du fichier
 
         const destinationPath = path.join(
             __dirname,
-            `../../public/sounds/${pathName}`,
+            `../../../public/sounds/${pathName}`,
             fileName
         );
 

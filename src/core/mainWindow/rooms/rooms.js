@@ -113,18 +113,19 @@ const roomsObj = {
 
         if (room.end_timer_sound)
             endTimerSound.src = `../../../public/sounds/end_timer/${room.end_timer_sound}`;
+
         if (room.notification_sound) {
             notificationSound.src = `../../../public/sounds/notification/${room.notification_sound}`;
 
-            if (btnNotification.classList.contains("hidden"))
-                btnNotification.classList.remove("hidden");
-        } else btnNotification.classList.add("hidden");
+            if (btnNotification.disabled === false)
+                btnNotification.disabled = false;
+        } else btnNotification.disabled = true;
+
         if (room.ambient_sound) {
             ambientSound.src = `../../../public/sounds/ambient/${room.ambient_sound}`;
 
-            if (btnAmbient.classList.contains("hidden"))
-                btnAmbient.classList.remove("hidden");
-        } else btnAmbient.classList.add("hidden");
+            if (btnAmbient.disabled === false) btnAmbient.disabled = false;
+        } else btnAmbient.disabled = true;
 
         utils.displayTimer(timer, this.hours, this.minutes);
         this.updateRangeAndSound(idOfRoom);
