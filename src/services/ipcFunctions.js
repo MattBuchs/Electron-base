@@ -4,30 +4,20 @@ const path = require("path");
 
 function setupIPCFunctions(windows) {
     ipcMain.on("play-timer", () => {
-        windows.secondWindow.webContents.send("play-timer");
-
-        if (windows.thirdWindow) {
-            windows.thirdWindow.webContents.send("play-timer");
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("play-timer");
         }
     });
 
     ipcMain.on("stop-timer", () => {
-        windows.secondWindow.webContents.send("stop-timer");
-
-        if (windows.thirdWindow) {
-            windows.thirdWindow.webContents.send("stop-timer");
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("stop-timer");
         }
     });
 
     ipcMain.on("reset-timer", (event, resetHours, resetMinutes) => {
-        windows.secondWindow.webContents.send(
-            "reset-timer",
-            resetHours,
-            resetMinutes
-        );
-
-        if (windows.thirdWindow) {
-            windows.thirdWindow.webContents.send(
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send(
                 "reset-timer",
                 resetHours,
                 resetMinutes
@@ -36,34 +26,20 @@ function setupIPCFunctions(windows) {
     });
 
     ipcMain.on("send-message", (_, message) => {
-        windows.secondWindow.webContents.send("send-message", message);
-
-        if (windows.thirdWindow) {
-            windows.thirdWindow.webContents.send("send-message", message);
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("send-message", message);
         }
     });
 
     ipcMain.on("clear-message", () => {
-        windows.secondWindow.webContents.send("clear-message");
-
-        if (windows.thirdWindow) {
-            windows.thirdWindow.webContents.send("clear-message");
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("clear-message");
         }
     });
 
     ipcMain.on("times", (event, resetHours, resetMinutes) => {
-        windows.secondWindow.webContents.send(
-            "times",
-            resetHours,
-            resetMinutes
-        );
-
-        if (windows.thirdWindow) {
-            windows.thirdWindow.webContents.send(
-                "times",
-                resetHours,
-                resetMinutes
-            );
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("times", resetHours, resetMinutes);
         }
     });
 

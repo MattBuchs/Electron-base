@@ -1,13 +1,18 @@
-const { app } = require("electron");
+const { app, screen } = require("electron");
 require("electron-reload")(__dirname, { ignored: [/\.json$/] });
 
-const createWindows = require("./src/services/createWindows");
+const {
+    createWindows,
+    createWindowsIf1Screen,
+} = require("./src/services/createWindows");
 const setupIPCFunctions = require("./src/services/ipcFunctions");
 
 let windows = [];
 
 const createAppWindows = () => {
-    windows = createWindows();
+    if (screen.getAllDisplays().length === 1)
+        windows = createWindowsIf1Screen();
+    else windows = createWindows();
     setupIPCFunctions(windows);
 
     windows[0].on("closed", () => {

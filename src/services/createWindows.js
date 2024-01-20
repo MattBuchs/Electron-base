@@ -2,7 +2,6 @@ const { BrowserWindow, screen } = require("electron");
 
 function createWindows() {
     const displays = screen.getAllDisplays();
-    console.log(displays);
     const mainScreen = screen.getPrimaryDisplay();
     let x = 0;
 
@@ -48,4 +47,44 @@ function createWindows() {
     return windows;
 }
 
-module.exports = createWindows;
+function createWindowsIf1Screen() {
+    const mainScreen = screen.getPrimaryDisplay();
+
+    const window1 = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        x: mainScreen.bounds.x,
+        y: mainScreen.bounds.y,
+        center: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        },
+    });
+
+    const window2 = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        x: mainScreen.bounds.x,
+        y: mainScreen.bounds.y,
+        fullscreen: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        },
+    });
+
+    window2.loadFile("src/html/secondWindow.html");
+    window1.loadFile("src/html/mainWindow/index.html");
+
+    window2.webContents.openDevTools();
+    window1.webContents.openDevTools();
+
+    return [window1, window2];
+}
+
+module.exports = {
+    createWindows,
+    createWindowsIf1Screen,
+};
