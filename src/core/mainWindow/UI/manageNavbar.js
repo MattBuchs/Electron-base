@@ -18,7 +18,7 @@ const manageNavbarObj = {
             h1.style.display = "";
             imgExpandNavbar.src = path.join(
                 __dirname,
-                "../../public/img/chevron-right.svg"
+                "../../../public/img/chevron-right.svg"
             );
 
             paragraphs.forEach((paragraph) => {
@@ -33,7 +33,7 @@ const manageNavbarObj = {
             h1.style.display = "initial";
             imgExpandNavbar.src = path.join(
                 __dirname,
-                "../../public/img/chevron-left.svg"
+                "../../../public/img/chevron-left.svg"
             );
 
             paragraphs.forEach((paragraph) => {

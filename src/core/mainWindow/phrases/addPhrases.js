@@ -43,7 +43,7 @@ const addPhrasesObj = {
         option.appendChild(content);
         phrasesSelect.appendChild(option);
 
-        const dataFolderPath = path.join(__dirname, "../data");
+        const dataFolderPath = path.join(__dirname, "../../data");
         const filePath = path.join(dataFolderPath, "rooms.json");
 
         // Charger les données JSON existantes
