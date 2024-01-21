@@ -1,1 +1,21 @@
-[{"id":"btn-room_1","name":"Salle1","end_timer_sound":"Sherlock.mp3","notification_sound":"Message Notification Tone.mp3","ambient_sound":null,"hours":1,"minutes":0,"end_timer_volume":0.45,"notification_volume":1,"ambient_volume":1,"isPreferenceTimer":false,"phrases":["Test"]}]
+[
+  {
+    "id": "btn-room_1",
+    "name": "Salle1",
+    "end_timer_sound": "Sherlock.mp3",
+    "notification_sound": null,
+    "ambient_sound": null,
+    "hours": 1,
+    "minutes": 0,
+    "end_timer_volume": 0.75,
+    "notification_volume": 1,
+    "ambient_volume": 1,
+    "isPreferenceTimer": false,
+    "phrases": [
+      "Test",
+      "sdvfsvsf",
+      "sdvosvs",
+      "Test2"
+    ]
+  }
+]

@@ -1,7 +1,5 @@
-const fs = require("fs");
-const path = require("path");
 import roomsObj from "../rooms/rooms.js";
-import { openModal } from "../../utils.js";
+import { openModal, writeFile, dataloaded } from "../../utils.js";
 
 const containerRoom = document.querySelector("#container-room");
 const modalParamsSound = document.querySelector("#modal-params_sound");
@@ -50,43 +48,29 @@ const updateSoundObj = {
 
         if (btn.classList.contains("active")) btn.classList.remove("active");
 
-        const dataFolderPath = path.join(__dirname, "../../data");
-        const filePath = path.join(dataFolderPath, "rooms.json");
-
-        // Charger les données JSON existantes
-        const jsonData = require(filePath);
-
         // Trouver l'index de l'objet avec l'ID donné dans le tableau
-        const index = jsonData.findIndex((obj) => obj.id === roomsObj.roomId);
+        const index = dataloaded.findIndex((obj) => obj.id === roomsObj.roomId);
 
         const endTimerCalc = Number(endTimerRange.value) / 100;
         const notificationCalc = Number(notificationRange.value) / 100;
         const ambientCalc = Number(amibentRange.value) / 100;
 
         if (
-            jsonData[index].end_timer_volume === endTimerCalc &&
-            jsonData[index].notification_volume === notificationCalc &&
-            jsonData[index].ambient_volume === ambientCalc
+            dataloaded[index].end_timer_volume === endTimerCalc &&
+            dataloaded[index].notification_volume === notificationCalc &&
+            dataloaded[index].ambient_volume === ambientCalc
         ) {
             return;
         }
 
         if (index !== -1) {
-            jsonData[index].end_timer_volume = endTimerCalc;
-            jsonData[index].notification_volume = notificationCalc;
-            jsonData[index].ambient_volume = ambientCalc;
+            dataloaded[index].end_timer_volume = endTimerCalc;
+            dataloaded[index].notification_volume = notificationCalc;
+            dataloaded[index].ambient_volume = ambientCalc;
         }
 
-        // Convertir les données en JSON
-        const jsonString = JSON.stringify(jsonData);
-
         // Enregistrer le fichier JSON
-        fs.writeFile(filePath, jsonString, (err) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-        });
+        writeFile(dataloaded);
 
         const endTimerSound = document.querySelector("#end-timer_sound");
         const notificationSound = document.querySelector("#notification_sound");

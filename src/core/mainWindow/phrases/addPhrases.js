@@ -1,7 +1,5 @@
-const fs = require("fs");
-const path = require("path");
 import roomsObj from "../rooms/rooms.js";
-import { openModal, closeModal } from "../../utils.js";
+import { openModal, closeModal, dataloaded, writeFile } from "../../utils.js";
 
 const containerRoom = document.querySelector("#container-room");
 const btnAddPhrases = document.querySelector("#btn-add_phrases");
@@ -43,26 +41,12 @@ const addPhrasesObj = {
         option.appendChild(content);
         phrasesSelect.appendChild(option);
 
-        const dataFolderPath = path.join(__dirname, "../../data");
-        const filePath = path.join(dataFolderPath, "rooms.json");
+        // Trouve l'index de l'objet avec l'ID donné dans le tableau
+        const index = dataloaded.findIndex((obj) => obj.id === roomsObj.roomId);
 
-        // Charger les données JSON existantes
-        const jsonData = require(filePath);
-        // Trouver l'index de l'objet avec l'ID donné dans le tableau
-        const index = jsonData.findIndex((obj) => obj.id === roomsObj.roomId);
+        dataloaded[index].phrases.push(value);
 
-        jsonData[index].phrases.push(value);
-
-        // Convertir les données en JSON
-        const jsonString = JSON.stringify(jsonData);
-
-        // Enregistrer le fichier JSON
-        fs.writeFile(filePath, jsonString, (err) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-        });
+        writeFile(dataloaded);
 
         phrases.value = "";
         closeModal(modalAddPhrases, containerRoom, btnAddPhrases);

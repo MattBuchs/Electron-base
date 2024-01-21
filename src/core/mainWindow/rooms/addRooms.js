@@ -1,6 +1,10 @@
-const fs = require("fs");
 const path = require("path");
-import { listSounds, notification } from "../../utils.js";
+import {
+    listSounds,
+    notification,
+    dataloaded,
+    writeFile,
+} from "../../utils.js";
 
 const btnAddRoom = document.querySelector("#btn-add_room");
 const formAddRoom = document.querySelector("#form-add_room");
@@ -65,28 +69,8 @@ const addRoomObj = {
     },
 
     addRoomToData(newRoom) {
-        const dataFolderPath = path.join(__dirname, "../../data");
-        const filePath = path.join(dataFolderPath, "rooms.json");
-
-        // Charger les données JSON existantes (si le fichier existe)
-        let existingData = [];
-        if (fs.existsSync(filePath)) {
-            const fileContent = fs.readFileSync(filePath, "utf8");
-            try {
-                if (fileContent.length > 1) {
-                    existingData = JSON.parse(fileContent);
-                }
-            } catch (err) {
-                console.error(
-                    "Erreur lors de la lecture des données JSON existantes :",
-                    err
-                );
-                return;
-            }
-        }
-
         const newData = {
-            id: `btn-room_${existingData.length + 1}`,
+            id: `btn-room_${dataloaded.length + 1}`,
             name: newRoom.name,
             end_timer_sound: newRoom.endTimerSound,
             notification_sound: newRoom.notificationSound,
@@ -100,24 +84,11 @@ const addRoomObj = {
             phrases: [],
         };
 
-        const updatedData = [...existingData, newData];
+        const updatedData = [...dataloaded, newData];
 
         // Écrire dans le fichier JSON
-        fs.writeFile(
-            filePath,
-            JSON.stringify(updatedData, null, 2),
-            "utf8",
-            (err) => {
-                if (err) {
-                    console.error(
-                        "Erreur lors de l'écriture des données dans le fichier :",
-                        err
-                    );
-                } else {
-                    window.location.reload();
-                }
-            }
-        );
+        writeFile(updatedData);
+        window.location.reload();
     },
 };
 

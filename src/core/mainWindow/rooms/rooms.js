@@ -1,7 +1,5 @@
 const { ipcRenderer } = require("electron");
-const fs = require("fs");
-const path = require("path");
-import utils from "../../utils.js";
+import { displayTimer, dataloaded } from "../../utils.js";
 import addPhrasesObj from "../phrases/addPhrases.js";
 
 const containerRoom = document.querySelector("#container-room");
@@ -20,9 +18,6 @@ const content = document.querySelectorAll(".content");
 const navbarTimer = document.querySelector("#navbar-timer");
 const btnNotification = document.querySelector("#btn-notification_sound");
 const btnAmbient = document.querySelector("#btn-ambient_sound");
-
-const dataFolderPath = path.join(__dirname, "../../data");
-const filePath = path.join(dataFolderPath, "rooms.json");
 
 const roomsObj = {
     hours: null,
@@ -44,64 +39,56 @@ const roomsObj = {
             });
         }
 
-        fs.readFile(filePath, "utf8", (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
+        if (dataloaded.length > 0) {
+            this.rangeValue = dataloaded;
 
-            if (data.length > 2) {
-                const rooms = JSON.parse(data);
-                this.rangeValue = rooms;
+            dataloaded.forEach((el) => {
+                const btn = document.createElement("button");
+                btn.classList.add("room-btn");
 
-                rooms.forEach((el) => {
-                    const btn = document.createElement("button");
-                    btn.classList.add("room-btn");
+                const h2 = document.createElement("h2");
+                h2.textContent = el.name;
+                btn.appendChild(h2);
 
-                    const h2 = document.createElement("h2");
-                    h2.textContent = el.name;
-                    btn.appendChild(h2);
+                const pTimer = this.createParagraphWithSpan(
+                    `${el.hours > 0 ? el.hours + "h : " : ""}${
+                        el.minutes
+                    }mn : 0s`,
+                    "Timer : "
+                );
+                const pNotification = this.createParagraphWithSpan(
+                    el.notification_sound,
+                    "Son notification : "
+                );
+                const pAmbient = this.createParagraphWithSpan(
+                    el.ambient_sound,
+                    "Son ambiant : "
+                );
+                const pAlarm = this.createParagraphWithSpan(
+                    el.end_timer_sound,
+                    "Son timer : "
+                );
 
-                    const pTimer = this.createParagraphWithSpan(
-                        `${el.hours > 0 ? el.hours + "h : " : ""}${
-                            el.minutes
-                        }mn : 0s`,
-                        "Timer : "
-                    );
-                    const pNotification = this.createParagraphWithSpan(
-                        el.notification_sound,
-                        "Son notification : "
-                    );
-                    const pAmbient = this.createParagraphWithSpan(
-                        el.ambient_sound,
-                        "Son ambiant : "
-                    );
-                    const pAlarm = this.createParagraphWithSpan(
-                        el.end_timer_sound,
-                        "Son timer : "
-                    );
+                btn.appendChild(pTimer);
+                btn.appendChild(pNotification);
+                btn.appendChild(pAmbient);
+                btn.appendChild(pAlarm);
 
-                    btn.appendChild(pTimer);
-                    btn.appendChild(pNotification);
-                    btn.appendChild(pAmbient);
-                    btn.appendChild(pAlarm);
+                containerBtnRooms.appendChild(btn);
 
-                    containerBtnRooms.appendChild(btn);
+                const idOfRoom = el.id;
 
-                    const idOfRoom = el.id;
-
-                    btn.addEventListener("click", () => {
-                        this.startRoom(el, idOfRoom);
-                    });
+                btn.addEventListener("click", () => {
+                    this.startRoom(el, idOfRoom);
                 });
-            } else {
-                const text = document.createElement("p");
-                text.textContent = "Pas de timer...";
-                text.classList.add("txt-no_toom");
+            });
+        } else {
+            const text = document.createElement("p");
+            text.textContent = "Pas de timer...";
+            text.classList.add("txt-no_toom");
 
-                containerBtnRooms.appendChild(text);
-            }
-        });
+            containerBtnRooms.appendChild(text);
+        }
     },
 
     startRoom(room, idOfRoom) {
@@ -127,7 +114,7 @@ const roomsObj = {
             if (btnAmbient.disabled === false) btnAmbient.disabled = false;
         } else btnAmbient.disabled = true;
 
-        utils.displayTimer(timer, this.hours, this.minutes);
+        displayTimer(timer, this.hours, this.minutes);
         this.updateRangeAndSound(idOfRoom);
 
         navbarTimer.classList.remove("hidden");
@@ -140,19 +127,14 @@ const roomsObj = {
 
         containerRoom.classList.add("activeContent");
 
-        fs.readFile(filePath, "utf8", (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-
-            const dataObj = JSON.parse(data);
-            const index = dataObj.findIndex((obj) => obj.id === this.roomId);
-
-            addPhrasesObj.loadOption(dataObj[index]);
-        });
+        this.loadOption();
 
         ipcRenderer.send("times", this.resetHours, this.resetMinutes);
+    },
+
+    loadOption() {
+        const index = dataloaded.findIndex((obj) => obj.id === this.roomId);
+        addPhrasesObj.loadOption(dataloaded[index]);
     },
 
     updateRangeAndSound(idOfRoom) {
@@ -182,4 +164,5 @@ const roomsObj = {
     },
 };
 
+export const { startRoom } = roomsObj;
 export default roomsObj;

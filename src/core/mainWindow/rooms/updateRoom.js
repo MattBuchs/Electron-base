@@ -1,7 +1,6 @@
-import { listSounds } from "../../utils.js";
+import { listSounds, dataloaded, writeFile } from "../../utils.js";
 import roomsObj from "./rooms.js";
 import { loadPhrases } from "../phrases/deletePhrases.js";
-const fs = require("fs");
 const path = require("path");
 
 const btnUpdateRoom = document.querySelector("#update-timer");
@@ -15,9 +14,6 @@ const updateAmbientSoundList = document.querySelector(
 const updateNotificationSoundList = document.querySelector(
     "#update-notification_sound-list"
 );
-
-const dataFolderPath = path.join(__dirname, "../../data");
-const filePath = path.join(dataFolderPath, "rooms.json");
 
 const updateRoomObj = {
     isOptionCreatedInUpdateRoom: false,
@@ -49,28 +45,11 @@ const updateRoomObj = {
     },
 
     addValuesInInputs() {
-        // Charger les données JSON existantes (si le fichier existe)
-        let existingData = [];
-        if (fs.existsSync(filePath)) {
-            const fileContent = fs.readFileSync(filePath, "utf8");
-            try {
-                if (fileContent.length > 1) {
-                    existingData = JSON.parse(fileContent);
-                }
-            } catch (err) {
-                console.error(
-                    "Erreur lors de la lecture des données JSON existantes :",
-                    err
-                );
-                return;
-            }
-        }
-
-        const indexRoom = existingData.findIndex(
+        const indexRoom = dataloaded.findIndex(
             (el) => el.id === roomsObj.roomId
         );
 
-        const roomValue = existingData[indexRoom];
+        const roomValue = dataloaded[indexRoom];
 
         nameInput.value = roomValue.name;
         timerInput.value = `${
@@ -116,24 +95,7 @@ const updateRoomObj = {
     },
 
     updateRoomToData(obj) {
-        // Charger les données JSON existantes (si le fichier existe)
-        let existingData = [];
-        if (fs.existsSync(filePath)) {
-            const fileContent = fs.readFileSync(filePath, "utf8");
-            try {
-                if (fileContent.length > 1) {
-                    existingData = JSON.parse(fileContent);
-                }
-            } catch (err) {
-                console.error(
-                    "Erreur lors de la lecture des données JSON existantes :",
-                    err
-                );
-                return;
-            }
-        }
-
-        existingData.map((el) => {
+        dataloaded.map((el) => {
             if (el.id === roomsObj.roomId) {
                 if (obj.name !== null) el.name = obj.name;
                 if (obj.hours !== null) el.hours = Number(obj.hours);
@@ -148,21 +110,8 @@ const updateRoomObj = {
         });
 
         // Écrire dans le fichier JSON
-        fs.writeFile(
-            filePath,
-            JSON.stringify(existingData, null, 2),
-            "utf8",
-            (err) => {
-                if (err) {
-                    console.error(
-                        "Erreur lors de l'écriture des données dans le fichier :",
-                        err
-                    );
-                } else {
-                    window.location.reload();
-                }
-            }
-        );
+        writeFile(dataloaded);
+        window.location.reload();
     },
 };
 

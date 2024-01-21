@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-import utils from "../utils.js";
+import { displayTimer } from "../utils.js";
 
 const timer = document.querySelector("#timer-room");
 
@@ -50,7 +50,7 @@ const timerObj = {
         this.minutes = resetMinutes;
         this.seconds = 60;
 
-        utils.displayTimer(timer, this.hours, this.minutes);
+        displayTimer(timer, this.hours, this.minutes);
     },
 };
 

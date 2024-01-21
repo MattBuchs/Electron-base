@@ -1,12 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-import roomsObj from "../rooms/rooms.js";
+import { dataloaded, writeFile } from "../../utils.js";
 
 const selectDeleteSong = document.querySelector("#delete-song");
 const btnDeleteSong = document.querySelector("#validate-delete_song");
-
-const dataFolderPath = path.join(__dirname, "../../data");
-const filePath = path.join(dataFolderPath, "rooms.json");
 
 const deleteSongFileObj = {
     alarmSoundsFolder: path.join(__dirname, "../../../public/sounds/end_timer"),
@@ -126,23 +123,7 @@ const deleteSongFileObj = {
     },
 
     checkSoundIsNotInATimer(soundName, index) {
-        let existingData = [];
-        if (fs.existsSync(filePath)) {
-            const fileContent = fs.readFileSync(filePath, "utf8");
-            try {
-                if (fileContent.length > 1) {
-                    existingData = JSON.parse(fileContent);
-                }
-            } catch (err) {
-                console.error(
-                    "Erreur lors de la lecture des données JSON existantes :",
-                    err
-                );
-                return;
-            }
-        }
-
-        existingData.forEach((obj) => {
+        dataloaded.forEach((obj) => {
             if (obj.end_timer_sound === soundName) {
                 obj.end_timer_sound = null;
             }
@@ -157,21 +138,7 @@ const deleteSongFileObj = {
         });
 
         // Écrire dans le fichier JSON
-        fs.writeFile(
-            filePath,
-            JSON.stringify(existingData, null, 2),
-            "utf8",
-            (err) => {
-                if (err) {
-                    console.error(
-                        "Erreur lors de l'écriture des données dans le fichier :",
-                        err
-                    );
-                } else {
-                    roomsObj.loadRooms();
-                }
-            }
-        );
+        writeFile(dataloaded);
     },
 };
 

@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-import utils from "../../utils.js";
+import { displayTimer } from "../../utils.js";
 import roomsObj from "../rooms/rooms.js";
 import utilsSettingsObj from "../settings/utilsSettings.js";
 
@@ -108,7 +108,7 @@ const timerObj = {
         roomsObj.minutes = roomsObj.resetMinutes;
         this.seconds = 60;
 
-        utils.displayTimer(timer, roomsObj.hours, roomsObj.minutes);
+        displayTimer(timer, roomsObj.hours, roomsObj.minutes);
 
         endTimerSound.pause();
         endTimerSound.currentTime = 0;

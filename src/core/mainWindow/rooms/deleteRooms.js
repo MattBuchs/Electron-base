@@ -1,12 +1,8 @@
-const path = require("path");
-const fs = require("fs");
-import utils from "../../utils.js";
+import roomsObj from "./rooms.js";
+import { notification, dataloaded, writeFile } from "../../utils.js";
 
 const btnDeleteRoom = document.querySelector("#params-delete_room");
 const roomsSelect = document.querySelector("#rooms-select");
-
-const dataFolderPath = path.join(__dirname, "../../data");
-const filePath = path.join(dataFolderPath, "rooms.json");
 
 const deleteRoomsObj = {
     init() {
@@ -15,23 +11,14 @@ const deleteRoomsObj = {
     },
 
     loadRooms() {
-        fs.readFile(filePath, "utf8", (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
+        roomsSelect.length = 1;
 
-            if (data.length > 2) {
-                const rooms = JSON.parse(data);
+        dataloaded.forEach((room) => {
+            const option = document.createElement("option");
+            option.textContent = room.name;
+            option.value = room.name;
 
-                rooms.forEach((room) => {
-                    const option = document.createElement("option");
-                    option.textContent = room.name;
-                    option.value = room.name;
-
-                    roomsSelect.appendChild(option);
-                });
-            }
+            roomsSelect.appendChild(option);
         });
     },
 
@@ -40,29 +27,27 @@ const deleteRoomsObj = {
             roomsSelect.options[roomsSelect.selectedIndex].value;
 
         if (optionSelected === "")
-            return utils.notification("Veuillez choisir une salle");
+            return notification("Veuillez choisir une salle");
         this.deleteRoomFromJson(optionSelected);
     },
 
     deleteRoomFromJson(valueSelectedOption) {
-        // Charge le contenu du fichier JSON
-        const jsonData = require(filePath);
-
         // Trouver l'index de l'objet avec l'ID donné dans le tableau
-        const index = jsonData.findIndex(
+        const index = dataloaded.findIndex(
             (obj) => obj.name === valueSelectedOption
         );
 
         // Vérifie si l'objet a été trouvé
         if (index !== -1) {
             // Supprime l'objet du tableau
-            jsonData.splice(index, 1);
+            dataloaded.splice(index, 1);
 
             // Enregistre le tableau mis à jour dans le fichier JSON
-            fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
+            writeFile(dataloaded);
         }
 
-        window.location.reload();
+        this.loadRooms();
+        roomsObj.loadRooms();
     },
 };
 
