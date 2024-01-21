@@ -1,5 +1,6 @@
 @import "../reset.scss";
 @import "./header.scss";
+@import "./main/sectionRoom.scss";
 
 #app {
     display: flex;
@@ -10,6 +11,7 @@
 .main {
     width: 100%;
     position: relative;
+    overflow: auto;
 }
 
 img {
@@ -17,7 +19,7 @@ img {
 }
 
 .content {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     position: absolute;
     opacity: 0;
@@ -39,14 +41,6 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-}
-
-.room-btn {
-    text-align: left;
-}
-
-.room-btn h2 {
-    text-align: center;
 }
 
 .container-drop {

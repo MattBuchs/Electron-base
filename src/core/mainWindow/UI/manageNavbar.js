@@ -12,30 +12,17 @@ const manageNavbarObj = {
 
     init() {
         btnExpandNavbar.addEventListener("click", this.expandNavbar.bind(this));
+
+        window.addEventListener("resize", () => {
+            if (window.matchMedia("(max-width: 700px)").matches)
+                this.resetStyle();
+        });
     },
 
     expandNavbar() {
         if (this.navbarExpanded) {
-            h1.style.display = "";
-            imgExpandNavbar.src = path.join(
-                __dirname,
-                "../../../public/img/chevron-right.svg"
-            );
-
-            paragraphs.forEach((paragraph) => {
-                paragraph.style.display = "";
-            });
-
-            btns.forEach((btn) => {
-                btn.style.justifyContent = "";
-            });
-
-            header.classList.remove("navbar-anim");
-            header.classList.add("navbar-anim2");
-
-            this.navbarExpanded = false;
+            this.resetStyle();
         } else {
-            // header.style.alignItems = "start";
             h1.style.display = "initial";
             imgExpandNavbar.src = path.join(
                 __dirname,
@@ -55,6 +42,27 @@ const manageNavbarObj = {
 
             this.navbarExpanded = true;
         }
+    },
+
+    resetStyle() {
+        h1.style.display = "";
+        imgExpandNavbar.src = path.join(
+            __dirname,
+            "../../../public/img/chevron-right.svg"
+        );
+
+        paragraphs.forEach((paragraph) => {
+            paragraph.style.display = "";
+        });
+
+        btns.forEach((btn) => {
+            btn.style.justifyContent = "";
+        });
+
+        header.classList.remove("navbar-anim");
+        header.classList.add("navbar-anim2");
+
+        this.navbarExpanded = false;
     },
 };
 

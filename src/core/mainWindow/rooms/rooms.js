@@ -44,11 +44,11 @@ const roomsObj = {
 
             dataloaded.forEach((el) => {
                 const btn = document.createElement("button");
-                btn.classList.add("room-btn");
+                btn.classList.add("home__container--btn");
 
-                const h2 = document.createElement("h2");
-                h2.textContent = el.name;
-                btn.appendChild(h2);
+                const h3 = document.createElement("h3");
+                h3.textContent = el.name;
+                btn.appendChild(h3);
 
                 const pTimer = this.createParagraphWithSpan(
                     `${el.hours > 0 ? el.hours + "h : " : ""}${
@@ -83,11 +83,34 @@ const roomsObj = {
                 });
             });
         } else {
-            const text = document.createElement("p");
-            text.textContent = "Pas de timer...";
-            text.classList.add("txt-no_toom");
+            const div = document.createElement("div");
+            const h3 = document.createElement("h3");
+            const p = document.createElement("p");
+            const btn = document.createElement("button");
 
-            containerBtnRooms.appendChild(text);
+            div.classList.add("home__container--noRoom");
+            h3.textContent = "Il n'y a pas de timer pour le moment...";
+            p.textContent =
+                "Si vous voulez en créer un, cliquer dans la barre de navigation ou sur ce bouton : ";
+            btn.textContent = "+";
+
+            btn.addEventListener("click", () => {
+                const sectionAddRoom = document.querySelector(
+                    "#container-add_room"
+                );
+                const btnAddRoom = document.querySelector("#btn-add_room");
+                const sectionHome = document.querySelector("#container-home");
+
+                sectionAddRoom.classList.add("activeContent");
+                sectionHome.classList.remove("activeContent");
+                btnAddRoom.classList.add("active");
+                btnHome.classList.remove("active");
+            });
+
+            div.appendChild(h3);
+            div.appendChild(p);
+            div.appendChild(btn);
+            containerBtnRooms.appendChild(div);
         }
     },
 
@@ -104,14 +127,14 @@ const roomsObj = {
         if (room.notification_sound) {
             notificationSound.src = `../../../public/sounds/notification/${room.notification_sound}`;
 
-            if (btnNotification.disabled === false)
+            if (btnNotification.disabled === true)
                 btnNotification.disabled = false;
         } else btnNotification.disabled = true;
 
         if (room.ambient_sound) {
             ambientSound.src = `../../../public/sounds/ambient/${room.ambient_sound}`;
 
-            if (btnAmbient.disabled === false) btnAmbient.disabled = false;
+            if (btnAmbient.disabled === true) btnAmbient.disabled = false;
         } else btnAmbient.disabled = true;
 
         displayTimer(timer, this.hours, this.minutes);

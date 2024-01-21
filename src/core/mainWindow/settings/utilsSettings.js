@@ -10,7 +10,7 @@ const utilsSettingsObj = {
     isPreferenceTimer: null,
 
     init() {
-        this.isPreferenceTimer = dataloaded[0].isPreferenceTimer;
+        this.isPreferenceTimer = dataloaded[0]?.isPreferenceTimer;
 
         if (this.isPreferenceTimer) inputsRadio[0].checked = true;
         else inputsRadio[1].checked = true;

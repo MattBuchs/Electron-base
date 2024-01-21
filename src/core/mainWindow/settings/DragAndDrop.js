@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+import { notification } from "../../utils.js";
 
 const dropAlarm = document.querySelector("#container-addFile_alarm");
 const dropNotification = document.querySelector(
@@ -59,7 +60,7 @@ const dragAndDropObj = {
 
         if (fs.existsSync(destinationPath)) {
             // Affiche une notification d'erreur
-            return this.displayNotification(true);
+            return notification(`Le fichier ${fileName} est déja présent`);
         }
 
         // Écrie le contenu du fichier dans le fichier destination
