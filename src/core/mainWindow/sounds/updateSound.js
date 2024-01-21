@@ -1,10 +1,11 @@
 import roomsObj from "../rooms/rooms.js";
-import { openModal, writeFile, dataloaded } from "../../utils.js";
+import { openModal, writeFile, dataloaded, closeModal } from "../../utils.js";
 
 const containerRoom = document.querySelector("#container-room");
 const modalParamsSound = document.querySelector("#modal-params_sound");
 const modalContent = document.querySelector("#modal-params_sound__content");
 const openParamsSound = document.querySelector("#params-sound");
+const validateParamsSound = document.querySelector("#btn-validate_sound");
 const closeParamsSound = document.querySelector("#close-params_sound");
 const endTimerRange = document.querySelector("#volume-end_timer");
 const notificationRange = document.querySelector("#volume-notification");
@@ -15,7 +16,8 @@ const btnAddPhrases = document.querySelector("#btn-add_phrases");
 
 const updateSoundObj = {
     init() {
-        openParamsSound.addEventListener("click", () =>
+        openParamsSound.addEventListener("click", () => {
+            roomsObj.updateRangeAndSound(roomsObj.roomId);
             openModal(
                 containerRoom,
                 modalParamsSound,
@@ -23,8 +25,8 @@ const updateSoundObj = {
                 modalAddPhrases,
                 openParamsSound,
                 btnAddPhrases
-            )
-        );
+            );
+        });
         endTimerRange.addEventListener("input", () =>
             this.percentageUpdate(endTimerRange, 0)
         );
@@ -34,15 +36,18 @@ const updateSoundObj = {
         amibentRange.addEventListener("input", () =>
             this.percentageUpdate(amibentRange, 2)
         );
-        closeParamsSound.addEventListener("click", () =>
-            this.closeModalUpdateSound(openParamsSound)
+        validateParamsSound.addEventListener("click", () =>
+            this.updateSound(openParamsSound)
         );
         modalParamsSound.addEventListener("click", () =>
-            this.closeModalUpdateSound(openParamsSound)
+            closeModal(modalParamsSound, openParamsSound)
+        );
+        closeParamsSound.addEventListener("click", () =>
+            closeModal(modalParamsSound, openParamsSound)
         );
     },
 
-    closeModalUpdateSound(btn) {
+    updateSound(btn) {
         modalParamsSound.classList.add("hidden");
         containerRoom.classList.remove("blur");
 

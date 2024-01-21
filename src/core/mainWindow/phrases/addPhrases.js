@@ -25,10 +25,10 @@ const addPhrasesObj = {
             );
         });
         btnCloseModal.addEventListener("click", () =>
-            closeModal(modalAddPhrases, containerRoom, btnAddPhrases)
+            closeModal(modalAddPhrases, btnAddPhrases)
         );
         modalAddPhrases.addEventListener("click", () =>
-            closeModal(modalAddPhrases, containerRoom, btnAddPhrases)
+            closeModal(modalAddPhrases, btnAddPhrases)
         );
         btnValidate.addEventListener("click", this.addPhrases.bind(this));
     },
@@ -49,7 +49,7 @@ const addPhrasesObj = {
         writeFile(dataloaded);
 
         phrases.value = "";
-        closeModal(modalAddPhrases, containerRoom, btnAddPhrases);
+        closeModal(modalAddPhrases, btnAddPhrases);
     },
 
     loadOption(data) {

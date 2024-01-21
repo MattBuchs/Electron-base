@@ -25,7 +25,6 @@ const utils = {
         modalContent.addEventListener("click", (e) => e.stopPropagation());
 
         modal.classList.remove("hidden");
-        container.classList.add("blur");
 
         if (!otherModal.classList.contains("hidden")) {
             otherModal.classList.add("hidden");
@@ -36,9 +35,8 @@ const utils = {
             otherBtn.classList.remove("active");
     },
 
-    closeModal(modal, container, btn) {
+    closeModal(modal, btn) {
         modal.classList.add("hidden");
-        container.classList.remove("blur");
 
         if (btn.classList.contains("active")) btn.classList.remove("active");
     },

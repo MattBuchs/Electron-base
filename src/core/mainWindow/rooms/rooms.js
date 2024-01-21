@@ -187,5 +187,5 @@ const roomsObj = {
     },
 };
 
-export const { startRoom } = roomsObj;
+export const { startRoom, updateRangeAndSound } = roomsObj;
 export default roomsObj;
