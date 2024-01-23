@@ -149,8 +149,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -60%);
-        width: 270px;
-        height: 120px;
+        width: 370px;
+        height: 150px;
         padding: 1rem;
         border-radius: 3px;
         border: 1px solid #fff;
@@ -158,6 +158,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        p {
+            font-size: 1.3rem;
+        }
 
         div {
             display: flex;
@@ -169,6 +173,7 @@
             height: 2.5rem;
             border: 1px solid #fff;
             box-shadow: 1px 1px 3px #00000037;
+            font-size: 1.1rem;
 
             &:hover {
                 box-shadow: inset 1px 1px 3px #00000037;
@@ -192,6 +197,90 @@
                 #e28547 51%,
                 #e4fbfe 100%
             );
+        }
+    }
+
+    &__exit {
+        background-color: #ccc;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -60%);
+        width: 400px;
+        height: 160px;
+        padding: 1rem;
+        border-radius: 3px;
+        border: 1px solid #fff;
+        box-shadow: 3px 3px 10px #ffffff43;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-right: 4rem;
+
+        &--paragraph {
+            font-size: 1.2rem;
+        }
+
+        &--btn {
+            button {
+                width: 35%;
+                height: 2.5rem;
+                border: 1px solid #fff;
+                box-shadow: 1px 1px 3px #00000037;
+                font-size: 1.1rem;
+
+                &:hover {
+                    box-shadow: inset 1px 1px 3px #00000037;
+                    transform: scale(0.95);
+                }
+            }
+
+            button:nth-child(1) {
+                background-image: linear-gradient(
+                    45deg,
+                    #e4fbfe 0%,
+                    #b7f6b1 51%,
+                    #e4fbfe 100%
+                );
+            }
+
+            button:nth-child(2) {
+                background-image: linear-gradient(
+                    45deg,
+                    #e4fbfe 0%,
+                    #e28547 51%,
+                    #e4fbfe 100%
+                );
+            }
+        }
+
+        &--close {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            width: 3rem;
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(
+                45deg,
+                #e4fbfe 0%,
+                #e28547 51%,
+                #e4fbfe 100%
+            );
+            border: 1px solid #fff;
+            box-shadow: 1px 1px 3px #00000037;
+
+            img {
+                width: 60%;
+                height: 60%;
+            }
+
+            &:hover {
+                box-shadow: inset 1px 1px 3px #00000037;
+                transform: scale(0.95);
+            }
         }
     }
 }

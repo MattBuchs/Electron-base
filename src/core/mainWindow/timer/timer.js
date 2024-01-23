@@ -9,7 +9,6 @@ const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
 const stopAlert = document.querySelector("#stop-alert");
 const endTimerSound = document.querySelector("#end-timer_sound");
-const containerRoom = document.querySelector("#container-room");
 const confirmResetModal = document.querySelector("#request-reset");
 const modal = document.querySelector("#request-reset div");
 const ambientSound = document.querySelector("#ambient_sound");
