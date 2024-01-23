@@ -1,29 +1,55 @@
-<div class="container-room__timer">
-    <p id="timer-room">1h : 0mn : 0s</p>
-    <div class="container-room-buttons">
-        <button id="play">Commencer</button>
-        <button id="stop">Arrêter</button>
-        <button id="reset">Réinitialiser</button>
-        <button id="stop-alert">Stopper l'alerte</button>
+<div id="container-room_timer">
+    <div class="timer">
+        <div class="timer__top">
+            <div class="timer__top--manageTimer">
+                <button id="play">Commencer</button>
+                <button id="stop" class="hidden">Arrêter</button>
+                <button id="stop-alert" class="hidden">Stopper l'alerte</button>
+                <button id="reset">Réinitialiser</button>
+            </div>
+
+            <div class="timer__top--img">
+                <img src="../../../public/img/Logo.png" alt="" />
+            </div>
+
+            <div class="timer__top--sound">
+                <button type="submit" id="btn-notification_sound">
+                    Notification
+                </button>
+                <button type="submit" id="btn-ambient_sound">
+                    Son d'ambiance
+                </button>
+                <button
+                    type="submit"
+                    class="hidden"
+                    id="btn-stop--ambient_sound"
+                >
+                    Stopper son d'ambiance
+                </button>
+            </div>
+        </div>
+
+        <div class="timer__middle">
+            <p id="timer-room">1h : 0mn : 0s</p>
+        </div>
+
+        <div class="timer__bottom">
+            <form id="form-message">
+                <select id="phrases-select" class="timer__bottom--select">
+                    <option value="" selected>Choisir une phrase</option>
+                </select>
+                <div class="timer__bottom--message">
+                    <textarea id="message"></textarea>
+                    <div>
+                        <button type="button" id="btn-clear">Suppr</button>
+                        <button type="submit">Envoyer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <audio src="" id="end-timer_sound" class="sound"></audio>
+        <audio src="" id="notification_sound" class="sound"></audio>
+        <audio src="" id="ambient_sound" class="sound"></audio>
     </div>
 </div>
-
-<form id="form-message">
-    <select name="phrases" id="phrases-select">
-        <option value="" selected>Choisir une phrase</option>
-    </select>
-    <input type="text" id="message" />
-    <button type="submit">Envoyer</button>
-</form>
-
-<div>
-    <button type="submit" id="btn-notification_sound">Notification</button>
-    <button type="submit" id="btn-ambient_sound">Son d'ambiance</button>
-    <button type="submit" class="hidden" id="btn-stop--ambient_sound">
-        Stopper son d'ambiance
-    </button>
-</div>
-<button type="button" id="btn-clear">Suppr</button>
-<audio src="" id="end-timer_sound" class="sound"></audio>
-<audio src="" id="notification_sound" class="sound"></audio>
-<audio src="" id="ambient_sound" class="sound"></audio>

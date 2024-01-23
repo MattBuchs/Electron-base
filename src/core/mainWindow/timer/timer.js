@@ -11,6 +11,7 @@ const stopAlert = document.querySelector("#stop-alert");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const containerRoom = document.querySelector("#container-room");
 const confirmResetModal = document.querySelector("#request-reset");
+const modal = document.querySelector("#request-reset div");
 const ambientSound = document.querySelector("#ambient_sound");
 const btnAmbientSound = document.querySelector("#btn-ambient_sound");
 const btnStopAmbientSound = document.querySelector("#btn-stop--ambient_sound");
@@ -36,8 +37,8 @@ const timerObj = {
     startTimer() {
         this.isActive = true;
 
-        stopTimer.style.display = "initial";
-        playTimer.style.display = "none";
+        stopTimer.classList.remove("hidden");
+        playTimer.classList.add("hidden");
         roomsObj.minutes--;
 
         this.loop = setInterval(() => {
@@ -49,16 +50,20 @@ const timerObj = {
                 this.seconds === 0
             ) {
                 clearInterval(this.loop);
-                stopTimer.style.display = "none";
-                playTimer.style.display = "none";
-                stopAlert.style.display = "initial";
+                stopTimer.classList.add("hidden");
+                playTimer.classList.add("hidden");
 
-                ambientSound.pause();
-                ambientSound.currentTime = 0;
-                btnStopAmbientSound.classList.add("hidden");
-                btnAmbientSound.classList.remove("hidden");
+                if (endTimerSound.src !== `file://${__dirname}/index.html`) {
+                    stopAlert.classList.remove("hidden");
 
-                endTimerSound.play();
+                    ambientSound.pause();
+                    ambientSound.currentTime = 0;
+
+                    btnStopAmbientSound.classList.add("hidden");
+                    btnAmbientSound.classList.remove("hidden");
+
+                    endTimerSound.play();
+                }
             } else {
                 if (this.seconds === -1) {
                     roomsObj.minutes--;
@@ -79,7 +84,7 @@ const timerObj = {
                       } : `
             }${roomsObj.minutes < 10 && roomsObj.minutes > 0 ? "0" : ""}${
                 roomsObj.minutes
-            }${utilsSettingsObj.isPreferenceTimer ? "mn" : ""} : ${
+            }${utilsSettingsObj.isPreferenceTimer ? "m" : ""} : ${
                 this.seconds < 10 && this.seconds > 0 ? "0" : ""
             }${this.seconds}${utilsSettingsObj.isPreferenceTimer ? "s" : ""}`;
         }, 1000);
@@ -89,8 +94,8 @@ const timerObj = {
 
     stopTimer() {
         playTimer.textContent = "Reprendre";
-        playTimer.style.display = "initial";
-        stopTimer.style.display = "none";
+        playTimer.classList.remove("hidden");
+        stopTimer.classList.add("hidden");
 
         clearInterval(this.loop);
 
@@ -99,8 +104,8 @@ const timerObj = {
 
     resetTimer() {
         playTimer.textContent = "Commencer";
-        playTimer.style.display = "initial";
-        stopTimer.style.display = "none";
+        playTimer.classList.remove("hidden");
+        stopTimer.classList.add("hidden");
 
         clearInterval(this.loop);
 
@@ -118,8 +123,7 @@ const timerObj = {
     },
 
     confirmResetTimer() {
-        confirmResetModal.style.display = "flex";
-        containerRoom.style.filter = "blur(10px)";
+        confirmResetModal.classList.remove("hidden");
 
         const confirmReset = document.querySelector("#confirm_reset");
         const cancelReset = document.querySelector("#cancel_reset");
@@ -128,8 +132,7 @@ const timerObj = {
             this.isActive = false;
             this.resetTimer();
 
-            confirmResetModal.style.display = "none";
-            containerRoom.style.filter = "none";
+            confirmResetModal.classList.add("hidden");
 
             ipcRenderer.send(
                 "reset-timer",
@@ -138,17 +141,22 @@ const timerObj = {
             );
         });
 
-        cancelReset.addEventListener("click", () => {
-            confirmResetModal.style.display = "none";
-            containerRoom.style.filter = "none";
-        });
+        cancelReset.addEventListener("click", () =>
+            confirmResetModal.classList.add("hidden")
+        );
+
+        confirmResetModal.addEventListener("click", () =>
+            confirmResetModal.classList.add("hidden")
+        );
+
+        modal.addEventListener("click", (e) => e.stopPropagation());
     },
 
     resetAlert() {
         endTimerSound.pause();
         endTimerSound.currentTime = 0;
 
-        stopAlert.style.display = "none";
+        stopAlert.classList.add("hidden");
     },
 
     setupHomeButton() {

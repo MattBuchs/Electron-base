@@ -7,7 +7,7 @@ const utils = {
     _dataloaded: null,
 
     displayTimer(timer, hours, minutes) {
-        timer.textContent = `${hours ? hours + "h : " : ""}${minutes}mn : 0s`;
+        timer.textContent = `${hours ? hours + "h : " : ""}${minutes}m : 0s`;
     },
 
     notification(message) {

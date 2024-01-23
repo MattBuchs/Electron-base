@@ -1,6 +1,6 @@
 .header {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     width: 4rem;
     background-color: #dfe1ff;
     display: flex;
@@ -73,7 +73,9 @@
             }
         }
 
-        &--svg {
+        &--svg,
+        &--svg path,
+        &--svg polygon {
             width: 2.8rem;
             height: 2.8rem;
             fill: #080030;

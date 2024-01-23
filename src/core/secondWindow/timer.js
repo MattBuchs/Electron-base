@@ -33,7 +33,7 @@ const timerObj = {
                 this.hours === 0 ? "" : this.hours + "h : "
             }${this.minutes < 10 && this.minutes > 0 ? "0" : ""}${
                 this.minutes
-            }mn : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
+            }m : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
                 this.seconds
             }s`;
         }, 1000);

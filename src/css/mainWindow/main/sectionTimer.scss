@@ -1,0 +1,128 @@
+#container-room_timer {
+    height: 100vh;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.timer {
+    width: 60%;
+    padding: 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    // background-color: burlywood;
+
+    &__top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 6px;
+
+        button {
+            width: 8rem;
+            height: 2.5rem;
+        }
+
+        &--img {
+            width: 10rem;
+            height: 10rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &__middle {
+        width: 100%;
+        padding: 0 2rem;
+        height: 12rem;
+        border: 2px solid #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+
+        p {
+            font-size: clamp(88px, 7vw, 128px);
+            color: #fff;
+        }
+    }
+
+    &__bottom {
+        width: 100%;
+        height: 8rem;
+        margin-top: 3rem;
+        padding: 0 4rem;
+
+        form {
+            height: 100%;
+        }
+
+        &--select {
+            width: 79.7%;
+            height: 1.6rem;
+            margin-bottom: 2px;
+        }
+
+        &--message {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+
+            textarea {
+                width: 79.7%;
+                resize: none;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 20%;
+
+                button:nth-child(1) {
+                    height: 35%;
+                }
+
+                button:nth-child(2) {
+                    height: 63%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1450px) {
+        width: 70%;
+    }
+
+    @media screen and (max-width: 1200px) {
+        width: 85%;
+        padding: 1rem 1.5rem;
+    }
+
+    @media screen and (max-width: 800px) {
+        padding: 0 0.5rem;
+
+        &__middle {
+            height: 8rem;
+
+            p {
+                font-size: clamp(35px, 9vw, 88px);
+            }
+        }
+    }
+
+    @media screen and (max-width: 470px) {
+        padding: 0 0.2rem;
+        width: 95%;
+
+        &__middle {
+            height: 6rem;
+        }
+    }
+}
