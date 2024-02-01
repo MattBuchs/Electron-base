@@ -3,6 +3,9 @@
 @import "./main/sectionRoom.scss";
 @import "./modal.scss";
 @import "./main/sectionTimer.scss";
+@import "./main/sectionAddRoom.scss";
+@import "./main/sectionUpdateRoom.scss";
+@import "./main/sectionSettings.scss";
 
 body {
     min-height: 100vh;
@@ -35,10 +38,6 @@ button {
     cursor: pointer;
 }
 
-// button:focus {
-//     outline: 2px solid rgb(194, 191, 255);
-// }
-
 img {
     width: 2.8rem;
 }
@@ -49,11 +48,6 @@ img {
     position: absolute;
     opacity: 0;
     display: none;
-}
-
-.container-drop {
-    width: 200px;
-    height: 150px;
 }
 
 .strong {

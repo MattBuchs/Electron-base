@@ -1,0 +1,128 @@
+.addTimer {
+    width: 50%;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-top: 4rem;
+    color: #f1f1f1;
+
+    label {
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 3px;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        margin-bottom: 3rem;
+    }
+
+    &__container {
+        border: 3px solid #a8a3e5;
+        background-color: #8075fa1a;
+        border-radius: 4px;
+        box-shadow: 3px 3px 4px #ffffff21;
+        padding: 1rem;
+
+        &--section {
+            margin-bottom: 1.2rem;
+
+            div {
+                height: 30px;
+                display: flex;
+
+                button {
+                    position: relative;
+                    width: 2.5rem;
+                    margin-left: 2px;
+
+                    img {
+                        width: 60%;
+                        height: 100%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+            }
+        }
+
+        input[type="text"],
+        select {
+            width: 60%;
+            height: 30px;
+            padding: 0 0.3rem;
+        }
+
+        input[type="time"] {
+            height: 30px;
+        }
+
+        &--validate {
+            margin-top: 1.5rem;
+            width: 9rem;
+            height: 2.5rem;
+            border: 0;
+            border-radius: 2px;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #00000074;
+            border: 1px solid #fff;
+            box-shadow: 1px 1px 3px #00000037;
+            background-image: linear-gradient(
+                45deg,
+                #e4fbfe 0%,
+                #317ff5 51%,
+                #e4fbfe 100%
+            );
+
+            &:hover {
+                box-shadow: inset 1px 1px 2px #00000037;
+                transform: scale(0.98);
+            }
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        width: 70%;
+    }
+
+    @media screen and (max-width: 650px) {
+        width: 85%;
+
+        &__container {
+            input[type="text"],
+            select {
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        label {
+            font-size: 1rem;
+        }
+
+        &__container {
+            &--section > div {
+                flex-direction: column;
+                height: 55px;
+
+                button {
+                    width: 100%;
+                    height: 45%;
+                    margin-left: 0;
+
+                    img {
+                        height: 80%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,6 @@
 const { BrowserWindow, screen } = require("electron");
+const path = require("path");
+const icon = path.join(__dirname, "../../public/img/AngelsGame.ico");
 
 function createWindows() {
     const displays = screen.getAllDisplays();
@@ -13,6 +15,7 @@ function createWindows() {
                 x: mainScreen.bounds.x,
                 y: mainScreen.bounds.y,
                 center: true,
+                icon,
                 webPreferences: {
                     nodeIntegration: true,
                     contextIsolation: false,
@@ -28,6 +31,7 @@ function createWindows() {
             x: display.bounds.x - x,
             y: display.bounds.y,
             fullscreen: true,
+            icon,
             webPreferences: {
                 nodeIntegration: true,
                 contextIsolation: false,
@@ -56,6 +60,7 @@ function createWindowsIf1Screen() {
         x: mainScreen.bounds.x,
         y: mainScreen.bounds.y,
         center: true,
+        icon,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -69,6 +74,7 @@ function createWindowsIf1Screen() {
         x: mainScreen.bounds.x,
         y: mainScreen.bounds.y,
         fullscreen: true,
+        icon,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,

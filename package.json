@@ -10,6 +10,22 @@
         "watch-sass": "sass --watch src/css/mainWindow/index.scss:src/css/mainWindow/compilation/output.css",
         "package": "electron-packager . EscapeGame-Timer --platform=win32 --arch=x64 --out=dist"
     },
+    "build": {
+        "appId": "com.matt.escape-time",
+        "productName": "EscapeTime",
+        "copyright": "Copyright © 2024 Matt Buchs",
+        "icon": "./public/img/AngelsGame.ico",
+        "files": [
+            "./build/**/*",
+            "./dist/**/*",
+            "./node_modules/**/*",
+            "./public/**/*",
+            "*.js"
+        ],
+        "directories": {
+            "buildResources": "public"
+        }
+    },
     "keywords": [],
     "author": "Matt Buchs",
     "license": "ISC",

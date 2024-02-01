@@ -2,38 +2,49 @@ const fs = require("fs");
 const path = require("path");
 import { notification } from "../../utils.js";
 
-const dropAlarm = document.querySelector("#container-addFile_alarm");
-const dropNotification = document.querySelector(
-    "#container-addFile_notification"
-);
-const dropAmbient = document.querySelector("#container-addFile_ambient");
+const dropContainers = document.querySelectorAll(".file-import");
 
 const dragAndDropObj = {
+    pathNameList: ["end_timer", "notification", "ambient"],
+
     init() {
-        dropAlarm.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropAlarm.style.border = "3px solid blue";
+        // Ajoutez les écouteurs d'événements à chaque conteneur
+        dropContainers.forEach((container, index) => {
+            this.addDragDropListeners(container, index);
         });
-        dropNotification.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropNotification.style.border = "3px solid blue";
-        });
-        dropAmbient.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropAmbient.style.border = "3px solid blue";
-        });
-        dropAlarm.addEventListener("drop", (e) =>
-            this.handleDrop(e, "end_timer")
+    },
+
+    addDragDropListeners(element, index) {
+        const button = element.parentNode.querySelector("button");
+
+        element.addEventListener("dragenter", (e) =>
+            this.handleDragEnter(e, button)
         );
-        dropNotification.addEventListener("drop", (e) =>
-            this.handleDrop(e, "notification")
+        element.addEventListener("dragleave", (e) =>
+            this.handleDragLeave(e, button)
         );
-        dropAmbient.addEventListener("drop", (e) =>
-            this.handleDrop(e, "ambient")
+        document.addEventListener("dragover", (e) => e.preventDefault());
+        element.addEventListener("drop", (e) =>
+            this.handleDrop(e, this.pathNameList[index], button)
         );
     },
 
-    handleDrop(e, pathName) {
+    handleDragEnter(e, button) {
+        e.preventDefault();
+        e.currentTarget.style.backgroundColor = "#dbdbdb4d";
+
+        button.style.zIndex = "0";
+    },
+
+    handleDragLeave(e, button) {
+        e.preventDefault();
+        e.currentTarget.style.backgroundColor = "";
+
+        button.style.zIndex = "1";
+    },
+
+    handleDrop(e, pathName, btn) {
+        console.log(e, pathName);
         e.preventDefault();
 
         // Récupère les fichiers déposés
@@ -45,7 +56,8 @@ const dragAndDropObj = {
             this.handleFolder(file, pathName);
         });
 
-        dropAlarm.style.border = "3px solid red";
+        btn.style.zIndex = "1";
+        e.currentTarget.style.backgroundColor = "";
     },
 
     handleFolder(file, pathName) {

@@ -1,56 +1,95 @@
-<div>
-    <div id="container-addFile_alarm" class="container-drop">
-        <button type="submit" id="btn-add_file-endtimer">
-            Ajouter un son de fin de timer
-        </button>
-    </div>
-    <div id="container-addFile_notification" class="container-drop">
-        <button type="submit" id="btn-add_file-notification">
-            Ajouter un son de notification
-        </button>
-    </div>
-    <div id="container-addFile_ambient" class="container-drop">
-        <button type="submit" id="btn-add_file-ambient">
-            Ajouter un son d'ambiance
-        </button>
-    </div>
-</div>
-<div>
-    <label for="rooms-select">Supprimer un timer</label>
-    <select name="rooms" id="rooms-select">
-        <option value="">Choisir le timer à supprimer</option>
-    </select>
-    <button type="button" id="params-delete_room">Valider</button>
-</div>
-<div>
-    <label for="delete-song">Supprimer un son définitivement</label>
-    <select id="delete-song">
-        <option value="">Choisr le son à supprimer</option>
-    </select>
-    <button id="validate-delete_song">Valider</button>
-</div>
-<div>
-    <h2>Préférence du timer</h2>
-    <div>
-        <input
-            type="radio"
-            id="with-letters"
-            name="preference-timer"
-            value="true"
-        />
-        <label for="with-letters">Avec les lettre (--mn : --s)</label>
-    </div>
-    <div>
-        <input
-            type="radio"
-            id="without-letters"
-            name="preference-timer"
-            value="false"
-        />
-        <label for="without-letters">Sans les lettre (-- : --)</label>
-    </div>
-</div>
-<div>
-    <label for="update-color">Choisir la couleur des boutons</label>
-    <input type="color" id="update-color" />
+<div class="settingsRooms">
+    <h2 class="settingsRooms__title">Paramètres</h2>
+
+    <section class="settingsRooms__section">
+        <h3>Ajouter des sons (fichier mp3)</h3>
+
+        <div>
+            <div
+                id="container-addFile_alarm"
+                class="settingsRooms__section--drop"
+            >
+                <button type="submit" id="btn-add_file-endtimer">
+                    Son de fin de timer
+                </button>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#fff"
+                    viewBox="0 0 512 512"
+                >
+                    <path
+                        d="M128 64c0-35.3 28.7-64 64-64H352V128c0 17.7 14.3 32 32 32H512V448c0 35.3-28.7 64-64 64H192c-35.3 0-64-28.7-64-64V336H302.1l-39 39c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l39 39H128V64zm0 224v48H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H128zM512 128H384V0L512 128z"
+                    />
+                </svg>
+                <div id="file-import1" class="file-import"></div>
+            </div>
+            <div
+                id="container-addFile_notification"
+                class="settingsRooms__section--drop"
+            >
+                <button type="submit" id="btn-add_file-notification">
+                    Son de notification
+                </button>
+                <img
+                    title="Glisser, déposer le fichier ici"
+                    src="../../../public/img/file-import.svg"
+                    alt="Glisser, déposer le fichier"
+                />
+                <div id="file-import2" class="file-import"></div>
+            </div>
+            <div
+                id="container-addFile_ambient"
+                class="settingsRooms__section--drop"
+            >
+                <button type="submit" id="btn-add_file-ambient">
+                    Son d'ambiance
+                </button>
+                <img
+                    title="Glisser, déposer le fichier ici"
+                    src="../../../public/img/file-import.svg"
+                    alt="Glisser, déposer le fichier"
+                />
+                <div id="file-import3" class="file-import"></div>
+            </div>
+        </div>
+    </section>
+    <section class="settingsRooms__section">
+        <label for="rooms-select">Supprimer un timer</label>
+        <select name="rooms" id="rooms-select">
+            <option value="">Choisir le timer à supprimer</option>
+        </select>
+        <button type="button" id="params-delete_room">Valider</button>
+    </section>
+    <section class="settingsRooms__section">
+        <label for="delete-song">Supprimer un son définitivement</label>
+        <select id="delete-song">
+            <option value="">Choisr le son à supprimer</option>
+        </select>
+        <button id="validate-delete_song">Valider</button>
+    </section>
+    <section class="settingsRooms__section">
+        <h2>Préférence du timer</h2>
+        <div>
+            <input
+                type="radio"
+                id="with-letters"
+                name="preference-timer"
+                value="true"
+            />
+            <label for="with-letters">Avec les lettre (--mn : --s)</label>
+        </div>
+        <div>
+            <input
+                type="radio"
+                id="without-letters"
+                name="preference-timer"
+                value="false"
+            />
+            <label for="without-letters">Sans les lettre (-- : --)</label>
+        </div>
+    </section>
+    <!-- <div>
+        <label for="update-color">Choisir la couleur des boutons</label>
+        <input type="color" id="update-color" />
+    </div> -->
 </div>

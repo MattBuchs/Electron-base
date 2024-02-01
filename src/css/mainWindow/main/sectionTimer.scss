@@ -12,18 +12,43 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    // background-color: burlywood;
+
+    button {
+        background-image: linear-gradient(
+            45deg,
+            #e4fbfe 0%,
+            #a9a3e5 51%,
+            #e4fbfe 100%
+        );
+        border: 1px solid #fff;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px #0000006c;
+        transition: box-shadow 0.18s;
+
+        &:hover {
+            box-shadow: inset 1px 1px 3px #00000044;
+        }
+    }
+
+    button:disabled {
+        background-image: none;
+        background-color: #a4a4a4;
+        text-decoration: line-through;
+    }
 
     &__top {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: end;
-        margin-bottom: 6px;
+        margin-bottom: 3px;
 
         button {
             width: 8rem;
             height: 2.5rem;
+            margin-bottom: 2px;
         }
 
         &--img {
@@ -33,6 +58,15 @@
             img {
                 width: 100%;
                 height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        &--sound {
+            text-align: end;
+
+            button:nth-child(1) {
+                vertical-align: bottom;
             }
         }
     }
@@ -67,6 +101,10 @@
             width: 79.7%;
             height: 1.6rem;
             margin-bottom: 2px;
+
+            option {
+                border-bottom: 1px solid #000;
+            }
         }
 
         &--message {
@@ -77,6 +115,7 @@
             textarea {
                 width: 79.7%;
                 resize: none;
+                padding: 0.3rem;
             }
 
             div {
@@ -84,6 +123,7 @@
                 flex-direction: column;
                 justify-content: space-between;
                 width: 20%;
+                min-width: 68px;
 
                 button:nth-child(1) {
                     height: 35%;
@@ -115,14 +155,93 @@
                 font-size: clamp(35px, 9vw, 88px);
             }
         }
+
+        &__bottom {
+            padding: 0 2rem;
+        }
     }
 
     @media screen and (max-width: 470px) {
         padding: 0 0.2rem;
         width: 95%;
+        margin-top: 8rem;
+
+        &__top {
+            margin-bottom: 1rem;
+
+            &--img {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
 
         &__middle {
             height: 6rem;
+            padding: 0 0.5rem;
+        }
+
+        &__bottom {
+            padding: 0 0.5rem;
+
+            &--select {
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 350px) {
+        &__top {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            button {
+                width: 100%;
+                margin-bottom: 2px;
+            }
+
+            &--sound {
+                text-align: start;
+                margin-top: 1px;
+            }
+
+            &--managerTimer {
+                min-width: 100%;
+            }
+        }
+
+        &__bottom {
+            height: auto;
+            margin-top: 1.5rem;
+
+            &--select {
+                margin-bottom: 1px;
+            }
+
+            &--message {
+                flex-wrap: wrap;
+
+                textarea,
+                div {
+                    width: 100%;
+                }
+
+                textarea {
+                    height: 100px;
+                    margin-bottom: 2px;
+                }
+
+                div {
+                    height: 80px;
+                    justify-content: left;
+                    margin-top: 2px;
+
+                    button:nth-child(1) {
+                        margin-bottom: 2px;
+                    }
+                }
+            }
         }
     }
 }

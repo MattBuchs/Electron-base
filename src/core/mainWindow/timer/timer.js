@@ -20,6 +20,7 @@ const message = document.querySelector("#message");
 const timerObj = {
     seconds: 60,
     loop: null,
+    isStarted: false,
     isActive: false,
 
     init() {
@@ -38,7 +39,11 @@ const timerObj = {
 
         stopTimer.classList.remove("hidden");
         playTimer.classList.add("hidden");
-        roomsObj.minutes--;
+
+        if (!this.isStarted) {
+            roomsObj.minutes--;
+            this.isStarted = true;
+        }
 
         this.loop = setInterval(() => {
             this.seconds--;
@@ -111,6 +116,7 @@ const timerObj = {
         roomsObj.hours = roomsObj.resetHours;
         roomsObj.minutes = roomsObj.resetMinutes;
         this.seconds = 60;
+        this.isStarted = false;
 
         displayTimer(timer, roomsObj.hours, roomsObj.minutes);
 

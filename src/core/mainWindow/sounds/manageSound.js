@@ -95,8 +95,8 @@ const manageSoundObj = {
         const newAudio = this[audioName];
         newAudio.play();
 
-        btnStopMusic.style.display = "block";
-        btnListenMusic.style.display = "none";
+        btnStopMusic.classList.remove("hidden");
+        btnListenMusic.classList.add("hidden");
 
         this.managesSoundButtonEvents(
             btnStopMusic,
@@ -107,8 +107,8 @@ const manageSoundObj = {
     },
 
     resetBtn(stopMusic, btnListenMusic, audio) {
-        stopMusic.style.display = "none";
-        btnListenMusic.style.display = "flex";
+        stopMusic.classList.add("hidden");
+        btnListenMusic.classList.remove("hidden");
 
         audio.pause();
         audio.currentTime = 0;

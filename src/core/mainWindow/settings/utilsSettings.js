@@ -1,8 +1,8 @@
 import { dataloaded, writeFile } from "../../utils.js";
 
-const inputColor = document.querySelector("#update-color");
-const buttons = document.querySelectorAll("button");
-const containerTimer = document.querySelector("#container-room_timer");
+// const inputColor = document.querySelector("#update-color");
+// const buttons = document.querySelectorAll("button");
+// const containerTimer = document.querySelector("#container-room_timer");
 const inputsRadio = document.getElementsByName("preference-timer");
 const logo = document.querySelector(".header__logo img");
 
@@ -15,8 +15,8 @@ const utilsSettingsObj = {
         if (this.isPreferenceTimer) inputsRadio[0].checked = true;
         else inputsRadio[1].checked = true;
 
-        inputColor.value = "#e4c600";
-        inputColor.addEventListener("input", this.updateColor.bind(this));
+        // inputColor.value = "#e4c600";
+        // inputColor.addEventListener("input", this.updateColor.bind(this));
 
         inputsRadio.forEach((input) => {
             input.addEventListener("click", () =>
@@ -27,14 +27,14 @@ const utilsSettingsObj = {
         logo.addEventListener("dragstart", (e) => e.preventDefault());
     },
 
-    updateColor() {
-        buttons.forEach((btn) => {
-            btn.style.background = inputColor.value;
-        });
+    // updateColor() {
+    //     buttons.forEach((btn) => {
+    //         btn.style.background = inputColor.value;
+    //     });
 
-        containerTimer.style.borderColor = inputColor.value;
-        containerTimer.style.color = inputColor.value;
-    },
+    //     containerTimer.style.borderColor = inputColor.value;
+    //     containerTimer.style.color = inputColor.value;
+    // },
 
     updatePreferenceTimer(input) {
         let value;

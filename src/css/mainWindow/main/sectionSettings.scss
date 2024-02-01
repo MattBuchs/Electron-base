@@ -1,0 +1,71 @@
+.settingsRooms {
+    width: 50%;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-top: 4rem;
+    color: #f1f1f1;
+
+    &__title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        margin-bottom: 3rem;
+    }
+
+    &__section {
+        border: 3px solid #a8a3e5;
+        background-color: #8075fa1a;
+        border-radius: 4px;
+        box-shadow: 3px 3px 4px #ffffff21;
+        padding: 1rem;
+        margin-bottom: 2rem;
+
+        h3 {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        & > div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        &--drop {
+            border: 3px solid #fff;
+            border-radius: 2px;
+            height: 12rem;
+            width: 48%;
+            min-width: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            button {
+                margin-bottom: 1rem;
+                padding: 0.5rem 0.8rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            svg {
+                width: 45px;
+                height: 45px;
+            }
+
+            .file-import {
+                background-color: transparent;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+        }
+    }
+}
