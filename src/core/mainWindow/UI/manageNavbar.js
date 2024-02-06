@@ -23,7 +23,11 @@ const manageNavbarObj = {
         if (this.navbarExpanded) {
             this.resetStyle();
         } else {
-            h1.style.display = "initial";
+            setTimeout(() => {
+                h1.style.display = "initial";
+                // h1.classList.add("h1-anim");
+            }, 250);
+
             imgExpandNavbar.src = path.join(
                 __dirname,
                 "../../../public/img/chevron-left.svg"

@@ -24,7 +24,7 @@ function createWindows() {
             });
         }
 
-        x += display.bounds.x;
+        x += display.bounds.width;
         return new BrowserWindow({
             width: 1200,
             height: 800,

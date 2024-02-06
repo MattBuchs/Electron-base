@@ -20,6 +20,8 @@
 
         h1 {
             display: none;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
     }
 
@@ -93,6 +95,9 @@
         justify-content: center;
         align-items: center;
         z-index: 100;
+        background-color: #ececec;
+        border: 1px solid #fff;
+        border-radius: 0 12px 12px 0;
 
         img {
             width: 100%;
@@ -131,6 +136,10 @@
     animation: navbarAnim2 0.5s ease-out forwards;
 }
 
+.h1-anim {
+    animation: h1Anim 0.3s ease-out forwards;
+}
+
 @keyframes navbarAnim {
     0% {
         align-items: start;
@@ -152,5 +161,16 @@
     100% {
         width: 4rem;
         align-items: center;
+    }
+}
+
+@keyframes h1Anim {
+    0% {
+        opacity: 0;
+        transform: translateY(-30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

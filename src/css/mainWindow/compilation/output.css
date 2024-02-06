@@ -156,6 +156,8 @@ table {
 }
 .header__logo h1 {
   display: none;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 .header__nav {
   height: 100%;
@@ -215,6 +217,9 @@ table {
   justify-content: center;
   align-items: center;
   z-index: 100;
+  background-color: #ececec;
+  border: 1px solid #fff;
+  border-radius: 0 12px 12px 0;
 }
 .header__expandNavbar img {
   width: 100%;
@@ -252,6 +257,10 @@ table {
   animation: navbarAnim2 0.5s ease-out forwards;
 }
 
+.h1-anim {
+  animation: h1Anim 0.3s ease-out forwards;
+}
+
 @keyframes navbarAnim {
   0% {
     align-items: start;
@@ -274,6 +283,16 @@ table {
     align-items: center;
   }
 }
+@keyframes h1Anim {
+  0% {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .home {
   display: flex;
   flex-direction: column;
@@ -289,7 +308,7 @@ table {
   text-underline-offset: 10px;
 }
 .home__container {
-  width: 90%;
+  width: 88%;
   margin: 6rem auto;
   display: flex;
   flex-wrap: wrap;
@@ -616,8 +635,8 @@ table {
 }
 
 .timer {
-  width: 60%;
-  padding: 1rem 3rem;
+  width: 65%;
+  padding: 1rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -681,6 +700,7 @@ table {
 .timer__middle p {
   font-size: clamp(88px, 7vw, 128px);
   color: #fff;
+  font-family: cursive;
 }
 .timer__bottom {
   width: 100%;
@@ -1047,7 +1067,7 @@ body {
 
 label,
 p {
-  font-family: fantasy;
+  font-family: "Times New Roman", Times, serif;
 }
 
 span {
