@@ -9,9 +9,11 @@
     "minutes": 0,
     "end_timer_volume": 0.55,
     "notification_volume": 1,
-    "ambient_volume": 1,
+    "ambient_volume": 0.2,
     "isPreferenceTimer": true,
-    "phrases": []
+    "phrases": [
+      "vifnevejf fjkvnfjvn fjsvnfjv fjnvjf isn"
+    ]
   },
   {
     "id": "btn-room_2",
@@ -29,7 +31,7 @@
   },
   {
     "id": "btn-room_3",
-    "name": "sdjvnh",
+    "name": "3mn",
     "end_timer_sound": "Sherlock.mp3",
     "notification_sound": "Eagle - Notification ! Sms ! Tone.mp3",
     "ambient_sound": "Harry Potter - musique ambiance.mp3",
@@ -51,7 +53,7 @@
     "minutes": 1,
     "end_timer_volume": 1,
     "notification_volume": 1,
-    "ambient_volume": 0.3,
+    "ambient_volume": 0.15,
     "isPreferenceTimer": true,
     "phrases": []
   }

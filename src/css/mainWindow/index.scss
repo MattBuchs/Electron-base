@@ -84,3 +84,27 @@ img {
         opacity: 1;
     }
 }
+
+// Scroll bar
+*::-webkit-scrollbar {
+    width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+
+    &:hover {
+        background-color: #6a5fdf16;
+    }
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #9188ea;
+    border: 4px solid #222;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: #6a5fdf;
+        border: 3px solid #222;
+    }
+}
