@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const notificationContainer = document.querySelector("#notification");
+let isNotification = false;
 
 const utils = {
     filePath: path.join(__dirname, "../../data/rooms.json"),
@@ -10,15 +11,31 @@ const utils = {
         timer.textContent = `${hours ? hours + "h : " : ""}${minutes}m : 0s`;
     },
 
-    notification(message) {
-        notificationContainer.style.backgroundColor = "#ff0000";
+    notification(message, tag) {
+        const img = notificationContainer.querySelector("img");
+
+        const color = tag === "success" ? "#2bde3f" : "#fd3f3f";
+        const title = tag === "success" ? "Succès" : "Erreur";
+        const src =
+            tag === "success"
+                ? "../../../public/img/check.svg"
+                : "../../../public/img/error.svg";
+
+        notificationContainer.style.borderColor = color;
+        img.src = src;
+        img.style.backgroundColor = color;
+        notificationContainer.querySelector("h4").textContent = title;
         notificationContainer.querySelector("p").textContent = message;
 
-        notificationContainer.style.transform = "translateY(0)";
+        if (!isNotification) {
+            isNotification = true;
+            notificationContainer.classList.add("activeNotification");
 
-        setTimeout(() => {
-            notificationContainer.style.transform = "translateY(-100%)";
-        }, 3000);
+            setTimeout(() => {
+                notificationContainer.classList.remove("activeNotification");
+                isNotification = false;
+            }, 6000);
+        }
     },
 
     openModal(container, modal, modalContent, otherModal, btn, otherBtn) {

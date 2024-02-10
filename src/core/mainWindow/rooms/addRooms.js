@@ -53,9 +53,16 @@ const addRoomObj = {
         const hours = time.split(":")[0];
         const minutes = time.split(":")[1];
 
+        if (name === "")
+            return notification(
+                "Le timer doit obligatoirement avoir un titre !",
+                "error"
+            );
         if (hours === "00" && minutes === "00") {
-            notification("Le timer ne peut pas avoir une durée de 0 !");
-            return;
+            return notification(
+                "Le timer ne peut pas avoir une durée de 0 !",
+                "error"
+            );
         }
 
         this.addRoomToData({
@@ -89,6 +96,8 @@ const addRoomObj = {
         // Écrire dans le fichier JSON
         writeFile(updatedData);
         window.location.reload();
+
+        notification("Le timer a été ajouté !", "success");
     },
 };
 

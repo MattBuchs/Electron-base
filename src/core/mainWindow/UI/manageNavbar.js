@@ -1,6 +1,6 @@
 const path = require("path");
 
-const header = document.querySelector(".header");
+const header = document.querySelector("#header-load");
 const btnExpandNavbar = document.querySelector("#expand-navbar");
 const imgExpandNavbar = document.querySelector("#expand-navbar img");
 const h1 = document.querySelector(".header__logo h1");
@@ -12,6 +12,8 @@ const manageNavbarObj = {
 
     init() {
         btnExpandNavbar.addEventListener("click", this.expandNavbar.bind(this));
+        // header.addEventListener("mouseenter", this.expandNavbar.bind(this));
+        // header.addEventListener("mouseleave", this.resetStyle.bind(this));
 
         window.addEventListener("resize", () => {
             if (window.matchMedia("(max-width: 700px)").matches)
@@ -20,32 +22,29 @@ const manageNavbarObj = {
     },
 
     expandNavbar() {
-        if (this.navbarExpanded) {
-            this.resetStyle();
-        } else {
-            setTimeout(() => {
-                h1.style.display = "initial";
-                // h1.classList.add("h1-anim");
-            }, 250);
+        if (this.navbarExpanded) return this.resetStyle();
 
-            imgExpandNavbar.src = path.join(
-                __dirname,
-                "../../../public/img/chevron-left.svg"
-            );
+        setTimeout(() => {
+            h1.style.display = "initial";
+        }, 250);
 
-            paragraphs.forEach((paragraph) => {
-                paragraph.style.display = "initial";
-            });
+        imgExpandNavbar.src = path.join(
+            __dirname,
+            "../../../public/img/chevron-left.svg"
+        );
 
-            btns.forEach((btn) => {
-                btn.style.justifyContent = "start";
-            });
+        paragraphs.forEach((paragraph) => {
+            paragraph.style.display = "initial";
+        });
 
-            header.classList.add("navbar-anim");
-            header.classList.remove("navbar-anim2");
+        btns.forEach((btn) => {
+            btn.style.justifyContent = "start";
+        });
 
-            this.navbarExpanded = true;
-        }
+        header.classList.add("navbar-anim");
+        header.classList.remove("navbar-anim2");
+
+        this.navbarExpanded = true;
     },
 
     resetStyle() {

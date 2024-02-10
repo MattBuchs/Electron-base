@@ -3,13 +3,13 @@ const fs = require("fs");
 const path = require("path");
 import addRoomObj from "../rooms/addRooms.js";
 import updateRoomObj from "../rooms/updateRoom.js";
+import { notification } from "../../utils.js";
 
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(
     "#btn-add_file-notification"
 );
 const btnAddFileAmbient = document.querySelector("#btn-add_file-ambient");
-const notification = document.querySelector("#notification");
 
 const paramsObj = {
     init() {
@@ -38,7 +38,7 @@ const paramsObj = {
 
             if (fs.existsSync(destinationPath)) {
                 // Affiche une notification d'erreur
-                return this.displayNotification(true);
+                return notification("Le fichier existe déjà !", "error");
             }
 
             // Écrie le contenu du fichier dans le fichier destination
@@ -49,26 +49,8 @@ const paramsObj = {
             updateRoomObj.isOptionCreatedInUpdateRoom = false;
 
             // Affiche une notification
-            this.displayNotification();
+            notification("Le fichier a bien été ajouté !", "success");
         }
-    },
-
-    displayNotification(isError = false) {
-        if (isError) {
-            notification.style.backgroundColor = "#ff0000";
-            notification.querySelector("p").textContent =
-                "Le fichier existe déjà !";
-        } else {
-            notification.style.backgroundColor = "#00ff00";
-            notification.querySelector("p").textContent =
-                "Le fichier a bien été ajouté !";
-        }
-
-        notification.style.transform = "translateY(0)";
-
-        setTimeout(() => {
-            notification.style.transform = "translateY(-100%)";
-        }, 3000);
     },
 };
 

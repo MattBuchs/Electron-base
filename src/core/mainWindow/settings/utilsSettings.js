@@ -4,7 +4,7 @@ import { dataloaded, writeFile } from "../../utils.js";
 // const buttons = document.querySelectorAll("button");
 // const containerTimer = document.querySelector("#container-room_timer");
 const inputsRadio = document.getElementsByName("preference-timer");
-const logo = document.querySelector(".header__logo img");
+const imgs = document.querySelectorAll("img");
 
 const utilsSettingsObj = {
     isPreferenceTimer: null,
@@ -24,7 +24,9 @@ const utilsSettingsObj = {
             );
         });
 
-        logo.addEventListener("dragstart", (e) => e.preventDefault());
+        imgs.forEach((img) => {
+            img.addEventListener("dragstart", (e) => e.preventDefault());
+        });
     },
 
     // updateColor() {

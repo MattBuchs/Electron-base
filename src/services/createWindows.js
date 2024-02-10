@@ -10,8 +10,8 @@ function createWindows() {
     const windows = displays.map((display, index) => {
         if (index === 0) {
             return new BrowserWindow({
-                width: 1200,
-                height: 800,
+                width: mainScreen.workAreaSize.width,
+                height: mainScreen.workAreaSize.height,
                 x: mainScreen.bounds.x,
                 y: mainScreen.bounds.y,
                 center: true,
@@ -55,8 +55,8 @@ function createWindowsIf1Screen() {
     const mainScreen = screen.getPrimaryDisplay();
 
     const window1 = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: mainScreen.workAreaSize.width,
+        height: mainScreen.workAreaSize.height,
         x: mainScreen.bounds.x,
         y: mainScreen.bounds.y,
         center: true,

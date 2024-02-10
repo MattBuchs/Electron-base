@@ -5,6 +5,12 @@
     padding-top: 4rem;
     color: #f1f1f1;
 
+    select {
+        width: 60%;
+        height: 30px;
+        padding: 0 0.3rem;
+    }
+
     &__title {
         text-align: center;
         font-size: 2rem;
@@ -23,13 +29,13 @@
         margin-bottom: 2rem;
 
         h3 {
-            margin-bottom: 2rem;
+            margin-bottom: 1.4rem;
             font-size: 1.1rem;
             font-weight: bold;
             text-decoration: underline;
         }
 
-        & > div {
+        &--container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -55,9 +61,8 @@
                 z-index: 1;
             }
 
-            svg {
-                width: 45px;
-                height: 45px;
+            img {
+                z-index: 1;
             }
 
             .file-import {
@@ -65,6 +70,62 @@
                 width: 100%;
                 height: 100%;
                 position: absolute;
+            }
+        }
+
+        &--validate {
+            padding: 0 0.8rem;
+            height: 30px;
+        }
+
+        &--preference {
+            display: flex;
+            align-items: center;
+            height: 22px;
+
+            label {
+                margin-left: 4px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        width: 65%;
+    }
+
+    @media screen and (max-width: 800px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 550px) {
+        select {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        &__section--validate {
+            width: 100px;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 90%;
+
+        &__section {
+            padding: 1rem 0.5rem;
+
+            &--drop {
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 319px) {
+        &__section {
+            &--preference {
+                height: auto;
+                margin-bottom: 10px;
             }
         }
     }

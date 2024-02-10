@@ -40,6 +40,7 @@ button {
 
 img {
     width: 2.8rem;
+    user-select: none;
 }
 
 .content {
@@ -48,6 +49,46 @@ img {
     position: absolute;
     opacity: 0;
     display: none;
+}
+
+.notification {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    transform: translateY(-120%);
+    z-index: 9999;
+    background-color: #fff;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    max-width: 350px;
+    border-left: 3px solid;
+    box-shadow: 1px 1px 4px #ffffff64;
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0.3rem;
+        border-radius: 50%;
+    }
+
+    &__content {
+        margin-left: 0.8rem;
+
+        &--title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        &--paragraph {
+            margin-top: 2px;
+        }
+    }
+}
+
+.activeNotification {
+    animation: pushNotification 6s ease-out;
 }
 
 .strong {
@@ -106,5 +147,30 @@ img {
     &:hover {
         background-color: #6a5fdf;
         border: 3px solid #222;
+    }
+}
+
+// animation Notification
+@keyframes pushNotification {
+    0% {
+        transform: translateY(-120%) scale(0);
+        opacity: 0;
+    }
+    5% {
+        transform: translateY(50%) scale(1);
+    }
+    10% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    95% {
+        transform: translateY(50%) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-120%) scale(0);
+        opacity: 0;
     }
 }

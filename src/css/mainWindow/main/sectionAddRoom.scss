@@ -125,4 +125,12 @@
             }
         }
     }
+
+    @media screen and (max-width: 300px) {
+        &__container {
+            &--validate {
+                width: 100%;
+            }
+        }
+    }
 }

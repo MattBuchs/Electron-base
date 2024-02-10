@@ -27,7 +27,7 @@ const deleteRoomsObj = {
             roomsSelect.options[roomsSelect.selectedIndex].value;
 
         if (optionSelected === "")
-            return notification("Veuillez choisir une salle");
+            return notification("Veuillez choisir une salle", "error");
         this.deleteRoomFromJson(optionSelected);
     },
 

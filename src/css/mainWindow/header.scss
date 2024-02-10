@@ -15,7 +15,6 @@
 
         img {
             width: 4.2rem;
-            user-select: none;
         }
 
         h1 {
@@ -96,8 +95,20 @@
         align-items: center;
         z-index: 100;
         background-color: #ececec;
-        border: 1px solid #fff;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #000;
+        border-right: 2px solid #000;
+        border-left: none;
         border-radius: 0 12px 12px 0;
+        box-shadow: 1px 1px 3px #00000039;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+
+        &:active {
+            box-shadow: inset 1px 1px 3px #00000039;
+        }
 
         img {
             width: 100%;

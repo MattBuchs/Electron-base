@@ -80,7 +80,10 @@ const updateRoomObj = {
         }
 
         if (hours === "00" && minutes === "00") {
-            notification("Le timer ne peut pas avoir une durée de 0 !");
+            notification(
+                "Le timer ne peut pas avoir une durée de 0 !",
+                "error"
+            );
             return;
         }
 

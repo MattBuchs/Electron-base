@@ -16,34 +16,37 @@ const dragAndDropObj = {
 
     addDragDropListeners(element, index) {
         const button = element.parentNode.querySelector("button");
+        const img = element.parentNode.querySelector("img");
 
         element.addEventListener("dragenter", (e) =>
-            this.handleDragEnter(e, button)
+            this.handleDragEnter(e, button, img)
         );
         element.addEventListener("dragleave", (e) =>
-            this.handleDragLeave(e, button)
+            this.handleDragLeave(e, button, img)
         );
         document.addEventListener("dragover", (e) => e.preventDefault());
         element.addEventListener("drop", (e) =>
-            this.handleDrop(e, this.pathNameList[index], button)
+            this.handleDrop(e, this.pathNameList[index], button, img)
         );
     },
 
-    handleDragEnter(e, button) {
+    handleDragEnter(e, button, img) {
         e.preventDefault();
         e.currentTarget.style.backgroundColor = "#dbdbdb4d";
 
         button.style.zIndex = "0";
+        img.style.zIndex = "0";
     },
 
-    handleDragLeave(e, button) {
+    handleDragLeave(e, button, img) {
         e.preventDefault();
         e.currentTarget.style.backgroundColor = "";
 
         button.style.zIndex = "1";
+        img.style.zIndex = "1";
     },
 
-    handleDrop(e, pathName, btn) {
+    handleDrop(e, pathName, btn, img) {
         console.log(e, pathName);
         e.preventDefault();
 
@@ -57,6 +60,7 @@ const dragAndDropObj = {
         });
 
         btn.style.zIndex = "1";
+        img.style.zIndex = "1";
         e.currentTarget.style.backgroundColor = "";
     },
 
@@ -72,7 +76,10 @@ const dragAndDropObj = {
 
         if (fs.existsSync(destinationPath)) {
             // Affiche une notification d'erreur
-            return notification(`Le fichier ${fileName} est déja présent`);
+            return notification(
+                `Le fichier ${fileName} est déja présent`,
+                "error"
+            );
         }
 
         // Écrie le contenu du fichier dans le fichier destination
