@@ -1,10 +1,6 @@
 const path = require("path");
-import {
-    listSounds,
-    notification,
-    dataloaded,
-    writeFile,
-} from "../../utils.js";
+import { listSounds, dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const btnAddRoom = document.querySelector("#btn-add_room");
 const formAddRoom = document.querySelector("#form-add_room");

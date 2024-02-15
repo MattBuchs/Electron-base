@@ -1,5 +1,6 @@
 import roomsObj from "../rooms/rooms.js";
-import { filePath, dataloaded, writeFile } from "../../utils.js";
+import { dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const selectDeletePhrase = document.querySelector("#select-delete_phrase");
 const deletePhraseForm = document.querySelector("#delete-phrase");
@@ -47,6 +48,8 @@ const deletePhrasesObj = {
 
         this.loadPhrases();
         roomsObj.loadOption();
+
+        notification("La phrase à été supprimé.", "success");
     },
 };
 

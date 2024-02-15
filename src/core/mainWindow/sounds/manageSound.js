@@ -1,5 +1,6 @@
 const path = require("path");
 import { sounds } from "./loadInput.js";
+import { notification } from "../UI/notification.js";
 
 const btnNotificationSound = document.querySelector("#btn-notification_sound");
 const btnAmbientSound = document.querySelector("#btn-ambient_sound");
@@ -82,8 +83,7 @@ const manageSoundObj = {
         const soundValue = soundList.value;
 
         if (!soundValue) {
-            alert("Veuillez sélectionner un son !");
-            return null;
+            return notification("Veuillez sélectionner un son.", "error");
         }
 
         const soundPath = path.join(

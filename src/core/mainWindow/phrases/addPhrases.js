@@ -1,5 +1,6 @@
 import roomsObj from "../rooms/rooms.js";
 import { openModal, closeModal, dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const containerRoom = document.querySelector("#container-room");
 const btnAddPhrases = document.querySelector("#btn-add_phrases");
@@ -49,7 +50,9 @@ const addPhrasesObj = {
         writeFile(dataloaded);
 
         phrases.value = "";
+
         closeModal(modalAddPhrases, btnAddPhrases);
+        notification("La phrase à été ajouté au timer.", "success");
     },
 
     loadOption(data) {

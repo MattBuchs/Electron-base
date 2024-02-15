@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 import { dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const selectDeleteSong = document.querySelector("#delete-song");
 const btnDeleteSong = document.querySelector("#validate-delete_song");
@@ -119,6 +120,7 @@ const deleteSongFileObj = {
                 return;
             }
             this.loadSong();
+            notification(`Le son "${soundName}" à été supprimé`, "success");
         });
     },
 

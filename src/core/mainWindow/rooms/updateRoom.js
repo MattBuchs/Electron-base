@@ -1,4 +1,5 @@
 import { listSounds, dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 import roomsObj from "./rooms.js";
 import { loadPhrases } from "../phrases/deletePhrases.js";
 const path = require("path");
@@ -115,6 +116,8 @@ const updateRoomObj = {
         // Écrire dans le fichier JSON
         writeFile(dataloaded);
         window.location.reload();
+
+        notification("Le timer à été modifié", "success");
     },
 };
 

@@ -1,4 +1,5 @@
 import { dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 // const inputColor = document.querySelector("#update-color");
 // const buttons = document.querySelectorAll("button");
@@ -19,9 +20,13 @@ const utilsSettingsObj = {
         // inputColor.addEventListener("input", this.updateColor.bind(this));
 
         inputsRadio.forEach((input) => {
-            input.addEventListener("click", () =>
-                this.updatePreferenceTimer(input)
-            );
+            input.addEventListener("click", () => {
+                this.updatePreferenceTimer(input);
+                notification(
+                    "La préférence du timer à été pris en compte",
+                    "success"
+                );
+            });
         });
 
         imgs.forEach((img) => {

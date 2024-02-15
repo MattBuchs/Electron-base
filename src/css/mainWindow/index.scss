@@ -51,14 +51,17 @@ img {
     display: none;
 }
 
-.notification {
+#container_notification {
     position: absolute;
     top: 0;
     right: 1rem;
-    transform: translateY(-120%);
+}
+
+.notification {
     z-index: 9999;
     background-color: #fff;
     padding: 0.8rem;
+    margin-bottom: 0.3rem;
     display: flex;
     align-items: center;
     border-radius: 2px;
@@ -153,11 +156,11 @@ img {
 // animation Notification
 @keyframes pushNotification {
     0% {
-        transform: translateY(-120%) scale(0);
+        transform: translateY(-101%) scale(0);
         opacity: 0;
     }
     5% {
-        transform: translateY(50%) scale(1);
+        transform: translateY(30%) scale(1);
     }
     10% {
         opacity: 1;
@@ -166,11 +169,11 @@ img {
         opacity: 1;
     }
     95% {
-        transform: translateY(50%) scale(1);
+        transform: translateY(30%) scale(1);
         opacity: 0.6;
     }
     100% {
-        transform: translateY(-120%) scale(0);
+        transform: translateY(-101%) scale(0);
         opacity: 0;
     }
 }

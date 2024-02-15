@@ -1,5 +1,6 @@
 import roomsObj from "../rooms/rooms.js";
 import { openModal, writeFile, dataloaded, closeModal } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const containerRoom = document.querySelector("#container-room");
 const modalParamsSound = document.querySelector("#modal-params_sound");
@@ -49,7 +50,6 @@ const updateSoundObj = {
 
     updateSound(btn) {
         modalParamsSound.classList.add("hidden");
-        containerRoom.classList.remove("blur");
 
         if (btn.classList.contains("active")) btn.classList.remove("active");
 
@@ -88,6 +88,8 @@ const updateSoundObj = {
         roomsObj.rangeValue[index].end_timer_volume = endTimerCalc;
         roomsObj.rangeValue[index].notification_volume = notificationCalc;
         roomsObj.rangeValue[index].ambient_volume = ambientCalc;
+
+        notification("Le volume à été modifié.", "success");
     },
 
     percentageUpdate(range, index) {

@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-import { notification } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const dropContainers = document.querySelectorAll(".file-import");
 
@@ -47,7 +47,6 @@ const dragAndDropObj = {
     },
 
     handleDrop(e, pathName, btn, img) {
-        console.log(e, pathName);
         e.preventDefault();
 
         // Récupère les fichiers déposés

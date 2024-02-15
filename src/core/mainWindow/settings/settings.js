@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 import addRoomObj from "../rooms/addRooms.js";
 import updateRoomObj from "../rooms/updateRoom.js";
-import { notification } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const btnAddFileEndTimer = document.querySelector("#btn-add_file-endtimer");
 const btnAddFileNotification = document.querySelector(

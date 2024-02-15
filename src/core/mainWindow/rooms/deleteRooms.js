@@ -1,5 +1,6 @@
 import roomsObj from "./rooms.js";
-import { notification, dataloaded, writeFile } from "../../utils.js";
+import { dataloaded, writeFile } from "../../utils.js";
+import { notification } from "../UI/notification.js";
 
 const btnDeleteRoom = document.querySelector("#params-delete_room");
 const roomsSelect = document.querySelector("#rooms-select");
@@ -28,7 +29,9 @@ const deleteRoomsObj = {
 
         if (optionSelected === "")
             return notification("Veuillez choisir une salle", "error");
+
         this.deleteRoomFromJson(optionSelected);
+        notification("Le timer à été supprimé !", "success");
     },
 
     deleteRoomFromJson(valueSelectedOption) {
