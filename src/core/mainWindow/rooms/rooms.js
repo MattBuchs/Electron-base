@@ -18,6 +18,7 @@ const content = document.querySelectorAll(".content");
 const navbarTimer = document.querySelector("#navbar-timer");
 const btnNotification = document.querySelector("#btn-notification_sound");
 const btnAmbient = document.querySelector("#btn-ambient_sound");
+const sectionHome = document.querySelector("#container-home");
 
 const roomsObj = {
     hours: null,
@@ -33,7 +34,9 @@ const roomsObj = {
 
     loadRooms() {
         if (containerBtnRooms.children.length > 0) {
-            const buttons = containerBtnRooms.querySelectorAll("button");
+            const buttons = containerBtnRooms.querySelectorAll(
+                ".home__container--btn"
+            );
             buttons.forEach((room) => {
                 containerBtnRooms.removeChild(room);
             });
@@ -83,6 +86,8 @@ const roomsObj = {
                 });
             });
         } else {
+            if (containerBtnRooms.children.length > 0) return;
+
             const div = document.createElement("div");
             const h3 = document.createElement("h3");
             const p = document.createElement("p");
@@ -99,7 +104,6 @@ const roomsObj = {
                     "#container-add_room"
                 );
                 const btnAddRoom = document.querySelector("#btn-add_room");
-                const sectionHome = document.querySelector("#container-home");
 
                 sectionAddRoom.classList.add("activeContent");
                 sectionHome.classList.remove("activeContent");
@@ -140,15 +144,17 @@ const roomsObj = {
         displayTimer(timer, this.hours, this.minutes);
         this.updateRangeAndSound(idOfRoom);
 
-        navbarTimer.classList.remove("hidden");
-        btnHome.classList.remove("active");
-        btnTimerSelected.classList.add("active");
+        if (sectionHome.classList.contains("activeContent")) {
+            navbarTimer.classList.remove("hidden");
+            btnHome.classList.remove("active");
+            btnTimerSelected.classList.add("active");
 
-        for (let i = 0; i < content.length; i++) {
-            content[i].classList.remove("activeContent");
+            for (let i = 0; i < content.length; i++) {
+                content[i].classList.remove("activeContent");
+            }
+
+            containerRoom.classList.add("activeContent");
         }
-
-        containerRoom.classList.add("activeContent");
 
         this.loadOption();
 
@@ -187,5 +193,5 @@ const roomsObj = {
     },
 };
 
-export const { startRoom, updateRangeAndSound } = roomsObj;
+export const { startRoom, updateRangeAndSound, loadRooms } = roomsObj;
 export default roomsObj;

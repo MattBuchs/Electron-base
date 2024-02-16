@@ -1126,6 +1126,33 @@ table {
   }
 }
 
+.timer__logo {
+  width: 200px;
+  height: auto;
+  margin-top: 6rem;
+}
+.timer__logo img {
+  width: 100%;
+  height: 100%;
+}
+.timer__message {
+  background-color: #000;
+  width: 90%;
+  height: 300px;
+  margin-top: 100px;
+  color: #fff;
+  font-size: 2.2rem;
+  padding: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3333333333);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4588235294);
+  word-wrap: break-word;
+}
+.timer .not-indice {
+  font-style: italic;
+  color: #b5b5b5;
+}
+
 body {
   min-height: 100vh;
   background-color: #222;
@@ -1174,10 +1201,10 @@ img {
   position: absolute;
   top: 0;
   right: 1rem;
+  z-index: 9999;
 }
 
 .notification {
-  z-index: 9999;
   background-color: #fff;
   padding: 0.8rem;
   margin-bottom: 0.3rem;

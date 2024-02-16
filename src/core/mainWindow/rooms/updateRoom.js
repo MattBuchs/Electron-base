@@ -81,10 +81,7 @@ const updateRoomObj = {
         }
 
         if (hours === "00" && minutes === "00") {
-            notification(
-                "Le timer ne peut pas avoir une durée de 0 !",
-                "error"
-            );
+            notification("Le timer ne peut pas avoir une durée de 0.", "error");
             return;
         }
 
@@ -115,9 +112,20 @@ const updateRoomObj = {
 
         // Écrire dans le fichier JSON
         writeFile(dataloaded);
-        window.location.reload();
 
-        notification("Le timer à été modifié", "success");
+        notification("Le timer à été modifié.", "success");
+        this.reloadTimer();
+    },
+
+    reloadTimer() {
+        const roomId = roomsObj.roomId;
+
+        let room;
+        dataloaded.forEach((data) => {
+            if (data.id === roomId) return (room = data);
+        });
+
+        roomsObj.startRoom(room, roomId);
     },
 };
 

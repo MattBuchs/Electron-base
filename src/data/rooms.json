@@ -4,31 +4,69 @@
     "name": "Salle1",
     "end_timer_sound": null,
     "notification_sound": null,
-    "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "hours": 1,
-    "minutes": 0,
-    "end_timer_volume": 0.55,
+    "ambient_sound": null,
+    "hours": 5,
+    "minutes": 5,
+    "end_timer_volume": 1,
     "notification_volume": 1,
-    "ambient_volume": 0.15,
+    "ambient_volume": 1,
+    "isPreferenceTimer": false,
+    "phrases": []
+  },
+  {
+    "id": "btn-room_2",
+    "name": "Salle2",
+    "end_timer_sound": null,
+    "notification_sound": null,
+    "ambient_sound": null,
+    "hours": 8,
+    "minutes": 15,
+    "end_timer_volume": 1,
+    "notification_volume": 1,
+    "ambient_volume": 1,
+    "isPreferenceTimer": false,
+    "phrases": []
+  },
+  {
+    "id": "btn-room_3",
+    "name": "Tesr",
+    "end_timer_sound": null,
+    "notification_sound": null,
+    "ambient_sound": null,
+    "hours": 4,
+    "minutes": 5,
+    "end_timer_volume": 1,
+    "notification_volume": 1,
+    "ambient_volume": 1,
     "isPreferenceTimer": true,
-    "phrases": [
-      "vifnevejf fjkvnfjvn fjsvnfjv fjnvjf isn"
-    ]
+    "phrases": []
   },
   {
     "id": "btn-room_4",
-    "name": "1mn",
+    "name": "Wow",
     "end_timer_sound": null,
     "notification_sound": null,
-    "ambient_sound": "Harry Potter - musique ambiance.mp3",
-    "hours": 0,
-    "minutes": 1,
+    "ambient_sound": null,
+    "hours": 14,
+    "minutes": 4,
     "end_timer_volume": 1,
     "notification_volume": 1,
-    "ambient_volume": 0.05,
+    "ambient_volume": 1,
     "isPreferenceTimer": true,
-    "phrases": [
-      "Le clé est derrière le coffre"
-    ]
+    "phrases": []
+  },
+  {
+    "id": "btn-room_5",
+    "name": "TEST4",
+    "end_timer_sound": "Sherlock.mp3",
+    "notification_sound": "Game Coin - Notification.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 5,
+    "minutes": 14,
+    "end_timer_volume": 1,
+    "notification_volume": 1,
+    "ambient_volume": 1,
+    "isPreferenceTimer": true,
+    "phrases": []
   }
 ]

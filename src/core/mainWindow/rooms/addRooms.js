@@ -51,12 +51,12 @@ const addRoomObj = {
 
         if (name === "")
             return notification(
-                "Le timer doit obligatoirement avoir un titre !",
+                "Le timer doit obligatoirement avoir un titre.",
                 "error"
             );
         if (hours === "00" && minutes === "00") {
             return notification(
-                "Le timer ne peut pas avoir une durée de 0 !",
+                "Le timer ne peut pas avoir une durée de 0.",
                 "error"
             );
         }
@@ -91,9 +91,9 @@ const addRoomObj = {
 
         // Écrire dans le fichier JSON
         writeFile(updatedData);
-        window.location.reload();
 
-        notification("Le timer a été ajouté !", "success");
+        dataloaded.push(newData);
+        notification("Le timer a été ajouté.", "success");
     },
 };
 

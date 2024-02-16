@@ -1,4 +1,3 @@
-import roomsObj from "./rooms.js";
 import { dataloaded, writeFile } from "../../utils.js";
 import { notification } from "../UI/notification.js";
 
@@ -28,10 +27,10 @@ const deleteRoomsObj = {
             roomsSelect.options[roomsSelect.selectedIndex].value;
 
         if (optionSelected === "")
-            return notification("Veuillez choisir une salle", "error");
+            return notification("Veuillez choisir une salle.", "error");
 
         this.deleteRoomFromJson(optionSelected);
-        notification("Le timer à été supprimé !", "success");
+        notification("Le timer à été supprimé.", "success");
     },
 
     deleteRoomFromJson(valueSelectedOption) {
@@ -50,7 +49,6 @@ const deleteRoomsObj = {
         }
 
         this.loadRooms();
-        roomsObj.loadRooms();
     },
 };
 

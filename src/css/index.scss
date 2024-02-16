@@ -1,11 +1,12 @@
-@import "../reset.scss";
-@import "./header.scss";
-@import "./main/sectionRoom.scss";
-@import "./modal.scss";
-@import "./main/sectionTimer.scss";
-@import "./main/sectionAddRoom.scss";
-@import "./main/sectionUpdateRoom.scss";
-@import "./main/sectionSettings.scss";
+@import "./reset.scss";
+@import "./mainWindow/header.scss";
+@import "./mainWindow/main/sectionRoom.scss";
+@import "./mainWindow/modal.scss";
+@import "./mainWindow/main/sectionTimer.scss";
+@import "./mainWindow/main/sectionAddRoom.scss";
+@import "./mainWindow/main/sectionUpdateRoom.scss";
+@import "./mainWindow/main/sectionSettings.scss";
+@import "./secondWindow/content.scss";
 
 body {
     min-height: 100vh;
@@ -55,10 +56,10 @@ img {
     position: absolute;
     top: 0;
     right: 1rem;
+    z-index: 9999;
 }
 
 .notification {
-    z-index: 9999;
     background-color: #fff;
     padding: 0.8rem;
     margin-bottom: 0.3rem;

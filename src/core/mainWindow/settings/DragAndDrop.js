@@ -76,7 +76,7 @@ const dragAndDropObj = {
         if (fs.existsSync(destinationPath)) {
             // Affiche une notification d'erreur
             return notification(
-                `Le fichier ${fileName} est déja présent`,
+                `Le fichier ${fileName} est déja présent.`,
                 "error"
             );
         }

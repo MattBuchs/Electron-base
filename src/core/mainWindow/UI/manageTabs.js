@@ -1,4 +1,5 @@
 import timerObj from "../timer/timer.js";
+import roomsObj from "../rooms/rooms.js";
 import { closeModal } from "../../utils.js";
 
 const tabs = document.querySelectorAll(".tabs");
@@ -86,6 +87,9 @@ const manageTabsObj = {
 
         for (let j = 0; j < content.length; j++) {
             if (content[j].getAttribute("data-onglet") === this.index) {
+                if (content[j].getAttribute("data-onglet") === "1")
+                    roomsObj.loadRooms();
+
                 content[j].classList.add("activeContent");
             } else {
                 content[j].classList.remove("activeContent");

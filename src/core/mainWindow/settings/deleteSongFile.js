@@ -120,7 +120,7 @@ const deleteSongFileObj = {
                 return;
             }
             this.loadSong();
-            notification(`Le son "${soundName}" à été supprimé`, "success");
+            notification(`Le son "${soundName}" à été supprimé.`, "success");
         });
     },
 

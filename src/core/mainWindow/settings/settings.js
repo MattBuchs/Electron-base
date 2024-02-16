@@ -38,7 +38,7 @@ const paramsObj = {
 
             if (fs.existsSync(destinationPath)) {
                 // Affiche une notification d'erreur
-                return notification("Le fichier existe déjà !", "error");
+                return notification("Le fichier existe déjà.", "error");
             }
 
             // Écrie le contenu du fichier dans le fichier destination
@@ -49,7 +49,7 @@ const paramsObj = {
             updateRoomObj.isOptionCreatedInUpdateRoom = false;
 
             // Affiche une notification
-            notification("Le fichier a bien été ajouté !", "success");
+            notification("Le fichier a bien été ajouté.", "success");
         }
     },
 };

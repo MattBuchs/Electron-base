@@ -6,8 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "electron .",
-        "compile-sass": "sass src/css/mainWindow/index.scss src/css/mainWindow/compilation/output.css",
-        "watch-sass": "sass --watch src/css/mainWindow/index.scss:src/css/mainWindow/compilation/output.css",
+        "compile-sass": "sass src/css/index.scss src/css/compilation/output.css",
+        "watch-sass": "sass --watch src/css/index.scss:src/css/compilation/output.css",
         "package": "electron-packager . EscapeTime --platform=win32 --arch=x64 --out=dist"
     },
     "build": {

@@ -23,7 +23,7 @@ const utilsSettingsObj = {
             input.addEventListener("click", () => {
                 this.updatePreferenceTimer(input);
                 notification(
-                    "La préférence du timer à été pris en compte",
+                    "La préférence du timer à été pris en compte.",
                     "success"
                 );
             });
