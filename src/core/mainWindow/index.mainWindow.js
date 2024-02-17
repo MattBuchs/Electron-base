@@ -2,7 +2,7 @@ import timerObj from "./timer/timer.js";
 import messagesObj from "./UI/messages.js";
 import roomsObj from "./rooms/rooms.js";
 import addRoomObj from "./rooms/addRooms.js";
-import paramsObj from "./settings/settings.js";
+import uploadFilesObj from "./settings/uploadFiles.js";
 import manageSoundObj from "./sounds/manageSound.js";
 import deleteRoomsObj from "./rooms/deleteRooms.js";
 import updateSoundObj from "./sounds/updateSound.js";
@@ -16,37 +16,29 @@ import deleteSongFileObj from "./settings/deleteSongFile.js";
 import manageNavbarObj from "./UI/manageNavbar.js";
 import checkFoldersExist from "./sounds/checkFoldersExist.js";
 
-// Initialisation du chronomètre
+// Initialisation du Timer
 timerObj.init();
-// Initialisation des fonctionnalités liées aux messages
 messagesObj.init();
-// Initialisation des fonctionnalités liées aux salles de jeux
+
+// Initialisation des fonctionnalités liées aux Timers
 roomsObj.init();
-// Initialisation des fonctionnalités liées à l'ajout de timer
 addRoomObj.init();
-// Initialisation des fonctionnalités liées aux paramètres du home
-paramsObj.init();
-// Initialisation des fonctionnalités liées à la gestion du son
-manageSoundObj.init();
-// Initialisation des fonctionnalités liées à la suppression de salles
 deleteRoomsObj.init();
-// Initialisation des fonctionnalités liées à la mise à jour du son
-updateSoundObj.init();
+updateRoomObj.init();
+
 // Initialisation des fonctionnalités liées aux paramètres de la room
 addPhrasesObj.init();
-// Initialisation des fonctionnalités liées au changement de couleur de l'app
-utilsSettingsObj.init();
-// Initialisation des fonctionnalités liées aux onglets de la navbar
-manageTabsObj.init();
-// Initialisation des fonctionnalités liées à l'update d'un timer
-updateRoomObj.init();
-// Initialisation des fonctionnalités liées à la suppression d'une phrase
 deletePhrasesObj.init();
-// Initialisation des fonctionnalités liées au drag and drop
+updateSoundObj.init();
+manageSoundObj.init();
+
+// Initialisation des fonctionnalités liées aux paramètres globaux
+utilsSettingsObj.init();
+uploadFilesObj.init();
 dragAndDropObj.init();
-
 deleteSongFileObj.init();
-
-manageNavbarObj.init();
-
 checkFoldersExist();
+
+// Initialisation des fonctionnalités liées à la navbar
+manageNavbarObj.init();
+manageTabsObj.init();

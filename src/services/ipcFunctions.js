@@ -61,9 +61,17 @@ function setupIPCFunctions(windows) {
             // Pour chaque fichier sélectionné
             for (const filePath of filePaths) {
                 const fileName = path.basename(filePath); // Obtenir le nom de fichier
-                const fileContent = fs.readFileSync(filePath, "binary"); // Lire le contenu du fichier
+                const fileStats = fs.statSync(filePath); // Obtenir les statistiques du fichier
 
-                files.push({ file: fileContent, fileName });
+                // Récupérer la taille du fichier (en octets)
+                const fileSize = fileStats.size;
+
+                files.push({
+                    name: fileName,
+                    path: filePath,
+                    size: fileSize,
+                    type: "audio/mpeg",
+                });
             }
 
             return files;

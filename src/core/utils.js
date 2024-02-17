@@ -101,6 +101,27 @@ const utils = {
             }
         });
     },
+
+    showLoadingIndicator() {
+        const app = document.querySelector("#app");
+
+        const container = document.createElement("div");
+        const img = document.createElement("img");
+
+        img.src = "../../../public/img/spinner.svg";
+        img.alt = "Chargement en cours...";
+
+        container.classList.add("spinner");
+
+        container.appendChild(img);
+        app.appendChild(container);
+    },
+
+    hideLoadingIndicator() {
+        const spinner = document.querySelector(".spinner");
+
+        spinner.remove();
+    },
 };
 
 utils.loadData();
@@ -113,5 +134,7 @@ export const {
     writeFile,
     filePath,
     dataloaded,
+    showLoadingIndicator,
+    hideLoadingIndicator,
 } = utils;
 export default utils;

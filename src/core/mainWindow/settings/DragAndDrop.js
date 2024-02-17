@@ -1,7 +1,4 @@
-const fs = require("fs");
-const path = require("path");
-import { notification } from "../UI/notification.js";
-import deleteSongFileObj from "./deleteSongFile.js";
+import uploadFilesObj from "./uploadFiles.js";
 
 const dropContainers = document.querySelectorAll(".file-import");
 
@@ -53,81 +50,11 @@ const dragAndDropObj = {
         // Récupère les fichiers déposés
         const files = e.dataTransfer.files;
 
-        // Affiche l'élément de chargement si un fichier est déposé
-        if (files.length > 0) {
-            this.showLoadingIndicator();
-        }
-
-        Array.from(files).forEach((file) => {
-            if (file.size === 0)
-                return notification(
-                    "Une erreur est survenue, veuillez réésayer.",
-                    "error"
-                );
-            if (file.type !== "audio/mpeg")
-                return notification(
-                    "Le fichier n'est pas de type audio.",
-                    "error"
-                );
-
-            this.handleFolder(file, pathName);
-            deleteSongFileObj.loadSong();
-        });
-
-        // Masque le chargement une fois le traitement terminé
-        setTimeout(() => {
-            this.hideLoadingIndicator();
-        }, 300);
+        if (files) uploadFilesObj.uploadFiles(files, pathName);
 
         btn.style.zIndex = "1";
         img.style.zIndex = "1";
         e.currentTarget.style.backgroundColor = "";
-    },
-
-    handleFolder(file, pathName) {
-        const fileName = path.basename(file.path); // Obtenir le nom de fichier
-        const fileContent = fs.readFileSync(file.path, "binary"); // Lire le contenu du fichier
-
-        const destinationPath = path.join(
-            __dirname,
-            `../../../public/sounds/${pathName}`,
-            fileName
-        );
-
-        if (fs.existsSync(destinationPath)) {
-            // Affiche une notification d'erreur
-            return notification(
-                `Le fichier ${fileName} est déja présent.`,
-                "error"
-            );
-        }
-
-        // Écrie le contenu du fichier dans le fichier destination
-        fs.writeFileSync(destinationPath, fileContent, "binary");
-
-        notification(`Le fichier ${fileName} à été ajouté.`, "success");
-    },
-
-    showLoadingIndicator() {
-        const app = document.querySelector("#app");
-
-        const container = document.createElement("div");
-        const img = document.createElement("img");
-
-        img.src = "../../../public/img/spinner.svg";
-        img.alt = "Chargement en cours...";
-
-        container.classList.add("spinner");
-
-        container.appendChild(img);
-        app.appendChild(container);
-    },
-
-    hideLoadingIndicator() {
-        const spinner = document.querySelector(".spinner");
-
-        console.log(spinner);
-        spinner.remove();
     },
 };
 
