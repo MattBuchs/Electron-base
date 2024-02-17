@@ -1,3 +1,4 @@
+const { ipcRenderer } = require("electron");
 import { dataloaded, writeFile } from "../../utils.js";
 import { notification } from "../UI/notification.js";
 
@@ -12,6 +13,7 @@ const utilsSettingsObj = {
 
     init() {
         this.isPreferenceTimer = dataloaded[0]?.isPreferenceTimer;
+        // ipcRenderer.send("update-preference", this.isPreferenceTimer);
 
         if (this.isPreferenceTimer) inputsRadio[0].checked = true;
         else inputsRadio[1].checked = true;
@@ -54,6 +56,8 @@ const utilsSettingsObj = {
         dataloaded.forEach((obj) => {
             obj.isPreferenceTimer = value;
         });
+
+        ipcRenderer.send("update-preference", this.isPreferenceTimer);
 
         writeFile(dataloaded);
     },

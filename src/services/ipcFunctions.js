@@ -43,6 +43,12 @@ function setupIPCFunctions(windows) {
         }
     });
 
+    ipcMain.on("update-preference", (event, isPreferenceTimer) => {
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("update-preference", isPreferenceTimer);
+        }
+    });
+
     ipcMain.handle("open-file-dialog", async (event) => {
         const result = await dialog.showOpenDialog({
             properties: ["openFile", "multiSelections"],

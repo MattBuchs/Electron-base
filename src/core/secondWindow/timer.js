@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-import { displayTimer } from "../utils.js";
+import { displayTimer, dataloaded } from "../utils.js";
 
 const timer = document.querySelector("#timer-room");
 
@@ -8,6 +8,7 @@ const timerObj = {
     minutes: 59,
     seconds: 60,
     loop: null,
+    isPreferenceTimer: null,
 
     startTimer() {
         this.minutes--;
@@ -29,13 +30,16 @@ const timerObj = {
                 }
             }
 
+            console.log(dataloaded);
             timer.textContent = `${
-                this.hours === 0 ? "" : this.hours + "h : "
+                this.hours === 0
+                    ? ""
+                    : `${this.hours}${this.isPreferenceTimer ? "h" : ""} : `
             }${this.minutes < 10 && this.minutes > 0 ? "0" : ""}${
                 this.minutes
-            }m : ${this.seconds < 10 && this.seconds > 0 ? "0" : ""}${
-                this.seconds
-            }s`;
+            }${this.isPreferenceTimer ? "m" : ""} : ${
+                this.seconds < 10 && this.seconds > 0 ? "0" : ""
+            }${this.seconds}${this.isPreferenceTimer ? "s" : ""}`;
         }, 1000);
     },
 
@@ -68,6 +72,11 @@ ipcRenderer.on("reset-timer", (event, resetHours, resetMinutes) => {
 
 ipcRenderer.on("times", (event, resetHours, resetMinutes) => {
     timerObj.resetTimer(resetHours, resetMinutes);
+});
+
+ipcRenderer.on("update-preference", (event, isPreferenceTimer) => {
+    console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWW");
+    timerObj.isPreferenceTimer = isPreferenceTimer;
 });
 
 export default timerObj;
