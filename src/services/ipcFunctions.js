@@ -45,16 +45,28 @@ function setupIPCFunctions(windows) {
 
     ipcMain.handle("open-file-dialog", async (event) => {
         const result = await dialog.showOpenDialog({
-            properties: ["openFile"],
-            filters: [{ name: "Fichiers MP3", extensions: ["mp3"] }],
+            properties: ["openFile", "multiSelections"],
+            filters: [
+                {
+                    name: "Fichiers MP3",
+                    extensions: ["mp3", "wav", "ogg", "flac"],
+                },
+            ],
         });
 
         if (!result.canceled) {
-            const filePath = result.filePaths[0];
-            const fileName = path.basename(filePath); // Obtenir le nom de fichier
-            const fileContent = fs.readFileSync(filePath, "binary"); // Lire le contenu du fichier
+            const filePaths = result.filePaths;
+            const files = [];
 
-            return { file: fileContent, fileName };
+            // Pour chaque fichier sélectionné
+            for (const filePath of filePaths) {
+                const fileName = path.basename(filePath); // Obtenir le nom de fichier
+                const fileContent = fs.readFileSync(filePath, "binary"); // Lire le contenu du fichier
+
+                files.push({ file: fileContent, fileName });
+            }
+
+            return files;
         }
 
         return null;

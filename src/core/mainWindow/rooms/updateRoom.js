@@ -96,6 +96,8 @@ const updateRoomObj = {
     },
 
     updateRoomToData(obj) {
+        let name;
+
         dataloaded.map((el) => {
             if (el.id === roomsObj.roomId) {
                 if (obj.name !== null) el.name = obj.name;
@@ -107,13 +109,15 @@ const updateRoomObj = {
                     el.ambient_sound = obj.ambientSound;
                 if (obj.notificationSound !== null)
                     el.notification_sound = obj.notificationSound;
+
+                name = el.name;
             }
         });
 
         // Écrire dans le fichier JSON
         writeFile(dataloaded);
 
-        notification("Le timer à été modifié.", "success");
+        notification(`Le timer "${name}" à été modifié.`, "success");
         this.reloadTimer();
     },
 

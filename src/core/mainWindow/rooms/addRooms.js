@@ -1,9 +1,11 @@
 const path = require("path");
 import { listSounds, dataloaded, writeFile } from "../../utils.js";
 import { notification } from "../UI/notification.js";
+import { loadRoomsInSettings } from "./deleteRooms.js";
 
 const btnAddRoom = document.querySelector("#btn-add_room");
 const formAddRoom = document.querySelector("#form-add_room");
+const containerBtnRooms = document.querySelector("#container-btn_rooms");
 const endTimerSoundList = document.querySelector("#end-timer_sound-list");
 const ambientSoundList = document.querySelector("#ambient_sound-list");
 const notificationSoundList = document.querySelector(
@@ -40,16 +42,16 @@ const addRoomObj = {
     setupForm(e) {
         e.preventDefault();
 
-        const name = document.querySelector("#room_name").value;
-        const time = document.querySelector("#room_times").value;
+        let name = document.querySelector("#room_name");
+        let time = document.querySelector("#room_times");
         const endTimerSound = endTimerSoundList.value || null;
         const notificationSound = notificationSoundList.value || null;
         const ambientSound = ambientSoundList.value || null;
 
-        const hours = time.split(":")[0];
-        const minutes = time.split(":")[1];
+        const hours = time.value.split(":")[0];
+        const minutes = time.value.split(":")[1];
 
-        if (name === "")
+        if (name.value === "")
             return notification(
                 "Le timer doit obligatoirement avoir un titre.",
                 "error"
@@ -61,14 +63,26 @@ const addRoomObj = {
             );
         }
 
+        if (
+            containerBtnRooms.children[0].classList.contains(
+                "home__container--noRoom"
+            )
+        ) {
+            containerBtnRooms.children[0].remove();
+        }
+
         this.addRoomToData({
-            name,
+            name: name.value,
             hours,
             minutes,
             endTimerSound,
             notificationSound,
             ambientSound,
         });
+
+        loadRoomsInSettings();
+        name.value = "";
+        time.value = "";
     },
 
     addRoomToData(newRoom) {
@@ -80,9 +94,9 @@ const addRoomObj = {
             ambient_sound: newRoom.ambientSound,
             hours: Number(newRoom.hours),
             minutes: Number(newRoom.minutes),
-            end_timer_volume: 1,
-            notification_volume: 1,
-            ambient_volume: 1,
+            end_timer_volume: 0.5,
+            notification_volume: 0.5,
+            ambient_volume: 0.2,
             isPreferenceTimer: true,
             phrases: [],
         };
@@ -93,7 +107,7 @@ const addRoomObj = {
         writeFile(updatedData);
 
         dataloaded.push(newData);
-        notification("Le timer a été ajouté.", "success");
+        notification(`Le timer "${newRoom.name}" a été ajouté.`, "success");
     },
 };
 

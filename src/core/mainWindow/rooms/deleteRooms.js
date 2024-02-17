@@ -6,11 +6,11 @@ const roomsSelect = document.querySelector("#rooms-select");
 
 const deleteRoomsObj = {
     init() {
-        this.loadRooms();
+        this.loadRoomsInSettings();
         btnDeleteRoom.addEventListener("click", this.deleteRoom.bind(this));
     },
 
-    loadRooms() {
+    loadRoomsInSettings() {
         roomsSelect.length = 1;
 
         dataloaded.forEach((room) => {
@@ -30,7 +30,7 @@ const deleteRoomsObj = {
             return notification("Veuillez choisir une salle.", "error");
 
         this.deleteRoomFromJson(optionSelected);
-        notification("Le timer à été supprimé.", "success");
+        notification(`Le timer "${optionSelected}" à été supprimé.`, "success");
     },
 
     deleteRoomFromJson(valueSelectedOption) {
@@ -48,8 +48,9 @@ const deleteRoomsObj = {
             writeFile(dataloaded);
         }
 
-        this.loadRooms();
+        this.loadRoomsInSettings();
     },
 };
 
+export const { loadRoomsInSettings } = deleteRoomsObj;
 export default deleteRoomsObj;

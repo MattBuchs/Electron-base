@@ -26,6 +26,7 @@ const paramsObj = {
 
     async uploadFile(pathName) {
         const fileContent = await ipcRenderer.invoke("open-file-dialog");
+        console.log(fileContent);
 
         if (fileContent) {
             const { file, fileName } = fileContent;
