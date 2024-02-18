@@ -2,14 +2,14 @@
   {
     "id": "btn-room_1",
     "name": "Salle1",
-    "end_timer_sound": "Sherlock.mp3",
-    "notification_sound": null,
-    "ambient_sound": null,
+    "end_timer_sound": "Countdown Timer.mp3",
+    "notification_sound": "Eagle - Notification ! Sms ! Tone.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
     "hours": 1,
     "minutes": 0,
     "end_timer_volume": 1,
     "notification_volume": 0.55,
-    "ambient_volume": 0.2,
+    "ambient_volume": 0.05,
     "isPreferenceTimer": true,
     "phrases": [
       ">zfovnfejvn fjvbevfjbr hoergj bgnjbkhoirn bg,kbhuzr"
@@ -46,7 +46,7 @@
   {
     "id": "btn-room_4",
     "name": "Salle4",
-    "end_timer_sound": "Sherlock.mp3",
+    "end_timer_sound": null,
     "notification_sound": null,
     "ambient_sound": null,
     "hours": 4,

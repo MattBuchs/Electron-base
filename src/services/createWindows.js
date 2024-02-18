@@ -10,13 +10,14 @@ function createWindows() {
     const windows = displays.map((display, index) => {
         if (index === 0) {
             return new BrowserWindow({
-                width: mainScreen.workAreaSize.width,
-                height: mainScreen.workAreaSize.height,
+                width: 1200,
+                height: 800,
                 x: mainScreen.bounds.x,
                 y: mainScreen.bounds.y,
                 center: true,
                 icon,
                 webPreferences: {
+                    devTools: true,
                     nodeIntegration: true,
                     contextIsolation: false,
                     enableRemoteModule: true,
@@ -33,6 +34,7 @@ function createWindows() {
             fullscreen: true,
             icon,
             webPreferences: {
+                devTools: true,
                 nodeIntegration: true,
                 contextIsolation: false,
             },
@@ -40,6 +42,9 @@ function createWindows() {
     });
 
     windows.forEach((window, index) => {
+        // Maximise la fenêtre dès son ouverture
+        window.maximize();
+
         window.loadFile(
             index === 0
                 ? "src/html/mainWindow/index.html"

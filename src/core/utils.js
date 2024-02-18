@@ -1,25 +1,18 @@
 const fs = require("fs");
 const path = require("path");
-import utilsSettingsObj from "./mainWindow/settings/utilsSettings.js";
 
 const utils = {
     filePath: path.join(__dirname, "../../data/rooms.json"),
     _dataloaded: null,
 
-    displayTimer(timer, hours, minutes) {
+    displayTimer(timer, hours, minutes, isPreferenceTimer) {
         timer.textContent = `${
-            hours
-                ? `${hours}${
-                      utilsSettingsObj.isPreferenceTimer ? "h : " : " : "
-                  }`
-                : ""
+            hours ? `${hours}${isPreferenceTimer ? "h : " : " : "}` : ""
         }${
-            minutes < 10 && utilsSettingsObj.isPreferenceTimer === false
+            minutes < 10 && isPreferenceTimer === false
                 ? "0" + minutes
                 : minutes
-        }${utilsSettingsObj.isPreferenceTimer ? "m" : ""} : 0${
-            utilsSettingsObj.isPreferenceTimer ? "s" : "0"
-        }`;
+        }${isPreferenceTimer ? "m" : ""} : 0${isPreferenceTimer ? "s" : "0"}`;
     },
 
     openModal(container, modal, modalContent, otherModal, btn, otherBtn) {

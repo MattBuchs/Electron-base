@@ -118,7 +118,12 @@ const timerObj = {
         this.seconds = 60;
         this.isStarted = false;
 
-        displayTimer(timer, roomsObj.hours, roomsObj.minutes);
+        displayTimer(
+            timer,
+            roomsObj.hours,
+            roomsObj.minutes,
+            utilsSettingsObj.isPreferenceTimer
+        );
 
         endTimerSound.pause();
         endTimerSound.currentTime = 0;
@@ -142,7 +147,8 @@ const timerObj = {
             ipcRenderer.send(
                 "reset-timer",
                 roomsObj.resetHours,
-                roomsObj.resetMinutes
+                roomsObj.resetMinutes,
+                utilsSettingsObj.isPreferenceTimer
             );
         });
 
@@ -168,6 +174,9 @@ const timerObj = {
         if (ambientSound.currentTime > 0) {
             ambientSound.pause();
             ambientSound.currentTime = 0;
+
+            btnStopAmbientSound.classList.add("hidden");
+            btnAmbientSound.classList.remove("hidden");
         }
 
         if (notificationSound.currentTime > 0) {
@@ -175,19 +184,19 @@ const timerObj = {
             notificationSound.currentTime = 0;
         }
 
+        if (this.isActive) {
+            this.resetTimer();
+            ipcRenderer.send(
+                "reset-timer",
+                roomsObj.resetHours,
+                roomsObj.resetMinutes,
+                utilsSettingsObj.isPreferenceTimer
+            );
+        }
+
         if (message.value !== "") {
             message.value = "";
         }
-
-        btnStopAmbientSound.classList.add("hidden");
-        btnAmbientSound.classList.remove("hidden");
-
-        this.resetTimer();
-        ipcRenderer.send(
-            "reset-timer",
-            roomsObj.resetHours,
-            roomsObj.resetMinutes
-        );
         ipcRenderer.send("clear-message");
     },
 };

@@ -15,15 +15,19 @@ function setupIPCFunctions(windows) {
         }
     });
 
-    ipcMain.on("reset-timer", (event, resetHours, resetMinutes) => {
-        for (let i = 1; i < windows.length; i++) {
-            windows[i].webContents.send(
-                "reset-timer",
-                resetHours,
-                resetMinutes
-            );
+    ipcMain.on(
+        "reset-timer",
+        (_, resetHours, resetMinutes, isPreferenceTimer) => {
+            for (let i = 1; i < windows.length; i++) {
+                windows[i].webContents.send(
+                    "reset-timer",
+                    resetHours,
+                    resetMinutes,
+                    isPreferenceTimer
+                );
+            }
         }
-    });
+    );
 
     ipcMain.on("send-message", (_, message) => {
         for (let i = 1; i < windows.length; i++) {
@@ -37,19 +41,13 @@ function setupIPCFunctions(windows) {
         }
     });
 
-    ipcMain.on("times", (event, resetHours, resetMinutes) => {
-        for (let i = 1; i < windows.length; i++) {
-            windows[i].webContents.send("times", resetHours, resetMinutes);
-        }
-    });
-
-    ipcMain.on("update-preference", (event, isPreferenceTimer) => {
+    ipcMain.on("update-preference", (_, isPreferenceTimer) => {
         for (let i = 1; i < windows.length; i++) {
             windows[i].webContents.send("update-preference", isPreferenceTimer);
         }
     });
 
-    ipcMain.handle("open-file-dialog", async (event) => {
+    ipcMain.handle("open-file-dialog", async () => {
         const result = await dialog.showOpenDialog({
             properties: ["openFile", "multiSelections"],
             filters: [

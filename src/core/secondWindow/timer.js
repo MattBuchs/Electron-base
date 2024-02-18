@@ -30,7 +30,6 @@ const timerObj = {
                 }
             }
 
-            console.log(dataloaded);
             timer.textContent = `${
                 this.hours === 0
                     ? ""
@@ -47,14 +46,14 @@ const timerObj = {
         clearInterval(this.loop);
     },
 
-    resetTimer(resetHours, resetMinutes) {
+    resetTimer(resetHours, resetMinutes, isPreferenceTimer) {
         clearInterval(this.loop);
 
         this.hours = resetHours;
         this.minutes = resetMinutes;
         this.seconds = 60;
 
-        displayTimer(timer, this.hours, this.minutes);
+        displayTimer(timer, this.hours, this.minutes, isPreferenceTimer);
     },
 };
 
@@ -66,16 +65,14 @@ ipcRenderer.on("stop-timer", () => {
     timerObj.stopTimer();
 });
 
-ipcRenderer.on("reset-timer", (event, resetHours, resetMinutes) => {
-    timerObj.resetTimer(resetHours, resetMinutes);
-});
-
-ipcRenderer.on("times", (event, resetHours, resetMinutes) => {
-    timerObj.resetTimer(resetHours, resetMinutes);
-});
+ipcRenderer.on(
+    "reset-timer",
+    (_, resetHours, resetMinutes, isPreferenceTimer) => {
+        timerObj.resetTimer(resetHours, resetMinutes, isPreferenceTimer);
+    }
+);
 
 ipcRenderer.on("update-preference", (event, isPreferenceTimer) => {
-    console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWW");
     timerObj.isPreferenceTimer = isPreferenceTimer;
 });
 

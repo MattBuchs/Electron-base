@@ -1,6 +1,7 @@
 const { ipcRenderer } = require("electron");
 import { displayTimer, dataloaded } from "../../utils.js";
 import addPhrasesObj from "../phrases/addPhrases.js";
+import utilsSettingsObj from "../settings/utilsSettings.js";
 
 const containerRoom = document.querySelector("#container-room");
 const containerBtnRooms = document.querySelector("#container-btn_rooms");
@@ -141,7 +142,12 @@ const roomsObj = {
             if (btnAmbient.disabled === true) btnAmbient.disabled = false;
         } else btnAmbient.disabled = true;
 
-        displayTimer(timer, this.hours, this.minutes);
+        displayTimer(
+            timer,
+            this.hours,
+            this.minutes,
+            utilsSettingsObj.isPreferenceTimer
+        );
         this.updateRangeAndSound(idOfRoom);
 
         if (sectionHome.classList.contains("activeContent")) {
@@ -158,7 +164,12 @@ const roomsObj = {
 
         this.loadOption();
 
-        ipcRenderer.send("times", this.resetHours, this.resetMinutes);
+        ipcRenderer.send(
+            "reset-timer",
+            this.resetHours,
+            this.resetMinutes,
+            utilsSettingsObj.isPreferenceTimer
+        );
     },
 
     loadOption() {
