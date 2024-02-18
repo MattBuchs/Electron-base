@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-import { displayTimer, dataloaded } from "../utils.js";
+import { displayTimer } from "../utils.js";
 
 const timer = document.querySelector("#timer-room");
 
@@ -9,6 +9,13 @@ const timerObj = {
     seconds: 60,
     loop: null,
     isPreferenceTimer: null,
+
+    loadTimer(isPreferenceTimer) {
+        timer.textContent = `
+            1${isPreferenceTimer ? "h :" : " :"} 0${
+            isPreferenceTimer ? "m" : "0"
+        } : 0${isPreferenceTimer ? "s" : "0"}`;
+    },
 
     startTimer() {
         this.minutes--;
@@ -74,6 +81,10 @@ ipcRenderer.on(
 
 ipcRenderer.on("update-preference", (event, isPreferenceTimer) => {
     timerObj.isPreferenceTimer = isPreferenceTimer;
+});
+
+ipcRenderer.on("load-timer", (event, isPreferenceTimer) => {
+    timerObj.loadTimer(isPreferenceTimer);
 });
 
 export default timerObj;

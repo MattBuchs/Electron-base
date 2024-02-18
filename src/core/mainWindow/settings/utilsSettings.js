@@ -14,6 +14,7 @@ const utilsSettingsObj = {
     init() {
         this.isPreferenceTimer = dataloaded[0]?.isPreferenceTimer;
         ipcRenderer.send("update-preference", this.isPreferenceTimer);
+        ipcRenderer.send("load-timer", this.isPreferenceTimer);
 
         if (this.isPreferenceTimer) inputsRadio[0].checked = true;
         else inputsRadio[1].checked = true;

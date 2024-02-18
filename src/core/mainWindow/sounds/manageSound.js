@@ -107,6 +107,8 @@ const manageSoundObj = {
     },
 
     resetBtn(stopMusic, btnListenMusic, audio) {
+        console.log(stopMusic);
+        console.log(btnListenMusic);
         stopMusic.classList.add("hidden");
         btnListenMusic.classList.remove("hidden");
 

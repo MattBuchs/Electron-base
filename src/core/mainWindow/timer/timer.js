@@ -128,6 +128,9 @@ const timerObj = {
         endTimerSound.pause();
         endTimerSound.currentTime = 0;
 
+        stopAlert.classList.add("hidden");
+        stopAlert.disabled = false;
+
         message.value = "";
         ipcRenderer.send("clear-message");
     },
@@ -167,7 +170,7 @@ const timerObj = {
         endTimerSound.pause();
         endTimerSound.currentTime = 0;
 
-        stopAlert.classList.add("hidden");
+        stopAlert.disabled = true;
     },
 
     setupHomeButton() {

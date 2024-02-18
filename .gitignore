@@ -2,5 +2,5 @@ node_modules/
 package-lock.json
 a-faire.md
 public/sounds/
-src/data/rooms.json
+src/data/
 release-builds

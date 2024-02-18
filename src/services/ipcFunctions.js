@@ -47,6 +47,12 @@ function setupIPCFunctions(windows) {
         }
     });
 
+    ipcMain.on("load-timer", (_, isPreferenceTimer) => {
+        for (let i = 1; i < windows.length; i++) {
+            windows[i].webContents.send("load-timer", isPreferenceTimer);
+        }
+    });
+
     ipcMain.handle("open-file-dialog", async () => {
         const result = await dialog.showOpenDialog({
             properties: ["openFile", "multiSelections"],
