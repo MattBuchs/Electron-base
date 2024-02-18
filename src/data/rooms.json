@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "btn-room_1",
+    "name": "Salle 1",
+    "end_timer_sound": "Dark Time.mp3",
+    "notification_sound": "Eagle - Notification ! Sms ! Tone.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 0,
+    "minutes": 1,
+    "end_timer_volume": 0.32,
+    "notification_volume": 0.35,
+    "ambient_volume": 0.05,
+    "isPreferenceTimer": true,
+    "phrases": []
+  },
+  {
+    "id": "btn-room_2",
+    "name": "Salle2",
+    "end_timer_sound": "Sherlock Holmes.mp3",
+    "notification_sound": "Message Notification Tone.mp3",
+    "ambient_sound": "Harry Potter - musique ambiance.mp3",
+    "hours": 1,
+    "minutes": 0,
+    "end_timer_volume": 0.5,
+    "notification_volume": 0.5,
+    "ambient_volume": 0.1,
+    "isPreferenceTimer": true,
+    "phrases": []
+  }
+]
