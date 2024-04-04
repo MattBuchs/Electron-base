@@ -89,7 +89,7 @@ const timerObj = {
             }${roomsObj.minutes < 10 && roomsObj.minutes > 0 ? "0" : ""}${
                 roomsObj.minutes
             }${utilsSettingsObj.isPreferenceTimer ? "m" : ""} : ${
-                this.seconds < 10 && this.seconds > 0 ? "0" : ""
+                this.seconds < 10 ? "0" : ""
             }${this.seconds}${utilsSettingsObj.isPreferenceTimer ? "s" : ""}`;
         }, 1000);
 

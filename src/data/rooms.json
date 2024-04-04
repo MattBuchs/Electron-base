@@ -26,5 +26,19 @@
     "ambient_volume": 0.1,
     "isPreferenceTimer": true,
     "phrases": []
+  },
+  {
+    "id": "btn-room_3",
+    "name": " fdbdffb",
+    "end_timer_sound": null,
+    "notification_sound": null,
+    "ambient_sound": null,
+    "hours": 23,
+    "minutes": 24,
+    "end_timer_volume": 0.5,
+    "notification_volume": 0.5,
+    "ambient_volume": 0.2,
+    "isPreferenceTimer": true,
+    "phrases": []
   }
 ]

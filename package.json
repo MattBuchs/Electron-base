@@ -8,7 +8,7 @@
         "start": "electron .",
         "compile-sass": "sass src/css/index.scss src/css/compilation/output.css",
         "watch-sass": "sass --watch src/css/index.scss:src/css/compilation/output.css",
-        "package": "electron-packager . EscapeTime --platform=win32 --arch=x64 --out=dist --asar --icon=public/img/AngelsGame.ico"
+        "package": "electron-packager . EscapeTime --platform=win32 --arch=x64 --out=dist --icon=public/img/AngelsGame.ico"
     },
     "build": {
         "appId": "com.matt.escape-time",

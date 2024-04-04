@@ -44,7 +44,7 @@ const timerObj = {
             }${this.minutes < 10 && this.minutes > 0 ? "0" : ""}${
                 this.minutes
             }${this.isPreferenceTimer ? "m" : ""} : ${
-                this.seconds < 10 && this.seconds > 0 ? "0" : ""
+                this.seconds < 10 ? "0" : ""
             }${this.seconds}${this.isPreferenceTimer ? "s" : ""}`;
         }, 1000);
     },
