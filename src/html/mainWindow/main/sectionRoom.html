@@ -2,21 +2,37 @@
     <div class="timer">
         <div class="timer__top">
             <div class="timer__top--manageTimer">
-                <button id="play">Commencer</button>
-                <button id="stop" class="hidden">Arrêter</button>
+                <button id="play" title="Lancer le timer">Commencer</button>
+                <button
+                    id="stop"
+                    class="hidden"
+                    title="Mettre en pause le timer"
+                >
+                    Arrêter
+                </button>
                 <button id="stop-alert" class="hidden">Stopper l'alerte</button>
-                <button id="reset">Réinitialiser</button>
+                <button id="reset" title="Réinitialiser le timer">
+                    Réinitialiser
+                </button>
             </div>
 
             <div class="timer__top--img">
-                <img src="../../../public/img/Logo.png" alt="" />
+                <img src="../../../public/img/Logo.png" alt="Logo" />
             </div>
 
             <div class="timer__top--sound">
-                <button type="submit" id="btn-notification_sound">
+                <button
+                    type="submit"
+                    id="btn-notification_sound"
+                    title="Lancer le son de la notification"
+                >
                     Notification
                 </button>
-                <button type="submit" id="btn-ambient_sound">
+                <button
+                    type="submit"
+                    id="btn-ambient_sound"
+                    title="Lancer le son ambiant"
+                >
                     Son ambiant
                 </button>
                 <button
@@ -40,9 +56,45 @@
                 </select>
                 <div class="timer__bottom--message">
                     <textarea id="message"></textarea>
-                    <div>
-                        <button type="button" id="btn-clear">Effacer</button>
-                        <button type="submit">Envoyer</button>
+                    <div class="timer__bottom--message---submit">
+                        <button
+                            type="button"
+                            id="btn-clear"
+                            title="Effacer message côté Joueurs"
+                        >
+                            Effacer
+                        </button>
+                        <button
+                            type="submit"
+                            title="Envoyer message aux Joueurs"
+                        >
+                            Envoyer
+                        </button>
+
+                        <div class="timer__bottom--message---btns">
+                            <button
+                                id="img-delete"
+                                type="button"
+                                title="Effacer message côté Game Master"
+                            >
+                                <img
+                                    src="../../../public/img/delete.svg"
+                                    alt="Supprimer phrase"
+                                    class="img-delete"
+                                />
+                            </button>
+                            <button
+                                id="img-back"
+                                type="button"
+                                title="Récupérer le dernier message envoyé"
+                            >
+                                <img
+                                    src="../../../public/img/back.svg"
+                                    alt="Récupérer la dernière phrase"
+                                    class="img-back"
+                                />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

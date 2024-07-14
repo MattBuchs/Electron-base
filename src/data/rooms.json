@@ -25,7 +25,9 @@
     "notification_volume": 0.5,
     "ambient_volume": 0.1,
     "isPreferenceTimer": true,
-    "phrases": []
+    "phrases": [
+      "ethet tehehte tehhteheth tehethetht"
+    ]
   },
   {
     "id": "btn-room_3",

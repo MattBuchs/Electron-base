@@ -653,16 +653,18 @@ table {
   margin: 0 auto;
 }
 .timer button {
-  background-image: linear-gradient(45deg, #e4fbfe 0%, #a9a3e5 51%, #e4fbfe 100%);
+  background-color: #a9a3e1;
   border: 1px solid #fff;
   border-radius: 3px;
   color: #fff;
   font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4235294118);
-  transition: box-shadow 0.18s;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5098039216);
+  transition: box-shadow 0.12s;
 }
 .timer button:hover {
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2666666667);
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2666666667);
+  scale: 0.98;
 }
 .timer button:disabled {
   background-image: none;
@@ -677,7 +679,7 @@ table {
   margin-bottom: 3px;
 }
 .timer__top button {
-  width: 8rem;
+  width: 9rem;
   height: 2.5rem;
   margin-bottom: 2px;
 }
@@ -724,6 +726,7 @@ table {
   width: 79.7%;
   height: 1.6rem;
   margin-bottom: 2px;
+  font-size: 1rem;
 }
 .timer__bottom--select option {
   border-bottom: 1px solid #000;
@@ -731,25 +734,52 @@ table {
 .timer__bottom--message {
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  height: 120%;
 }
 .timer__bottom--message textarea {
   width: 79.7%;
   resize: none;
-  padding: 0.3rem;
+  padding: 0.3rem 2rem 0.3rem 0.3rem;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.timer__bottom--message div {
+.timer__bottom--message---submit {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 20%;
   min-width: 68px;
 }
-.timer__bottom--message div button:nth-child(1) {
+.timer__bottom--message---submit button:nth-child(1) {
   height: 35%;
 }
-.timer__bottom--message div button:nth-child(2) {
+.timer__bottom--message---submit button:nth-child(2) {
   height: 63%;
+}
+.timer__bottom--message---btns {
+  position: absolute;
+  top: 0;
+  left: -2.4rem;
+}
+.timer__bottom--message---btns button {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.timer__bottom--message---btns button:hover {
+  box-shadow: none;
+}
+.timer__bottom--message---btns button .img-delete {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.timer__bottom--message---btns button .img-back {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: 0.2rem;
 }
 @media screen and (max-width: 1450px) {
   .timer {
@@ -1126,6 +1156,15 @@ table {
   }
 }
 
+.timer__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-size: 3.2rem;
+  padding: 1rem 1.5rem;
+  font-family: "Courier New", Courier, monospace;
+}
 .timer__logo {
   width: 200px;
   height: auto;
@@ -1143,15 +1182,16 @@ table {
   margin-top: 100px;
   color: #fff;
   font-size: 3rem;
-  padding: 14px;
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.3333333333);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4588235294);
   word-wrap: break-word;
 }
-.timer .not-indice {
-  font-style: italic;
-  color: #b5b5b5;
+.timer__message p {
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 10px 14px;
 }
 
 .timer-second {
