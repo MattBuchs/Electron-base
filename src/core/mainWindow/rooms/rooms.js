@@ -6,6 +6,7 @@ import utilsSettingsObj from "../settings/utilsSettings.js";
 const containerRoom = document.querySelector("#container-room");
 const containerBtnRooms = document.querySelector("#container-btn_rooms");
 const timer = document.querySelector("#timer-room");
+const timer2 = document.querySelector("#timer-roomNegative");
 const endTimerSound = document.querySelector("#end-timer_sound");
 const notificationSound = document.querySelector("#notification_sound");
 const ambientSound = document.querySelector("#ambient_sound");
@@ -146,7 +147,8 @@ const roomsObj = {
             timer,
             this.hours,
             this.minutes,
-            utilsSettingsObj.isPreferenceTimer
+            utilsSettingsObj.isPreferenceTimer,
+            timer2
         );
         this.updateRangeAndSound(idOfRoom);
 

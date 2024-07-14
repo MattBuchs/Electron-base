@@ -4,6 +4,7 @@ import roomsObj from "../rooms/rooms.js";
 import utilsSettingsObj from "../settings/utilsSettings.js";
 
 const timer = document.querySelector("#timer-room");
+const timer2 = document.querySelector("#timer-roomNegative");
 const playTimer = document.querySelector("#play");
 const stopTimer = document.querySelector("#stop");
 const btnResetTimer = document.querySelector("#reset");
@@ -22,6 +23,7 @@ const timerObj = {
     loop: null,
     isStarted: false,
     isActive: false,
+    isPositive: true,
 
     init() {
         playTimer.addEventListener("click", this.startTimer.bind(this));
@@ -46,16 +48,15 @@ const timerObj = {
         }
 
         this.loop = setInterval(() => {
-            this.seconds--;
-
             if (
                 roomsObj.hours === 0 &&
                 roomsObj.minutes === 0 &&
                 this.seconds === 0
             ) {
-                clearInterval(this.loop);
-                stopTimer.classList.add("hidden");
+                this.isPositive = false;
                 playTimer.classList.add("hidden");
+                timer2.classList.remove("hidden");
+                stopAlert.style.display = "flex";
 
                 if (endTimerSound.src !== `file://${__dirname}/index.html`) {
                     stopAlert.classList.remove("hidden");
@@ -68,7 +69,11 @@ const timerObj = {
 
                     endTimerSound.play();
                 }
-            } else {
+            }
+
+            if (this.isPositive) {
+                this.seconds--;
+
                 if (this.seconds === -1) {
                     roomsObj.minutes--;
                     this.seconds = 59;
@@ -78,9 +83,21 @@ const timerObj = {
                     roomsObj.hours--;
                     roomsObj.minutes = 59;
                 }
+            } else {
+                this.seconds++;
+
+                if (this.seconds === 60) {
+                    roomsObj.minutes++;
+                    this.seconds = 0;
+                }
+
+                if (roomsObj.minutes === 60) {
+                    roomsObj.hours++;
+                    roomsObj.minutes = 0;
+                }
             }
 
-            timer.textContent = `${
+            timer.textContent = `${!this.isPositive ? "+" : ""}${
                 roomsObj.hours === 0
                     ? ""
                     : `${roomsObj.hours}${
@@ -110,19 +127,25 @@ const timerObj = {
         playTimer.textContent = "Commencer";
         playTimer.classList.remove("hidden");
         stopTimer.classList.add("hidden");
+        timer2.classList.add("hidden");
+        stopAlert.style.display = "none";
+        stopAlert.children[0].classList.remove("hidden");
+        stopAlert.children[1].classList.add("hidden");
 
         clearInterval(this.loop);
 
         roomsObj.hours = roomsObj.resetHours;
         roomsObj.minutes = roomsObj.resetMinutes;
         this.seconds = 60;
+        this.isPositive = true;
         this.isStarted = false;
 
         displayTimer(
             timer,
             roomsObj.hours,
             roomsObj.minutes,
-            utilsSettingsObj.isPreferenceTimer
+            utilsSettingsObj.isPreferenceTimer,
+            timer2
         );
 
         endTimerSound.pause();
@@ -171,6 +194,9 @@ const timerObj = {
         endTimerSound.currentTime = 0;
 
         stopAlert.disabled = true;
+
+        stopAlert.children[0].classList.add("hidden");
+        stopAlert.children[1].classList.remove("hidden");
     },
 
     setupHomeButton() {

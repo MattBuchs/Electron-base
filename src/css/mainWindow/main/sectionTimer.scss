@@ -276,3 +276,21 @@
         }
     }
 }
+
+#stop-alert {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+    width: 3rem;
+    height: 2.4rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    fill: #fff;
+
+    svg {
+        width: 2rem;
+        height: 1.6rem;
+    }
+}

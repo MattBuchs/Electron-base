@@ -876,6 +876,23 @@ table {
   }
 }
 
+#stop-alert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
+  width: 3rem;
+  height: 2.4rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  fill: #fff;
+}
+#stop-alert svg {
+  width: 2rem;
+  height: 1.6rem;
+}
+
 .addTimer {
   width: 50%;
   margin: 0 auto;
@@ -1174,6 +1191,9 @@ table {
   width: 100%;
   height: 100%;
 }
+.timer__middle {
+  position: relative;
+}
 .timer__message {
   background-color: #000;
   width: 100%;
@@ -1296,6 +1316,14 @@ img {
 .spinner img {
   width: 80px;
   animation: loading 1.8s infinite linear;
+}
+
+#timer-roomNegative {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.7rem;
+  padding: 0.5rem 0.6rem;
 }
 
 @keyframes loading {

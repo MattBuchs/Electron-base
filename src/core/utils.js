@@ -5,7 +5,7 @@ const utils = {
     filePath: path.join(__dirname, "../../data/rooms.json"),
     _dataloaded: null,
 
-    displayTimer(timer, hours, minutes, isPreferenceTimer) {
+    displayTimer(timer, hours, minutes, isPreferenceTimer, timer2) {
         timer.textContent = `${
             hours ? `${hours}${isPreferenceTimer ? "h : " : " : "}` : ""
         }${
@@ -13,6 +13,18 @@ const utils = {
                 ? "0" + minutes
                 : minutes
         }${isPreferenceTimer ? "m" : ""} : 0${isPreferenceTimer ? "s" : "0"}`;
+
+        if (timer2) {
+            timer2.textContent = `${
+                hours ? `${hours}${isPreferenceTimer ? "h : " : " : "}` : ""
+            }${
+                minutes < 10 && isPreferenceTimer === false
+                    ? "0" + minutes
+                    : minutes
+            }${isPreferenceTimer ? "m" : ""} : 0${
+                isPreferenceTimer ? "s" : "0"
+            }`;
+        }
     },
 
     openModal(container, modal, modalContent, otherModal, btn, otherBtn) {

@@ -2,6 +2,7 @@ const { ipcRenderer } = require("electron");
 import { displayTimer } from "../utils.js";
 
 const timer = document.querySelector("#timer-room");
+const timer2 = document.querySelector("#timer-roomNegative");
 
 const timerObj = {
     hours: 0,
@@ -9,6 +10,8 @@ const timerObj = {
     seconds: 60,
     loop: null,
     isPreferenceTimer: null,
+    isPositive: true,
+    isStarted: false,
 
     loadTimer(isPreferenceTimer) {
         timer.textContent = `
@@ -18,14 +21,20 @@ const timerObj = {
     },
 
     startTimer() {
-        this.minutes--;
+        if (!this.isStarted) {
+            this.minutes--;
+            this.isStarted = true;
+        }
 
         this.loop = setInterval(() => {
-            this.seconds--;
-
             if (this.hours === 0 && this.minutes === 0 && this.seconds === 0) {
-                clearInterval(this.loop);
-            } else {
+                this.isPositive = false;
+                timer2.classList.remove("hidden");
+            }
+
+            if (this.isPositive) {
+                this.seconds--;
+
                 if (this.seconds === -1) {
                     this.minutes--;
                     this.seconds = 59;
@@ -35,9 +44,21 @@ const timerObj = {
                     this.hours--;
                     this.minutes = 59;
                 }
+            } else {
+                this.seconds++;
+
+                if (this.seconds === 60) {
+                    this.minutes++;
+                    this.seconds = 0;
+                }
+
+                if (this.minutes === 60) {
+                    this.hours++;
+                    this.minutes = 0;
+                }
             }
 
-            timer.textContent = `${
+            timer.textContent = `${!this.isPositive ? "+" : ""}${
                 this.hours === 0
                     ? ""
                     : `${this.hours}${this.isPreferenceTimer ? "h" : ""} : `
@@ -56,11 +77,20 @@ const timerObj = {
     resetTimer(resetHours, resetMinutes, isPreferenceTimer) {
         clearInterval(this.loop);
 
+        this.isStarted = false;
+        this.isPositive = true;
         this.hours = resetHours;
         this.minutes = resetMinutes;
         this.seconds = 60;
 
-        displayTimer(timer, this.hours, this.minutes, isPreferenceTimer);
+        timer2.classList.add("hidden");
+        displayTimer(
+            timer,
+            this.hours,
+            this.minutes,
+            isPreferenceTimer,
+            timer2
+        );
     },
 };
 
