@@ -8,8 +8,10 @@ function createWindows() {
     let x = 0;
 
     const windows = displays.map((display, index) => {
+        let window;
+
         if (index === 0) {
-            return new BrowserWindow({
+            window = new BrowserWindow({
                 width: 1200,
                 height: 800,
                 x: mainScreen.bounds.x,
@@ -23,22 +25,25 @@ function createWindows() {
                     enableRemoteModule: true,
                 },
             });
+        } else {
+            x += display.bounds.width;
+            window = new BrowserWindow({
+                width: 1200,
+                height: 800,
+                x: display.bounds.x - x,
+                y: display.bounds.y,
+                fullscreen: true,
+                icon,
+                webPreferences: {
+                    devTools: true,
+                    nodeIntegration: true,
+                    contextIsolation: false,
+                },
+            });
         }
 
-        x += display.bounds.width;
-        return new BrowserWindow({
-            width: 1200,
-            height: 800,
-            x: display.bounds.x - x,
-            y: display.bounds.y,
-            fullscreen: true,
-            icon,
-            webPreferences: {
-                devTools: true,
-                nodeIntegration: true,
-                contextIsolation: false,
-            },
-        });
+        // window.setMenuBarVisibility(false);
+        return window;
     });
 
     windows.forEach((window, index) => {

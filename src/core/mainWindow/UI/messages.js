@@ -17,6 +17,7 @@ const messagesObj = {
         message.addEventListener("input", this.updateSelect.bind(this));
         supprMessage.addEventListener("click", this.deleteMessage.bind(this));
         getMessage.addEventListener("click", this.getMessage.bind(this));
+        message.addEventListener("keydown", this.handleKeyDown.bind(this));
     },
 
     sendMessage(e) {
@@ -46,7 +47,6 @@ const messagesObj = {
     },
 
     getMessage() {
-        console.log(message, this.message);
         message.value = this.message;
     },
 
@@ -56,6 +56,12 @@ const messagesObj = {
 
     deleteMessage() {
         message.value = "";
+    },
+
+    handleKeyDown(e) {
+        if (e.shiftKey && e.key === "Enter") this.sendMessage(e);
+        if (!e.shiftKey && e.key === "Delete") this.deleteMessage();
+        if (e.shiftKey && e.key === "Delete") this.clearMessage();
     },
 };
 
