@@ -1,6 +1,7 @@
 const { ipcRenderer } = require("electron");
 import { displayTimer } from "../utils.js";
 
+const container = document.querySelector(".timer2");
 const timer = document.querySelector("#timer2-room");
 const timer2 = document.querySelector("#timer-roomNegative");
 
@@ -12,6 +13,8 @@ const timerObj = {
     isPreferenceTimer: null,
     isPositive: true,
     isStarted: false,
+    counter: 0,
+    isStop: false,
 
     loadTimer(isPreferenceTimer) {
         timer.textContent = `
@@ -21,7 +24,21 @@ const timerObj = {
     },
 
     startTimer() {
-        timer2.classList.remove("photo");
+        container.classList.remove("photo");
+
+        if (this.isStop) {
+            timer.textContent = `${!this.isPositive ? "+" : ""}${
+                this.hours === 0
+                    ? ""
+                    : `${this.hours}${this.isPreferenceTimer ? "h" : ""} : `
+            }${this.minutes < 10 && this.minutes > 0 ? "0" : ""}${
+                this.minutes
+            }${this.isPreferenceTimer ? "m" : ""} : ${
+                this.seconds < 10 ? "0" : ""
+            }${this.seconds}${this.isPreferenceTimer ? "s" : ""}`;
+
+            this.isStop = false;
+        }
 
         if (!this.isStarted) {
             this.minutes--;
@@ -60,6 +77,8 @@ const timerObj = {
                 }
             }
 
+            this.counter++;
+
             timer.textContent = `${!this.isPositive ? "+" : ""}${
                 this.hours === 0
                     ? ""
@@ -74,7 +93,22 @@ const timerObj = {
 
     stopTimer() {
         clearInterval(this.loop);
-        timer2.classList.add("photo");
+        this.isStop = true;
+        container.classList.add("photo");
+
+        const secondes = this.counter;
+        const temps = new Date();
+        temps.setTime(secondes * 1000);
+
+        timer.textContent = `${
+            this.hours === 0
+                ? ""
+                : `${temps.getHours()}${this.isPreferenceTimer ? "h" : ""} : `
+        }${
+            temps.getMinutes() < 10 && temps.getMinutes() > 0 ? "0" : ""
+        }${temps.getMinutes()}${this.isPreferenceTimer ? "m" : ""} : ${
+            temps.getSeconds() < 10 ? "0" : ""
+        }${temps.getSeconds()}${this.isPreferenceTimer ? "s" : ""}`;
     },
 
     resetTimer(resetHours, resetMinutes, isPreferenceTimer) {
@@ -85,8 +119,10 @@ const timerObj = {
         this.hours = resetHours;
         this.minutes = resetMinutes;
         this.seconds = 60;
+        this.counter = 0;
 
         timer2.classList.add("hidden");
+        container.classList.remove("photo");
         displayTimer(
             timer,
             this.hours,
