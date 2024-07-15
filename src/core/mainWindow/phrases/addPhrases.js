@@ -12,6 +12,7 @@ const phrases = document.querySelector("#add-phrases");
 const phrasesSelect = document.querySelector("#phrases-select");
 const modalParamsSound = document.querySelector("#modal-params_sound");
 const openParamsSound = document.querySelector("#params-sound");
+const counterMessage = document.querySelector("#counter-add-phrases");
 
 const addPhrasesObj = {
     init() {
@@ -32,6 +33,7 @@ const addPhrasesObj = {
             closeModal(modalAddPhrases, btnAddPhrases)
         );
         btnValidate.addEventListener("click", this.addPhrases.bind(this));
+        phrases.addEventListener("input", this.updatePhrases.bind(this));
     },
 
     addPhrases() {
@@ -65,6 +67,10 @@ const addPhrasesObj = {
             option.appendChild(content);
             phrasesSelect.appendChild(option);
         });
+    },
+
+    updatePhrases() {
+        counterMessage.textContent = phrases.value.length;
     },
 };
 

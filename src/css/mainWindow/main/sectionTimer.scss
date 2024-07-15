@@ -106,17 +106,63 @@
             }
         }
 
-        &--message {
+        &--container {
             display: flex;
             justify-content: space-between;
             height: 120%;
 
-            textarea {
+            &---message {
+                position: relative;
                 width: 79.7%;
-                resize: none;
-                padding: 0.3rem 2rem 0.3rem 0.3rem;
-                font-size: 1.2rem;
-                font-family: Arial, Helvetica, sans-serif;
+
+                textarea {
+                    width: 100%;
+                    height: 100%;
+                    resize: none;
+                    padding: 0.3rem 2rem 0.3rem 0.3rem;
+                    font-size: 1.2rem;
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+
+                div {
+                    position: absolute;
+                    top: 0;
+                    right: -2px;
+
+                    button {
+                        display: flex;
+                        flex-direction: column;
+                        background-color: transparent;
+                        border: 0;
+                        box-shadow: none;
+
+                        &:hover {
+                            box-shadow: none;
+                        }
+
+                        .img-delete {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                        }
+
+                        .img-back {
+                            width: 1.4rem;
+                            height: 1.4rem;
+                            margin-left: 0.2rem;
+                        }
+                    }
+                }
+
+                p {
+                    position: absolute;
+                    bottom: 1px;
+                    right: 5px;
+                    font-size: 1rem;
+
+                    span {
+                        font-family: "Times New Roman", Times, serif;
+                    }
+                }
             }
 
             &---submit {
@@ -133,35 +179,6 @@
 
                 button:nth-child(2) {
                     height: 63%;
-                }
-            }
-
-            &---btns {
-                position: absolute;
-                top: 0;
-                left: -2.4rem;
-
-                button {
-                    display: flex;
-                    flex-direction: column;
-                    background-color: transparent;
-                    border: 0;
-                    box-shadow: none;
-
-                    &:hover {
-                        box-shadow: none;
-                    }
-
-                    .img-delete {
-                        width: 1.5rem;
-                        height: 1.5rem;
-                    }
-
-                    .img-back {
-                        width: 1.4rem;
-                        height: 1.4rem;
-                        margin-left: 0.2rem;
-                    }
                 }
             }
         }

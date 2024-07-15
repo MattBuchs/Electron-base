@@ -76,24 +76,11 @@
                 <select id="phrases-select" class="timer__bottom--select">
                     <option value="" selected>Choisir une phrase</option>
                 </select>
-                <div class="timer__bottom--message">
-                    <textarea id="message"></textarea>
-                    <div class="timer__bottom--message---submit">
-                        <button
-                            type="button"
-                            id="btn-clear"
-                            title="Effacer message côté Joueurs [shift + suppr]"
-                        >
-                            Effacer
-                        </button>
-                        <button
-                            type="submit"
-                            title="Envoyer message aux Joueurs [shift + enter]"
-                        >
-                            Envoyer
-                        </button>
+                <div class="timer__bottom--container">
+                    <div class="timer__bottom--container---message">
+                        <textarea id="message" maxlength="230"></textarea>
 
-                        <div class="timer__bottom--message---btns">
+                        <div>
                             <button
                                 id="img-delete"
                                 type="button"
@@ -117,6 +104,25 @@
                                 />
                             </button>
                         </div>
+
+                        <p class="timer__bottom--container---counter">
+                            <span id="counter-message">0</span> / 230
+                        </p>
+                    </div>
+                    <div class="timer__bottom--container---submit">
+                        <button
+                            type="button"
+                            id="btn-clear"
+                            title="Effacer message côté Joueurs [shift + suppr]"
+                        >
+                            Effacer
+                        </button>
+                        <button
+                            type="submit"
+                            title="Envoyer message aux Joueurs [shift + enter]"
+                        >
+                            Envoyer
+                        </button>
                     </div>
                 </div>
             </form>

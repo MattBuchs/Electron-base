@@ -6,6 +6,7 @@ const phrasesSelected = document.querySelector("#phrases-select");
 const btnClear = document.querySelector("#btn-clear");
 const supprMessage = document.querySelector("#img-delete");
 const getMessage = document.querySelector("#img-back");
+const counterMessage = document.querySelector("#counter-message");
 
 const messagesObj = {
     message: null,
@@ -23,9 +24,11 @@ const messagesObj = {
     sendMessage(e) {
         e.preventDefault();
 
-        if (message.value !== "") {
+        const messageWrited = message.value;
+        console.log(messageWrited.length);
+
+        if (messageWrited !== "" || messageWrited.length > 230) {
             phrasesSelected.selectedIndex = 0;
-            const messageWrited = message.value;
 
             ipcRenderer.send("send-message", messageWrited);
             this.message = messageWrited;
@@ -35,15 +38,21 @@ const messagesObj = {
     changeValue() {
         const index = phrasesSelected.selectedIndex;
 
-        if (phrasesSelected.options[index].value === "")
-            return (message.value = "");
+        if (phrasesSelected.options[index].value === "") {
+            message.value = "";
+            counterMessage.textContent = message.value.length;
+
+            return;
+        }
 
         const value = phrasesSelected.options[index].textContent;
         message.value = value;
+        counterMessage.textContent = message.value.length;
     },
 
     updateSelect() {
         phrasesSelected.selectedIndex = 0;
+        counterMessage.textContent = message.value.length;
     },
 
     getMessage() {
@@ -56,6 +65,7 @@ const messagesObj = {
 
     deleteMessage() {
         message.value = "";
+        counterMessage.textContent = "0";
     },
 
     handleKeyDown(e) {

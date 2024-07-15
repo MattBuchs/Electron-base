@@ -489,9 +489,14 @@ table {
   height: 100%;
   resize: none;
   padding: 6px;
-  font-size: 1rem;
-  color: #666;
+  font-size: 1.2rem;
   margin-bottom: 0.6rem;
+}
+.modal__content--phrase p {
+  position: absolute;
+  bottom: 3.1rem;
+  right: 1.1rem;
+  font-family: sans-serif;
 }
 .modal__content--titlePhrase {
   width: 85%;
@@ -731,19 +736,57 @@ table {
 .timer__bottom--select option {
   border-bottom: 1px solid #000;
 }
-.timer__bottom--message {
+.timer__bottom--container {
   display: flex;
   justify-content: space-between;
   height: 120%;
 }
-.timer__bottom--message textarea {
+.timer__bottom--container---message {
+  position: relative;
   width: 79.7%;
+}
+.timer__bottom--container---message textarea {
+  width: 100%;
+  height: 100%;
   resize: none;
   padding: 0.3rem 2rem 0.3rem 0.3rem;
   font-size: 1.2rem;
   font-family: Arial, Helvetica, sans-serif;
 }
-.timer__bottom--message---submit {
+.timer__bottom--container---message div {
+  position: absolute;
+  top: 0;
+  right: -2px;
+}
+.timer__bottom--container---message div button {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.timer__bottom--container---message div button:hover {
+  box-shadow: none;
+}
+.timer__bottom--container---message div button .img-delete {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.timer__bottom--container---message div button .img-back {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: 0.2rem;
+}
+.timer__bottom--container---message p {
+  position: absolute;
+  bottom: 1px;
+  right: 5px;
+  font-size: 1rem;
+}
+.timer__bottom--container---message p span {
+  font-family: "Times New Roman", Times, serif;
+}
+.timer__bottom--container---submit {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -751,35 +794,11 @@ table {
   width: 20%;
   min-width: 68px;
 }
-.timer__bottom--message---submit button:nth-child(1) {
+.timer__bottom--container---submit button:nth-child(1) {
   height: 35%;
 }
-.timer__bottom--message---submit button:nth-child(2) {
+.timer__bottom--container---submit button:nth-child(2) {
   height: 63%;
-}
-.timer__bottom--message---btns {
-  position: absolute;
-  top: 0;
-  left: -2.4rem;
-}
-.timer__bottom--message---btns button {
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-  border: 0;
-  box-shadow: none;
-}
-.timer__bottom--message---btns button:hover {
-  box-shadow: none;
-}
-.timer__bottom--message---btns button .img-delete {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.timer__bottom--message---btns button .img-back {
-  width: 1.4rem;
-  height: 1.4rem;
-  margin-left: 0.2rem;
 }
 @media screen and (max-width: 1450px) {
   .timer {
