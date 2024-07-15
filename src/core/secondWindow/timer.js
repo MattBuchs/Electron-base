@@ -1,7 +1,7 @@
 const { ipcRenderer } = require("electron");
 import { displayTimer } from "../utils.js";
 
-const timer = document.querySelector("#timer-room");
+const timer = document.querySelector("#timer2-room");
 const timer2 = document.querySelector("#timer-roomNegative");
 
 const timerObj = {

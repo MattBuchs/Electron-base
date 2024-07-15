@@ -1,8 +1,8 @@
 .timer2 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    padding-top: 3vh;
     height: 100vh;
 
     &__title {
@@ -40,7 +40,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 7vw;
+            font-size: 10vw;
             color: #fff;
             font-family: cursive;
         }
@@ -49,10 +49,10 @@
     &__message {
         background-color: #000;
         width: 60%;
-        height: 30%;
-        margin-top: 100px;
+        min-height: 33%;
+        margin-top: 6vh;
         color: #fff;
-        font-size: 3rem;
+        font-size: 3vw;
         border-radius: 4px;
         border: 1px solid #ffffff55;
         box-shadow: 1px 1px 10px #00000075;

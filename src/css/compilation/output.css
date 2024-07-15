@@ -1176,8 +1176,8 @@ table {
 .timer2 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding-top: 3vh;
   height: 100vh;
 }
 .timer2__title {
@@ -1212,17 +1212,17 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 7vw;
+  font-size: 10vw;
   color: #fff;
   font-family: cursive;
 }
 .timer2__message {
   background-color: #000;
   width: 60%;
-  height: 30%;
-  margin-top: 100px;
+  min-height: 33%;
+  margin-top: 6vh;
   color: #fff;
-  font-size: 3rem;
+  font-size: 3vw;
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.3333333333);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4588235294);
