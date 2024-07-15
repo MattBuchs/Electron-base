@@ -21,6 +21,8 @@ const timerObj = {
     },
 
     startTimer() {
+        timer2.classList.remove("photo");
+
         if (!this.isStarted) {
             this.minutes--;
             this.isStarted = true;
@@ -72,6 +74,7 @@ const timerObj = {
 
     stopTimer() {
         clearInterval(this.loop);
+        timer2.classList.add("photo");
     },
 
     resetTimer(resetHours, resetMinutes, isPreferenceTimer) {

@@ -10,7 +10,7 @@
     "end_timer_volume": 0.32,
     "notification_volume": 0.35,
     "ambient_volume": 0.05,
-    "isPreferenceTimer": true,
+    "isPreferenceTimer": false,
     "phrases": [
       "zufz eufefu eeufa oufhfea eaufeafe afaefuoeamfe aofu aefheuaf eao ufeaf hueafoeafhefa eaofeao fueahfu eafoae fheaufheaof aeofuh eafeaofhea foufheoafheaofheafh ou grog rogzrj rzogro r^zgrzor zrogr zorjgrgjrz rzogjrzjg rzogjrgjrrorj",
       "ezfzefezf"
@@ -27,7 +27,7 @@
     "end_timer_volume": 0.5,
     "notification_volume": 0.5,
     "ambient_volume": 0.1,
-    "isPreferenceTimer": true,
+    "isPreferenceTimer": false,
     "phrases": [
       "ethet tehehte tehhteheth tehethetht"
     ]
@@ -38,12 +38,12 @@
     "end_timer_sound": null,
     "notification_sound": null,
     "ambient_sound": null,
-    "hours": 23,
+    "hours": 1,
     "minutes": 24,
     "end_timer_volume": 0.5,
     "notification_volume": 0.5,
     "ambient_volume": 0.2,
-    "isPreferenceTimer": true,
+    "isPreferenceTimer": false,
     "phrases": []
   }
 ]
