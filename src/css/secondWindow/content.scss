@@ -1,18 +1,24 @@
-.timer {
+.timer2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
     &__title {
         position: absolute;
         top: 0;
         left: 0;
         color: #fff;
-        font-size: 3.2rem;
+        font-size: 3vw;
         padding: 1rem 1.5rem;
         font-family: "Courier New", Courier, monospace;
     }
 
     &__logo {
-        width: 200px;
+        min-width: 100px;
+        width: 15%;
         height: auto;
-        margin-top: 6rem;
 
         img {
             width: 100%;
@@ -22,13 +28,28 @@
 
     &__middle {
         position: relative;
+        border: 2px solid #fff;
+        border-radius: 2px;
+        width: 70%;
+        font-size: 100%;
+        padding: 2vh;
+
+        &--timer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 7vw;
+            color: #fff;
+            font-family: cursive;
+        }
     }
 
     &__message {
         background-color: #000;
-        width: 100%;
-        min-height: 300px;
-        max-height: 440px;
+        width: 60%;
+        height: 30%;
         margin-top: 100px;
         color: #fff;
         font-size: 3rem;
@@ -39,13 +60,7 @@
 
         p {
             font-family: Arial, Helvetica, sans-serif;
-            min-width: 100%;
-            min-height: 100%;
             padding: 10px 14px;
         }
     }
-}
-
-.timer-second {
-    width: 85%;
 }
