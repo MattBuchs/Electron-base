@@ -5,8 +5,6 @@ const icon = path.join(__dirname, "../../public/img/AngelsGame.ico");
 function createWindows() {
     const displays = screen.getAllDisplays();
     const mainScreen = screen.getPrimaryDisplay();
-    let x = 0;
-    console.log("----------------------- WWWWUUUUWWW", displays);
 
     const windows = displays.map((display, index) => {
         let window;
@@ -27,12 +25,10 @@ function createWindows() {
                 },
             });
         } else {
-            x += display.bounds.width;
-            console.log(display.bounds.x - x);
             window = new BrowserWindow({
                 width: 1200,
                 height: 800,
-                x: display.bounds.x - x,
+                x: display.bounds.x,
                 y: display.bounds.y,
                 icon,
                 webPreferences: {
@@ -63,7 +59,6 @@ function createWindows() {
 }
 
 function createWindowsIf1Screen() {
-    console.log("----------------------- wow");
     const mainScreen = screen.getPrimaryDisplay();
 
     const window1 = new BrowserWindow({

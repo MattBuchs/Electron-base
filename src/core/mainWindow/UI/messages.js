@@ -25,7 +25,6 @@ const messagesObj = {
         e.preventDefault();
 
         const messageWrited = message.value;
-        console.log(messageWrited.length);
 
         if (messageWrited !== "" || messageWrited.length > 230) {
             phrasesSelected.selectedIndex = 0;

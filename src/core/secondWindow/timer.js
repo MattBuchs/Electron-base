@@ -100,12 +100,15 @@ const timerObj = {
         const temps = new Date();
         temps.setTime(secondes * 1000);
 
+        console.log();
         timer.textContent = `${
-            this.hours === 0
+            temps.getHours() - 1 === 0
                 ? ""
-                : `${temps.getHours()}${this.isPreferenceTimer ? "h" : ""} : `
+                : `${temps.getHours() - 1}${
+                      this.isPreferenceTimer ? "h" : ""
+                  } : `
         }${
-            temps.getMinutes() < 10 && temps.getMinutes() > 0 ? "0" : ""
+            temps.getMinutes() < 10 && temps.getMinutes() >= 0 ? "0" : ""
         }${temps.getMinutes()}${this.isPreferenceTimer ? "m" : ""} : ${
             temps.getSeconds() < 10 ? "0" : ""
         }${temps.getSeconds()}${this.isPreferenceTimer ? "s" : ""}`;
