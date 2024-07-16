@@ -5,6 +5,7 @@ const icon = path.join(__dirname, "../../public/img/AngelsGame.ico");
 function createWindows() {
     const displays = screen.getAllDisplays();
     const mainScreen = screen.getPrimaryDisplay();
+    console.log(displays);
 
     const windows = displays.map((display, index) => {
         let window;

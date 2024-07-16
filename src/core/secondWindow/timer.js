@@ -100,7 +100,6 @@ const timerObj = {
         const temps = new Date();
         temps.setTime(secondes * 1000);
 
-        console.log();
         timer.textContent = `${
             temps.getHours() - 1 === 0
                 ? ""
@@ -119,6 +118,7 @@ const timerObj = {
 
         this.isStarted = false;
         this.isPositive = true;
+        this.isStop = false;
         this.hours = resetHours;
         this.minutes = resetMinutes;
         this.seconds = 60;

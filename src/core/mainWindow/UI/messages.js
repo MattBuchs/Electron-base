@@ -79,6 +79,7 @@ const messagesObj = {
     deleteMessage() {
         message.value = "";
         counterMessage.textContent = "0";
+        phrasesSelected.selectedIndex = 0;
     },
 
     handleKeyDown(e) {
