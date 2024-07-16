@@ -7,9 +7,11 @@ const btnClear = document.querySelector("#btn-clear");
 const supprMessage = document.querySelector("#img-delete");
 const getMessage = document.querySelector("#img-back");
 const counterMessage = document.querySelector("#counter-message");
+const notificationMessage = document.querySelector("#notification-message");
 
 const messagesObj = {
     message: null,
+    isNotificationPush: false,
 
     init() {
         formMessage.addEventListener("submit", this.sendMessage.bind(this));
@@ -31,6 +33,18 @@ const messagesObj = {
 
             ipcRenderer.send("send-message", messageWrited);
             this.message = messageWrited;
+
+            if (!this.isNotificationPush) {
+                this.isNotificationPush = true;
+                notificationMessage.classList.add("notification-message");
+
+                setTimeout(() => {
+                    notificationMessage.classList.remove(
+                        "notification-message"
+                    );
+                    this.isNotificationPush = false;
+                }, 5000);
+            }
         }
     },
 

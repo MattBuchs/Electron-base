@@ -778,6 +778,14 @@ table {
   height: 1.4rem;
   margin-left: 0.2rem;
 }
+.timer__bottom--container---message .notification-message {
+  position: absolute;
+  bottom: 1.4rem;
+  right: 5px;
+  width: 1.5rem;
+  animation: messageSuccess 0.3s ease-out forwards;
+  display: block;
+}
 .timer__bottom--container---message p {
   position: absolute;
   bottom: 1px;
@@ -913,6 +921,16 @@ table {
   height: 1.6rem;
 }
 
+@keyframes messageSuccess {
+  from {
+    translate: 0 1rem;
+    opacity: 0;
+  }
+  to {
+    translate: 0;
+    opacity: 1;
+  }
+}
 .addTimer {
   width: 50%;
   margin: 0 auto;

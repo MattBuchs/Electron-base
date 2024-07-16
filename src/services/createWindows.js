@@ -31,6 +31,7 @@ function createWindows() {
                 x: display.bounds.x,
                 y: display.bounds.y,
                 icon,
+                fullscreen: true,
                 webPreferences: {
                     devTools: true,
                     nodeIntegration: true,
@@ -39,7 +40,7 @@ function createWindows() {
             });
         }
 
-        // window.setMenuBarVisibility(false);
+        window.setMenuBarVisibility(false);
         return window;
     });
 
@@ -52,7 +53,6 @@ function createWindows() {
                 ? "src/html/mainWindow/index.html"
                 : "src/html/secondWindow.html"
         );
-        window.webContents.openDevTools();
     });
 
     return windows;
@@ -90,9 +90,8 @@ function createWindowsIf1Screen() {
 
     window2.loadFile("src/html/secondWindow.html");
     window1.loadFile("src/html/mainWindow/index.html");
-
-    window2.webContents.openDevTools();
-    window1.webContents.openDevTools();
+    window1.setMenuBarVisibility(false);
+    window2.setMenuBarVisibility(false);
 
     return [window1, window2];
 }
